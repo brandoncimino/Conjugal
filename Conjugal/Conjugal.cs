@@ -1,15 +1,11 @@
 using System;
-using System.ComponentModel.Design;
 using System.Reflection;
+
+using Conjugal.Annotations;
+
 using Humanizer;
 
-namespace BenthicProfiler.Annotations
-{
-    public interface IConjugal
-    {
-
-    }
-
+namespace Conjugal {
     public static class Conjugal
     {
         public static bool IsProperNoun(this Type type)

@@ -1,10 +1,10 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
+
 using Humanizer;
 
 using JetBrains.Annotations;
 
-namespace BenthicProfiler.Annotations
+namespace Conjugal.Annotations
 {
     public class LemmaAttribute : Attribute
     {

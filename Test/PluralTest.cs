@@ -1,6 +1,7 @@
 using System;
 
-using BenthicProfiler.Annotations;
+using Conjugal;
+using Conjugal.Annotations;
 
 using Humanizer;
 

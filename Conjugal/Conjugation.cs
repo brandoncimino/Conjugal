@@ -1,8 +1,11 @@
 using System;
 using System.Reflection;
+
+using Conjugal.Annotations;
+
 using Humanizer;
 
-namespace BenthicProfiler.Annotations
+namespace Conjugal
 {
     public readonly struct Conjugation
     {

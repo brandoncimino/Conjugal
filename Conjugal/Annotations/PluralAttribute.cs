@@ -1,6 +1,6 @@
 using System;
 
-namespace BenthicProfiler.Annotations
+namespace Conjugal.Annotations
 {
     public class PluralAttribute : Attribute
     {

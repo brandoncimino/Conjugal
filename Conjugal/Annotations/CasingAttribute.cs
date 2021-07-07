@@ -1,7 +1,8 @@
 using System;
+
 using Humanizer;
 
-namespace BenthicProfiler.Annotations
+namespace Conjugal.Annotations
 {
     public class CasingAttribute : Attribute
     {

@@ -1,4 +1,4 @@
-namespace BenthicProfiler.Annotations
+namespace Conjugal
 {
     public enum Pluralizer
     {
