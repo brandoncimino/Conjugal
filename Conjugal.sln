@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conjugal", "Conjugal.csproj", "{1A2DA842-9FA9-403F-A504-C4E8F154ACAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{D2447E32-3008-408D-92ED-8F57ACC1DC38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conjugal", "Conjugal\Conjugal.csproj", "{045CC014-B8D4-4119-8D1E-DD8A5ABFB803}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A2DA842-9FA9-403F-A504-C4E8F154ACAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A2DA842-9FA9-403F-A504-C4E8F154ACAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A2DA842-9FA9-403F-A504-C4E8F154ACAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A2DA842-9FA9-403F-A504-C4E8F154ACAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2447E32-3008-408D-92ED-8F57ACC1DC38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2447E32-3008-408D-92ED-8F57ACC1DC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2447E32-3008-408D-92ED-8F57ACC1DC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2447E32-3008-408D-92ED-8F57ACC1DC38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{045CC014-B8D4-4119-8D1E-DD8A5ABFB803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{045CC014-B8D4-4119-8D1E-DD8A5ABFB803}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{045CC014-B8D4-4119-8D1E-DD8A5ABFB803}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{045CC014-B8D4-4119-8D1E-DD8A5ABFB803}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
