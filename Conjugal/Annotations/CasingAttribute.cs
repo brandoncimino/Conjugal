@@ -1,15 +1,13 @@
-using System;
-
 using Humanizer;
 
-namespace Conjugal.Annotations
-{
-    public class CasingAttribute : Attribute
-    {
+using JetBrains.Annotations;
+
+namespace Conjugal.Annotations {
+    [PublicAPI]
+    public class CasingAttribute : ConjugalAttribute {
         public readonly LetterCasing Casing;
 
-        public CasingAttribute(LetterCasing letterCasing)
-        {
+        public CasingAttribute(LetterCasing letterCasing) {
             Casing = letterCasing;
         }
     }

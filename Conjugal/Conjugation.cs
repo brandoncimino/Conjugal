@@ -1,42 +1,34 @@
 using System;
-using System.Reflection;
 
-using Conjugal.Annotations;
+namespace Conjugal {
+    public readonly struct Conjugation<T> : IConjugal {
+        public Type   ConjugalType => typeof(T);
+        public string Singular     => throw new NotImplementedException();
+        public string Plural       => ConjugalType.Plural();
+        public string Lemma        => ConjugalType.Lemma();
+        public bool   IsCountable  => ConjugalType.IsCountable();
+        public bool   IsProperNoun => ConjugalType.IsProperNoun();
+    }
 
-using Humanizer;
+    public readonly struct Conjugation : IConjugal {
+        public string Singular     { get; }
+        public string Plural       { get; }
+        public string Lemma        { get; }
+        public bool   IsCountable  { get; }
+        public bool   IsProperNoun { get; }
 
-namespace Conjugal
-{
-    public readonly struct Conjugation
-    {
-        public readonly bool Countable;
-        public readonly bool IsProperNoun;
-        public readonly string Lemma;
-        public readonly Type ConjugalType;
-        public readonly string Plural;
-
-        public Conjugation(Type conjugalType)
-        {
-            ConjugalType = conjugalType;
-            Lemma = conjugalType.Lemma();
-            Countable = conjugalType.IsCountable();
-            IsProperNoun = conjugalType.IsProperNoun();
-            Plural = conjugalType.Plural();
-        }
-
-        public string Pluralize(int? count = default, Pluralizer? pluralizer = default)
-        {
-            if (count == 0 || count == null || !Countable)
-            {
-                return Lemma;
-            }
-
-            return pluralizer switch
-            {
-                Pluralizer.Annotation => ConjugalType.GetCustomAttribute<PluralAttribute>()?.Plural,
-                Pluralizer.Humanizer => Lemma.Pluralize(),
-                _ => ConjugalType.Pluralize()
-            };
+        public Conjugation(
+            string singular = default,
+            string plural = default,
+            string lemma = default,
+            bool isCountable = default,
+            bool isProperNoun = default
+        ) {
+            Singular     = singular;
+            Lemma        = lemma;
+            IsCountable  = isCountable;
+            IsProperNoun = isProperNoun;
+            Plural       = plural;
         }
     }
 }

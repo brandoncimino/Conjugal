@@ -1,31 +1,18 @@
 using System;
 
-using Humanizer;
-
 using JetBrains.Annotations;
 
 namespace Conjugal.Annotations {
-    public class LemmaAttribute : Attribute {
+    /// <summary>
+    /// Explicitly defines the <see cref="Conjugation.Lemma"/> of the annotated <see cref="Type"/>.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Lemma_(morphology)">Wikipedia - Lemma (morphology)</a></remarks>
+    [PublicAPI]
+    public class LemmaAttribute : ConjugalAttribute {
         [NotNull] public readonly string Lemma;
-
-        [CanBeNull] public readonly LetterCasing? Casing;
 
         public LemmaAttribute([NotNull] string lemma) {
             Lemma = lemma;
-        }
-
-        /// <summary>
-        /// Defines a <see cref="LemmaAttribute"/> for this class with the given <see cref="LetterCasing"/>.
-        ///
-        /// To use the default <see cref="LetterCasing"/>, use the alternate constructor, <see cref="LemmaAttribute(string)"/>.
-        /// </summary>
-        /// <remarks>
-        /// This constructor cannot be combined with <see cref="LemmaAttribute(string)"/> because <see cref="Nullable{T}"/>s cannot be used as attribute parameters.
-        /// </remarks>
-        /// <param name="lemma"></param>
-        /// <param name="casing"></param>
-        public LemmaAttribute([NotNull] string lemma, LetterCasing casing) : this(lemma) {
-            Casing = casing;
         }
     }
 }

@@ -1,13 +1,11 @@
-using System;
+using JetBrains.Annotations;
 
-namespace Conjugal.Annotations
-{
-    public class PluralAttribute : Attribute
-    {
+namespace Conjugal.Annotations {
+    [PublicAPI]
+    public class PluralAttribute : ConjugalAttribute {
         public string Plural;
 
-        public PluralAttribute(string plural)
-        {
+        public PluralAttribute(string plural) {
             Plural = plural;
         }
     }

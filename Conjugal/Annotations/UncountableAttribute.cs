@@ -1,5 +1,8 @@
-using System;
+using JetBrains.Annotations;
 
 namespace Conjugal.Annotations {
-    public class UncountableAttribute : Attribute { }
+    [PublicAPI]
+    public class UncountableAttribute : CountabilityAttribute {
+        public UncountableAttribute() : base(Countability.Uncountable) { }
+    }
 }

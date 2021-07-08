@@ -1,5 +1,6 @@
-using System;
+using JetBrains.Annotations;
 
 namespace Conjugal.Annotations {
-    public class ProperNounAttribute : Attribute { }
+    [PublicAPI]
+    public class ProperNounAttribute : ConjugalAttribute { }
 }
