@@ -12,11 +12,9 @@ namespace Test {
         public abstract class TestWord {
             public abstract string ExpectedLemma  { get; }
             public abstract string ExpectedPlural { get; }
-
-            public virtual bool IsProperNoun { get; } = false;
+            public virtual  bool   IsProperNoun   { get; } = false;
         }
 
-        // [Plural("Dice")]
         private class Die : TestWord {
             public override string ExpectedLemma  { get; } = "die";
             public override string ExpectedPlural { get; } = "dice";
