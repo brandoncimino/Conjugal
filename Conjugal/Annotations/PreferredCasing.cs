@@ -4,10 +4,10 @@ using JetBrains.Annotations;
 
 namespace FowlFever.Conjugal.Annotations {
     [PublicAPI]
-    public class CasingAttribute : ConjugalAttribute {
+    public class PreferredCasing : ConjugalAttribute {
         public readonly LetterCasing Casing;
 
-        public CasingAttribute(LetterCasing letterCasing) {
+        public PreferredCasing(LetterCasing letterCasing) {
             Casing = letterCasing;
         }
     }

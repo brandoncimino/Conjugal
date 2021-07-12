@@ -73,7 +73,7 @@ namespace FowlFever.Conjugal.Affixing {
 
         /// <inheritdoc cref="Suffixation(string,string,string)"/>
         public static Affixation Suffixation(string stem, string suffix, Joiner joiner = Affixing.Joiner.None) {
-            return Suffixation(stem, suffix, joiner.String());
+            return Suffixation(stem, suffix, joiner.AsString());
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace FowlFever.Conjugal.Affixing {
 
         /// <inheritdoc cref="Prefixation(string,string,string)"/>
         public static Affixation Prefixation(string stem, string prefix, Joiner joiner = Affixing.Joiner.None) {
-            return Prefixation(stem, prefix, joiner.String());
+            return Prefixation(stem, prefix, joiner.AsString());
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace FowlFever.Conjugal.Affixing {
 
         /// <inheritdoc cref="Infixation(string,string,int,string)"/>
         public static Affixation Infixation(string stem, string infix, int index, Joiner joiner = Affixing.Joiner.None) {
-            return Infixation(stem, infix, index, joiner.String());
+            return Infixation(stem, infix, index, joiner.AsString());
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace FowlFever.Conjugal.Affixing {
 
         /// <inheritdoc cref="Circumfixation(string,string,string,string)"/>
         public static Affixation Circumfixation(string stem, string prefix, string suffix, Joiner joiner = Affixing.Joiner.None) {
-            return Circumfixation(stem, prefix, suffix, joiner.String());
+            return Circumfixation(stem, prefix, suffix, joiner.AsString());
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace FowlFever.Conjugal.Affixing {
 
         /// <inheritdoc cref="Ambifixation(string,string,string)"/>
         public static Affixation Ambifixation(string stem, string ambifix, Joiner joiner = Affixing.Joiner.None) {
-            return Ambifixation(stem, ambifix, joiner.String());
+            return Ambifixation(stem, ambifix, joiner.AsString());
         }
 
         private int GetIndex() {

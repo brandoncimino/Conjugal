@@ -1,3 +1,7 @@
+using Humanizer;
+
+using JetBrains.Annotations;
+
 namespace FowlFever.Conjugal {
     /// <summary>
     /// Indicates that this object can be <a href="https://en.wikipedia.org/wiki/Inflection">inflected</a>.
@@ -18,10 +22,12 @@ namespace FowlFever.Conjugal {
     /// <li>"Conjugal" is a <a href="https://en.wiktionary.org/wiki/double_entendre#Noun">double entendre</a>.</li>
     /// </ul>
     /// </remarks>
+    [PublicAPI]
     public interface IConjugal {
         /// <summary>
         /// The <a href="https://en.wikipedia.org/wiki/Grammatical_number">grammatical number</a> for exactly one entity.
         /// </summary>
+        [NotNull]
         public string Singular { get; }
         /// <summary>
         /// The <a href="https://en.wikipedia.org/wiki/Grammatical_number">grammatical number</a> for multiple entities.
@@ -35,10 +41,6 @@ namespace FowlFever.Conjugal {
         /// Usually singular, but not always.
         /// </remarks>
         public string Lemma { get; }
-        /// <summary>
-        /// Whether this entity is a <a href="https://en.wikipedia.org/wiki/Count_noun">countable noun</a>.
-        /// </summary>
-        public bool IsCountable { get; }
         /// <summary>
         /// Whether this entity is important enough to be capitalized; usually because it is a specific instance of a <a href="https://en.wikipedia.org/wiki/Class_(philosophy)">class</a>.
         /// </summary>
@@ -79,5 +81,13 @@ namespace FowlFever.Conjugal {
         /// </ul>
         /// </example>
         public string NounalVerb { get; }
+
+        public UnitOfMeasure? UnitOfMeasure { get; }
+
+        [CanBeNull]
+        public LetterCasing? PreferredCasing { get; }
+
+        public string Abbreviation       { get; }
+        public string PluralAbbreviation { get; }
     }
 }

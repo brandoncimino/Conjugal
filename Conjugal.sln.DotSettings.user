@@ -1,8 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cbcf6d19_002D4a7a_002D419b_002D8f23_002D3544594b12d0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="registerPlural" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::D2447E32-3008-408D-92ED-8F57ACC1DC38::net5.0::Test.PluralTest.registerPlural&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::D2447E32-3008-408D-92ED-8F57ACC1DC38::net5.0::Test.Valuables.TroyConvert&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::D2447E32-3008-408D-92ED-8F57ACC1DC38::net5.0::Test.Valuables.TroyesLb&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::D2447E32-3008-408D-92ED-8F57ACC1DC38::net5.0::Test.PluralTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

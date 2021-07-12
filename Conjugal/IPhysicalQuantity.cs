@@ -7,8 +7,8 @@ namespace FowlFever.Conjugal {
     /// </summary>
     [PublicAPI]
     public interface IPhysicalQuantity<out TValue> {
-        public TValue Value { get; }
-        public string Unit  { get; }
+        public TValue        Value { get; }
+        public UnitOfMeasure Unit  { get; }
     }
 
     /// <inheritdoc cref="IPhysicalQuantity{TValue}"/>

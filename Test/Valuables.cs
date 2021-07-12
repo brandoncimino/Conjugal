@@ -7,27 +7,28 @@ namespace Test {
             public abstract string ExpectedQuantified(int count);
         }
 
-        [UnitOfMeasure("¢", Affix.Suffix)]
+        [UnitOfMeasure("cents", "¢")]
         public class Penny : Valuable {
             public override string ExpectedQuantified(int count) {
                 return $"{count}¢";
             }
         }
 
-        [UnitOfMeasure("${}")]
+        [UnitOfMeasure("dollars", "$", affix: Affix.Prefix)]
         public class Dollar : Valuable {
             public override string ExpectedQuantified(int count) {
                 throw new System.NotImplementedException();
             }
         }
 
-        [UnitOfMeasure("oz t")]
+        [UnitOfMeasure("troy ounces", "oz t")]
         public class Gold : Valuable {
             public override string ExpectedQuantified(int count) {
                 throw new System.NotImplementedException();
             }
         }
 
+        [UnitOfMeasure("karats", "kt")]
         public class Gem : Valuable {
             public override string ExpectedQuantified(int count) {
                 return count.ToString();

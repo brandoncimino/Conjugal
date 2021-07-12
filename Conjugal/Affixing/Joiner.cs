@@ -25,7 +25,7 @@ namespace FowlFever.Conjugal.Affixing {
     /// </summary>
     [PublicAPI]
     public static class JoinerExtensions {
-        public static string String(this Joiner joiner) {
+        public static string AsString(this Joiner joiner) {
             return joiner switch {
                 Joiner.None       => "",
                 Joiner.Hyphen     => "-",

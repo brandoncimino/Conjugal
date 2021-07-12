@@ -10,36 +10,88 @@ namespace FowlFever.Conjugal {
     /// </summary>
     [PublicAPI]
     public readonly struct QuanticString : IAffixed, IPhysicalQuantity {
-        public readonly string Symbol;
-        public readonly double Quantity;
-        public          double Value         => Quantity;
-        public          string Unit          => Symbol;
-        public          Affix  Affix         { get; }
-        public          string Joiner        { get; }
-        public          string Stem          => Quantity.ToString(CultureInfo.CurrentCulture);
-        public          string BoundMorpheme => Symbol;
+        public          UnitOfMeasure Unit { get; }
+        public readonly double        Quantity;
+        public          double        Value         => Quantity;
+        public          Affix         Affix         => Unit.Affix;
+        public          string        Joiner        => Unit.Joiner;
+        public          string        Stem          => Quantity.ToString(CultureInfo.CurrentCulture);
+        public          string        BoundMorpheme => Unit.Symbol;
 
-        public QuanticString(string symbol, double quantity, Affix affix = Affix.Suffix, string joiner = "") {
-            Symbol   = symbol;
+        #region Unit name + symbol
+
+        #region string joiner
+
+        public QuanticString(double quantity, UnitOfMeasure unit) {
             Quantity = quantity;
-            Affix    = affix;
-            Joiner   = joiner;
+            Unit     = unit;
         }
 
         public QuanticString(
-            string symbol,
             double quantity,
-            Affix affix = Affix.Suffix,
-            Joiner joiner = Affixing.Joiner.None
+            string unitName,
+            string unitSymbol,
+            string joiner = "",
+            Affix affix = Affix.Suffix
         ) : this(
-            symbol,
             quantity,
-            affix,
-            joiner.String()
+            new UnitOfMeasure(unitName, unitSymbol, joiner, affix)
         ) { }
 
+        #endregion
+
+        #region enum joiner
+
+        public QuanticString(
+            double quantity,
+            string unitName,
+            string unitSymbol,
+            Joiner joiner,
+            Affix affix = Affix.Suffix
+        ) : this(
+            quantity,
+            unitName,
+            unitSymbol,
+            joiner.AsString(),
+            affix
+        ) { }
+
+        #endregion
+
+        #endregion
+
+        #region unitNameAndSymbol
+
+        #region string joiner
+
+        public QuanticString(
+            double quantity,
+            string unitNameAndSymbol,
+            string joiner = "",
+            Affix affix = Affix.Suffix
+        ) : this(
+            quantity,
+            new UnitOfMeasure(unitNameAndSymbol, joiner, affix)
+        ) { }
+
+        public QuanticString(
+            double quantity,
+            string unitNameAndSymbol,
+            Joiner joiner,
+            Affix affix = Affix.Suffix
+        ) : this(
+            quantity,
+            unitNameAndSymbol,
+            joiner.AsString(),
+            affix
+        ) { }
+
+        #endregion
+
+        #endregion
+
         public override string ToString() {
-            return Affixed.Render((IAffixed) this);
+            return Affixed.Render(this);
         }
 
         public static implicit operator string(QuanticString quanticString) {

@@ -1,79 +1,14 @@
-using FowlFever.Conjugal;
-using FowlFever.Conjugal.Annotations;
+using System.Collections.Generic;
 
-using Humanizer;
+using FowlFever.Conjugal;
 
 using NUnit.Framework;
 
+using Test.Words;
+
 namespace Test {
     public class PluralTest {
-        public abstract class TestWord {
-            public abstract string ExpectedLemma  { get; }
-            public abstract string ExpectedPlural { get; }
-            public virtual  bool   IsProperNoun   { get; } = false;
-        }
-
-        private class Die : TestWord {
-            public override string ExpectedLemma  { get; } = "die";
-            public override string ExpectedPlural { get; } = "dice";
-        }
-
-        private class Rock : TestWord {
-            public override string ExpectedLemma  { get; } = "rock";
-            public override string ExpectedPlural { get; } = "rocks";
-        }
-
-        [Uncountable]
-        private class Sheep : TestWord {
-            public override string ExpectedLemma  { get; } = "sheep";
-            public override string ExpectedPlural { get; } = "sheep";
-        }
-
-        [ProperNoun]
-        [Lemma("Animal")]
-        private class SentientAnimal : TestWord {
-            public override string ExpectedLemma  { get; } = "Animal";
-            public override string ExpectedPlural { get; } = "Animals";
-            public override bool   IsProperNoun   { get; } = true;
-        }
-
-        [ProperNoun]
-        [Lemma("XBox")]
-        private class Xbox : TestWord {
-            public override string ExpectedLemma  { get; } = "XBox";
-            public override string ExpectedPlural { get; } = "XBoxes";
-            public override bool   IsProperNoun   { get; } = true;
-        }
-
-        [ProperNoun]
-        [Plural("The Mans")]
-        private class TheMan : TestWord {
-            public override string ExpectedLemma  { get; } = "The Man";
-            public override string ExpectedPlural { get; } = "The Mans";
-            public override bool   IsProperNoun   { get; } = true;
-        }
-
-        [Casing(LetterCasing.Title)]
-        private class ImportantThing : TestWord {
-            public override string ExpectedLemma  { get; } = "Important Thing";
-            public override string ExpectedPlural { get; } = "Important Things";
-        }
-
-        private class SaveData : TestWord {
-            public override string ExpectedLemma  { get; } = "save datum";
-            public override string ExpectedPlural { get; } = "sava data";
-        }
-
-        private static TestWord[] Words = {
-            new Die(),
-            new Rock(),
-            new Sheep(),
-            new SentientAnimal(),
-            new Xbox(),
-            new TheMan(),
-            new ImportantThing(),
-            new SaveData(),
-        };
+        private static List<TestWord> Words => TestWord.Words;
 
         [Test]
         public void ProperNoun(
@@ -88,7 +23,15 @@ namespace Test {
             [ValueSource(nameof(Words))]
             TestWord word
         ) {
-            Assert.That(word.GetType().Lemma, Is.EqualTo(word.ExpectedLemma));
+            Assert.That(word.GetType().Lemma, Is.EqualTo(word.Lemma));
+        }
+
+        [Test]
+        public void Singular(
+            [ValueSource(nameof(Words))]
+            TestWord word
+        ) {
+            Assert.That(word.GetType().Singular, Is.EqualTo(word.Lemma));
         }
 
         [Test]
@@ -96,7 +39,7 @@ namespace Test {
             [ValueSource(nameof(Words))]
             TestWord word
         ) {
-            Assert.That(word.GetType().Pluralize(), Is.EqualTo(word.ExpectedPlural));
+            Assert.That(word.GetType().Pluralize(), Is.EqualTo(word.Plural));
         }
     }
 }
