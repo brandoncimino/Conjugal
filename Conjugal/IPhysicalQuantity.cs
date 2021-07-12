@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Conjugal {
+namespace FowlFever.Conjugal {
     /// <summary>
     /// An extremely simple interface for representing <a href="https://en.wikipedia.org/wiki/Physical_quantity">physical quantities</a>,
     /// which are <a href="https://en.wikipedia.org/wiki/Quantity">quantities</a> paired with <a href="https://en.wikipedia.org/wiki/Unit_of_measurement">units of measure</a>.

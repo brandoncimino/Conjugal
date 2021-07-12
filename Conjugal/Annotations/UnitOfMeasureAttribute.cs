@@ -1,10 +1,10 @@
 using System;
 
-using Conjugal.Affixing;
+using FowlFever.Conjugal.Affixing;
 
 using JetBrains.Annotations;
 
-namespace Conjugal.Annotations {
+namespace FowlFever.Conjugal.Annotations {
     [PublicAPI]
     public class UnitOfMeasureAttribute : Attribute {
         [NotNull] public readonly string Symbol;

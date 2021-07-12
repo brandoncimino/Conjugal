@@ -1,5 +1,5 @@
-using Conjugal.Affixing;
-using Conjugal.Annotations;
+using FowlFever.Conjugal.Affixing;
+using FowlFever.Conjugal.Annotations;
 
 namespace Test {
     public class Valuables {

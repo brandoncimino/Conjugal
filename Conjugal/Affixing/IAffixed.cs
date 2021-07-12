@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Conjugal.Affixing {
+namespace FowlFever.Conjugal.Affixing {
     /// <summary>
     /// Represents a <see cref="string"/> that can be <see cref="Affixed.Render"/>ed via <see cref="Affixation"/>.
     /// </summary>

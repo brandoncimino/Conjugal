@@ -2,7 +2,7 @@ using Humanizer;
 
 using JetBrains.Annotations;
 
-namespace Conjugal.Annotations {
+namespace FowlFever.Conjugal.Annotations {
     [PublicAPI]
     public class CasingAttribute : ConjugalAttribute {
         public readonly LetterCasing Casing;

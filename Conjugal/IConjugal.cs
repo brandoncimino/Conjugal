@@ -1,4 +1,4 @@
-namespace Conjugal {
+namespace FowlFever.Conjugal {
     /// <summary>
     /// Indicates that this object can be <a href="https://en.wikipedia.org/wiki/Inflection">inflected</a>.
     /// </summary>

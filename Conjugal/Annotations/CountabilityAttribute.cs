@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Conjugal.Annotations {
+namespace FowlFever.Conjugal.Annotations {
     [PublicAPI]
     public class CountabilityAttribute : ConjugalAttribute {
         public readonly Countability Countability;

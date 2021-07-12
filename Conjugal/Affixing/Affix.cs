@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Conjugal.Affixing {
+namespace FowlFever.Conjugal.Affixing {
     /// <summary>
     /// Enumerates different kinds of <a href="https://en.wikipedia.org/wiki/Affix">affixes</a>.
     /// </summary>

@@ -2,7 +2,11 @@ using System;
 
 using JetBrains.Annotations;
 
-namespace Conjugal {
+namespace FowlFever.Conjugal {
+    /// <summary>
+    /// Grabs all of the <see cref="Conjugal.IConjugal"/> information from the <see cref="ConjugalType"/>'s <see cref="Conjugal."/>s.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     [PublicAPI]
     public readonly struct Conjugation<T> : IConjugal {
         public Type   ConjugalType => typeof(T);

@@ -2,7 +2,7 @@ using System;
 
 using JetBrains.Annotations;
 
-namespace Conjugal.Affixing {
+namespace FowlFever.Conjugal.Affixing {
     /// <summary>
     /// Common strings used to join <a href="https://en.wiktionary.org/wiki/morpheme">morphemes</a>.
     /// </summary>

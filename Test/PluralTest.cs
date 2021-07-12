@@ -1,7 +1,5 @@
-using System;
-
-using Conjugal;
-using Conjugal.Annotations;
+using FowlFever.Conjugal;
+using FowlFever.Conjugal.Annotations;
 
 using Humanizer;
 

@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 using JetBrains.Annotations;
 
-namespace Conjugal.Affixing {
+namespace FowlFever.Conjugal.Affixing {
     /// <summary>
     /// <a href="https://en.wiktionary.org/wiki/affix#English">affix</a> + <a href="https://en.wiktionary.org/wiki/-ation#English">-ation</a>
     /// <p/>
@@ -33,11 +33,11 @@ namespace Conjugal.Affixing {
         /// Constructs a new <see cref="Affixation"/> with the given parameters.
         /// </summary>
         /// <remarks>Please construct <see cref="Affixation"/> instances via the static factory methods: <see cref="Suffixation(string,string,string)"/>, <see cref="Ambifixation(string,string,string)"/>, etc.</remarks>
-        /// <exception cref="ArgumentException">If an <see cref="Index"/> is needed but missing <b>or</b> missing but needed.</exception>
+        /// <exception cref="Index">If an <see cref="ArgumentException"/> is needed but missing <b>or</b> missing but needed.</exception>
         internal Affixation(Affix affix, string stem, string boundMorpheme, int? index, string joiner = "") {
             if (MustBeIndexed(affix) != index.HasValue) {
                 var problem = index.HasValue ? $"must not have an {nameof(index)} specified" : $"requires you to specify an {nameof(index)}";
-                throw new ArgumentException($"{nameof(global::Conjugal.Affixing.Affix)} {nameof(affix)} {affix} {problem} when constructing an {nameof(Affixation)}!");
+                throw new ArgumentException($"{nameof(global::FowlFever.Conjugal.Affixing.Affix)} {nameof(affix)} {affix} {problem} when constructing an {nameof(Affixation)}!");
             }
 
             Stem          = stem;

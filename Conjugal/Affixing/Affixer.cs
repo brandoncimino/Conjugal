@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Conjugal.Affixing {
+namespace FowlFever.Conjugal.Affixing {
     /// <summary>
     /// <see cref="string"/> extension methods that apply <a href="https://en.wikipedia.org/wiki/Affix">affixes</a> to stems.
     /// </summary>

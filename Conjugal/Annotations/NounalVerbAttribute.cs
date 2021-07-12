@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Conjugal.Annotations {
+namespace FowlFever.Conjugal.Annotations {
     [PublicAPI]
     public class NounalVerbAttribute : ConjugalAttribute {
         [NotNull] public readonly string Verb;

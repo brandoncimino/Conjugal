@@ -1,11 +1,11 @@
 using System;
 using System.Reflection;
 
-using Conjugal.Annotations;
+using FowlFever.Conjugal.Annotations;
 
 using Humanizer;
 
-namespace Conjugal {
+namespace FowlFever.Conjugal {
     /// <summary>
     /// Gets <see cref="IConjugal"/> values from <see cref="Annotations"/>.
     /// </summary>

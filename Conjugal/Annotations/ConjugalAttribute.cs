@@ -1,6 +1,6 @@
 using System;
 
-namespace Conjugal.Annotations {
+namespace FowlFever.Conjugal.Annotations {
     /// <summary>
     /// The base class of all <see cref="Annotations"/>.
     /// </summary>

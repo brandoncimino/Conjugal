@@ -1,10 +1,10 @@
 using System.Globalization;
 
-using Conjugal.Affixing;
+using FowlFever.Conjugal.Affixing;
 
 using JetBrains.Annotations;
 
-namespace Conjugal {
+namespace FowlFever.Conjugal {
     /// <summary>
     /// A struct for formatting <a href="https://en.wikipedia.org/wiki/Physical_quantity">physical quantities</a>.
     /// </summary>
