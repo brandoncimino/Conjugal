@@ -48,5 +48,9 @@ namespace Conjugal {
         public static string Plural(this Type type) {
             return type.GetCustomAttribute<PluralAttribute>()?.Plural ?? type.Name.Pluralize();
         }
+
+        public static string NounalVerb(this Type type) {
+            return type.GetCustomAttribute<NounalVerbAttribute>()?.Verb ?? type.Lemma();
+        }
     }
 }
