@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 
 using FowlFever.Conjugal.Affixing;
@@ -8,6 +9,8 @@ namespace FowlFever.Conjugal {
     /// <summary>
     /// A struct for formatting <a href="https://en.wikipedia.org/wiki/Physical_quantity">physical quantities</a>.
     /// </summary>
+    /// <remarks>TODO: maybe use fancy number <see cref="IFormatProvider"/>s instead of <see cref="DecimalPlaces"/>?
+    /// </remarks>
     [PublicAPI]
     public readonly struct QuanticString : IAffixed, IPhysicalQuantity {
         public          UnitOfMeasure Unit { get; }
@@ -15,23 +18,34 @@ namespace FowlFever.Conjugal {
         public          double        Value         => Quantity;
         public          Affix         Affix         => Unit.Affix;
         public          string        Joiner        => Unit.Joiner;
-        public          string        Stem          => Quantity.ToString(CultureInfo.CurrentCulture);
-        public          string        BoundMorpheme => Unit.Symbol;
+        public          string        Stem          => (DecimalPlaces.HasValue ? Math.Round(Quantity, DecimalPlaces.Value) : Quantity).ToString(CultureInfo.CurrentCulture);
+        public          string        BoundMorpheme => (Unit.Symbol ?? Unit.Name).Pluralize(Quantity);
+        public readonly int?          DecimalPlaces;
 
         #region Unit name + symbol
 
         #region string joiner
 
-        public QuanticString(double quantity, UnitOfMeasure unit) {
-            Quantity = quantity;
-            Unit     = unit;
+        public QuanticString(
+            double quantity,
+            UnitOfMeasure unit,
+            [NonNegativeValue]
+            int? decimalPlaces = default
+        ) {
+            if (decimalPlaces <= 0) {
+                throw new ArgumentException("Must be > 0 or null", nameof(decimalPlaces));
+            }
+
+            DecimalPlaces = decimalPlaces;
+            Quantity      = quantity;
+            Unit          = unit;
         }
 
         public QuanticString(
             double quantity,
-            string unitName,
-            string unitSymbol,
-            string joiner = "",
+            Plurable unitName,
+            Plurable unitSymbol,
+            string joiner = UnitOfMeasure.DefaultJoinerString,
             Affix affix = Affix.Suffix
         ) : this(
             quantity,
@@ -44,8 +58,8 @@ namespace FowlFever.Conjugal {
 
         public QuanticString(
             double quantity,
-            string unitName,
-            string unitSymbol,
+            Plurable unitName,
+            Plurable unitSymbol,
             Joiner joiner,
             Affix affix = Affix.Suffix
         ) : this(
@@ -66,22 +80,22 @@ namespace FowlFever.Conjugal {
 
         public QuanticString(
             double quantity,
-            string unitNameAndSymbol,
-            string joiner = "",
+            [NotNull] Plurable unitName,
+            string joiner = UnitOfMeasure.DefaultJoinerString,
             Affix affix = Affix.Suffix
         ) : this(
             quantity,
-            new UnitOfMeasure(unitNameAndSymbol, joiner, affix)
+            new UnitOfMeasure(name: unitName, joiner: joiner, affix: affix)
         ) { }
 
         public QuanticString(
             double quantity,
-            string unitNameAndSymbol,
+            Plurable unitName,
             Joiner joiner,
             Affix affix = Affix.Suffix
         ) : this(
             quantity,
-            unitNameAndSymbol,
+            unitName,
             joiner.AsString(),
             affix
         ) { }

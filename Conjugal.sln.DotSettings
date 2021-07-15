@@ -139,6 +139,9 @@
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=NRFB/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=nu_0027n/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Optionable/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Plurable/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=plurale/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Pluric/@EntryIndexedValue">True</s:Boolean>
 	
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Prefixation/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=prefixial/@EntryIndexedValue">True</s:Boolean>

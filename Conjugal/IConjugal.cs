@@ -23,23 +23,14 @@ namespace FowlFever.Conjugal {
     /// </ul>
     /// </remarks>
     [PublicAPI]
-    public interface IConjugal {
-        /// <summary>
-        /// The <a href="https://en.wikipedia.org/wiki/Grammatical_number">grammatical number</a> for exactly one entity.
-        /// </summary>
-        [NotNull]
-        public string Singular { get; }
-        /// <summary>
-        /// The <a href="https://en.wikipedia.org/wiki/Grammatical_number">grammatical number</a> for multiple entities.
-        /// </summary>
-        /// <remarks><a href="https://en.wikipedia.org/wiki/Plural">Wikipedia - Plural</a></remarks>
-        public string Plural { get; }
+    public interface IConjugal : IPlurable {
         /// <summary>
         /// The canonical form of this entity.
         /// </summary>
         /// <remarks>
         /// Usually singular, but not always.
         /// </remarks>
+        [NotNull]
         public string Lemma { get; }
         /// <summary>
         /// Whether this entity is important enough to be capitalized; usually because it is a specific instance of a <a href="https://en.wikipedia.org/wiki/Class_(philosophy)">class</a>.
@@ -82,12 +73,13 @@ namespace FowlFever.Conjugal {
         /// </example>
         public string NounalVerb { get; }
 
+        [CanBeNull]
         public UnitOfMeasure? UnitOfMeasure { get; }
 
         [CanBeNull]
         public LetterCasing? PreferredCasing { get; }
 
-        public string Abbreviation       { get; }
-        public string PluralAbbreviation { get; }
+        [CanBeNull]
+        public Plurable? Abbreviation { get; }
     }
 }
