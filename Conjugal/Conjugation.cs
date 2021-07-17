@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Reflection;
 
 using FowlFever.Conjugal.Annotations;
@@ -20,12 +19,7 @@ namespace FowlFever.Conjugal {
         public string Plural       => ConjugalType.GetCustomAttribute<PluralAttribute>()?.Plural ?? PluralFromCountability();
 
         private string PluralFromCountability() {
-            return Countability switch {
-                Countability.Countable   => Singular.Pluralize(),
-                Countability.Uncountable => Singular,
-                Countability.Collective  => throw new NotImplementedException($"Not implemented: {Countability.Collective}"),
-                _                        => throw new InvalidEnumArgumentException(nameof(Countability), (int) Countability, typeof(Countability))
-            };
+            return Singular.PluralFromCountability(Countability);
         }
 
         public string         Lemma           => ConjugalType.Lemma();

@@ -24,7 +24,7 @@ namespace FowlFever.Conjugal.Annotations {
                 throw new ArgumentException($"A non-empty {nameof(symbolPlural)} was provided ('{symbolPlural}') alongside an empty {nameof(symbol)}!");
             }
 
-            var pluricName = namePlural == null ? Plurable.Of(name) : (name, namePlural);
+            var pluricName = namePlural == null ? Plurable.Uncountable(name) : (name, namePlural);
 
             // NOTE: this could be combined into nested ternary operations, but that A) is really confusing, and B) causes issues with implicit casting betwixt `Pluric` and `Pluric?`
             Plurable? pluricSymbol = default;

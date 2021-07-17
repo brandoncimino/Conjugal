@@ -188,7 +188,7 @@ namespace Test.Words {
         public override string Plural { get; } = "brothers";
         public override UnitOfMeasure? UnitOfMeasure => new UnitOfMeasure(
             Plurable.Of("bro", "bros."),
-            Plurable.Of("👨‍👦"),
+            Plurable.Uncountable("👨‍👦"),
             Joiner.Space
         );
         public override LetterCasing? PreferredCasing { get; } = default;
@@ -209,7 +209,7 @@ namespace Test.Words {
     [Abbreviation("Mario bro", "Mario bros.")]
     internal class MarioBrother : TestWord {
         public override string         Plural          { get; } = "Mario brothers";
-        public override UnitOfMeasure? UnitOfMeasure   { get; } = new UnitOfMeasure(Plurable.Of("🍄"));
+        public override UnitOfMeasure? UnitOfMeasure   { get; } = new UnitOfMeasure(Plurable.Uncountable("🍄"));
         public override LetterCasing?  PreferredCasing { get; } = LetterCasing.Sentence;
         public override Plurable?      Abbreviation    { get; } = Plurable.Of("Mario bro", "Mario bros.");
         public override bool           IsProperNoun    { get; } = true;

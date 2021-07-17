@@ -99,12 +99,7 @@ namespace FowlFever.Conjugal {
         /// <exception cref="NotImplementedException"></exception>
         /// <exception cref="InvalidEnumArgumentException"></exception>
         private static string PluralFromCountability(Type type) {
-            return type.Countability() switch {
-                Conjugal.Countability.Countable   => type.Singular().Pluralize(),
-                Conjugal.Countability.Uncountable => type.Singular(),
-                Conjugal.Countability.Collective  => throw new NotImplementedException($"{type.Countability()} is not implemented!"),
-                _                                 => throw new InvalidEnumArgumentException(nameof(Countability), (int) type.Countability(), type.Countability().GetType())
-            };
+            return type.Singular().PluralFromCountability(type.Countability());
         }
 
         /// <param name="type"></param>

@@ -7,20 +7,40 @@ namespace FowlFever.Conjugal {
     /// A simple struct implementing <see cref="IPlurable"/>.
     /// </summary>
     /// <remarks>An alternative name could be "IPluric"</remarks>
+    [PublicAPI]
     public readonly struct Plurable : IPlurable {
         public string       Singular     { get; }
         public string       Plural       { get; }
         public Countability Countability { get; }
 
-        private Plurable(
+        /// <summary>
+        /// Constructs a new <see cref="Plurable"/> with the given values.
+        /// </summary>
+        /// <param name="singular">the <see cref="Singular"/> form</param>
+        /// <param name="plural">the <see cref="Plural"/> form</param>
+        /// <param name="countability">the <see cref="Countability"/>. If omitted, then we <see cref="InferCountability"/> instead</param>
+        public Plurable(
             [NotNull] string singular,
-            [CanBeNull]
-            string plural,
+            [NotNull] string plural,
             Countability? countability = default
         ) {
             Singular     = singular;
-            Plural       = plural ?? singular;
+            Plural       = plural;
             Countability = countability ?? InferCountability(Singular, Plural);
+        }
+
+        /// <summary>
+        /// Constructs a new <see cref="Plurable"/>, inferring the <see cref="Plural"/> form via <see cref="ConjugalStringExtensions.PluralFromCountability"/>.
+        /// </summary>
+        /// <param name="singular">the <see cref="Singular"/> form</param>
+        /// <param name="countability">the <see cref="Countability"/> to use with <see cref="ConjugalStringExtensions.PluralFromCountability"/></param>
+        public Plurable(
+            [NotNull] string singular,
+            Countability countability
+        ) {
+            Singular     = singular;
+            Countability = countability;
+            Plural       = singular.PluralFromCountability(Countability);
         }
 
         /// <summary>
@@ -44,7 +64,7 @@ namespace FowlFever.Conjugal {
         /// <param name="word">a single <see cref="string"/></param>
         /// <returns>an <see cref="Conjugal.Countability.Uncountable"/> <see cref="Plurable"/></returns>
         public static implicit operator Plurable(string word) {
-            return Of(word);
+            return Uncountable(word);
         }
 
         /// <summary>
@@ -52,7 +72,7 @@ namespace FowlFever.Conjugal {
         /// </summary>
         /// <example>
         /// This allows users to pass values as either <see cref="Conjugal.Countability.Uncountable"/> strings or <see cref="Plurable"/> instances without
-        /// interrupting the code with constructors or <see cref="Of(string)"/>.
+        /// interrupting the code with constructors or <see cref="Uncountable"/>.
         /// <br/>
         /// <code>
         /// new UnitOfMeasure("quid");                // 0 quid     1 quid      2 quid
@@ -71,8 +91,8 @@ namespace FowlFever.Conjugal {
         /// Constructs a new <see cref="Conjugal.Countability.Uncountable"/> <see cref="Plurable"/> (i.e. the <see cref="Singular"/> and <see cref="Plural"/> forms are the same)
         /// </summary>
         /// <param name="singularAndPlural"></param>
-        /// <returns></returns>
-        public static Plurable Of(string singularAndPlural) {
+        /// <returns>a new <see cref="Plurable"/> instance</returns>
+        public static Plurable Uncountable(string singularAndPlural) {
             return new Plurable(singularAndPlural, singularAndPlural, Countability.Uncountable);
         }
 
@@ -86,11 +106,23 @@ namespace FowlFever.Conjugal {
         /// <returns>a new <see cref="Plurable"/> instance</returns>
         public static Plurable Of(
             [NotNull] string singular,
-            [CanBeNull]
-            string plural,
+            [NotNull] string plural,
             Countability? countability = default
         ) {
             return new Plurable(singular, plural, countability);
+        }
+
+        /// <summary>
+        /// Constructs a new <see cref="Plurable"/>, where the <see cref="Plural"/> form is inferred via <see cref="ConjugalStringExtensions.PluralFromCountability"/>.
+        /// </summary>
+        /// <param name="singular">the <see cref="Singular"/> form</param>
+        /// <param name="countability">a <see cref="Countability"/></param>
+        /// <returns>a new <see cref="Plurable"/> instance</returns>
+        public static Plurable Of(
+            [NotNull] string singular,
+            Countability countability
+        ) {
+            return new Plurable(singular, countability);
         }
     }
 }
