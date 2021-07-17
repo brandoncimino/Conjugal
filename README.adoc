@@ -1,0 +1,56 @@
+= Conjugal
+
+Structs and annotations for producing nice word conjugations.
+
+== link:Conjugal/Annotations[Annotations]
+
+These annotations{wj}footnote:[I know they're technically called "attributes" in C#, but that's dumb, and I am going to use the fact that JetBrains's attribute package is called `JetBrains.Annotations` as a precedent!] can be placed on a class to define explicit conjugation rules such as link:Conjugal/Annotations/PluralAttribute.cs[[Plural\]].
+
+== Structs
+
+Structs that group together logical components of strings for formatting.
+
+.link:Conjugal/Plurable.cs[Plurable]
+====
+[source,c#]
+----
+class Animal {
+    Plurable Name;
+}
+
+var ox = new Animal(){
+    Name = Plurable.of("ox", "oxen");
+}
+
+Console.WriteLine(ox.Name.Singular);    // "ox"
+Console.WriteLine(ox.Name.Plural);      // "oxen"
+Console.WriteLine(ox.Pluralize(0);      // "oxen"
+Console.WriteLine(ox.Pluralize(1);      // "ox"
+Console.WriteLine(ox.Pluralize(2);      // "oxen"
+----
+====
+
+When possible, these are designed to be snuck in with regular-old ``string``s in as unobtrusively as possible:
+
+.Declarations
+====
+.link:Conjugal/Plurable.cs[]
+[source,c#]
+----
+Plurable word = "egg";              // new Plural("egg","egg")
+Plurable word = ("egg", "eggz");    // new Plural("egg", "eggz")
+----
+
+.link:Conjugal/UnitOfMeasure.cs[]
+[source,c#]
+----
+UnitOfMeasure kilograms = "kg";
+UnitOfMeasure pounds = ("lb", "lbs");
+
+Console.WriteLine(kilograms.Quantify(1));       // 1 kg
+Console.WriteLine(kilograms.Quantify(5.6));     // 5.6 kg
+Console.WriteLine(pounds.Quantify(1));          // 1 lb
+Console.WriteLine(pounds.Quantify(Math.pi, 5)   // 3.14159 lbs
+----
+====
+

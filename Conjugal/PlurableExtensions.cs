@@ -32,5 +32,9 @@ namespace FowlFever.Conjugal {
         public static Plurable ToPlurable(this IPlurable plurable) {
             return Plurable.Of(plurable.Singular, plurable.Plural, plurable.Countability);
         }
+
+        public static QuanticString Quantify(this IPlurable plurable, double quantity, int? decimalPlaces = default) {
+            return new QuanticString(quantity, plurable, decimalPlaces: decimalPlaces);
+        }
     }
 }

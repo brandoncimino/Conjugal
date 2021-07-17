@@ -15,7 +15,7 @@ namespace FowlFever.Conjugal.Affixing {
     /// </ul>
     /// </remarks>
     [PublicAPI]
-    public enum Affix {
+    public enum AffixFlavor {
         /// <summary>
         /// Appears <b>before</b> the stem.
         /// </summary>

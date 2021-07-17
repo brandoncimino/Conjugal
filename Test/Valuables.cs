@@ -14,7 +14,7 @@ namespace Test {
             }
         }
 
-        [UnitOfMeasure("dollars", "$", affix: Affix.Prefix)]
+        [UnitOfMeasure("dollars", "$", affixFlavor: AffixFlavor.Prefix)]
         public class Dollar : Valuable {
             public override string ExpectedQuantified(int count) {
                 throw new System.NotImplementedException();

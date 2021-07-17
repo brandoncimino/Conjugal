@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 
 using FowlFever.Conjugal;
-using FowlFever.Conjugal.Affixing;
 using FowlFever.Conjugal.Annotations;
 
 using Humanizer;
@@ -55,7 +54,7 @@ namespace Test.Words {
         public override Countability   Countability    { get; } = Countability.Countable;
     }
 
-    [UnitOfMeasure("kg", joiner: Joiner.Space)]
+    [UnitOfMeasure("kg", joiner: "")]
     [CollectiveNoun("boulder")]
     internal class Rock : TestWord {
         public override string         Lemma           { get; } = "rock";
@@ -72,7 +71,7 @@ namespace Test.Words {
     }
 
     [Uncountable]
-    [UnitOfMeasure("head", "🐑", Joiner.Space)]
+    [UnitOfMeasure("head", "🐑")]
     [CollectiveNoun("flock", "flocks")]
     internal class Sheep : TestWord {
         public override string         Lemma           { get; } = "sheep";
@@ -82,7 +81,7 @@ namespace Test.Words {
         public override string         Quantity2       { get; } = "2 🐑";
         public override string         Singular        => Lemma;
         public override string         Plural          { get; } = "sheep";
-        public override UnitOfMeasure? UnitOfMeasure   { get; } = new UnitOfMeasure("head", "🐑", Joiner.Space);
+        public override UnitOfMeasure? UnitOfMeasure   { get; } = new UnitOfMeasure("head", "🐑");
         public override LetterCasing?  PreferredCasing { get; } = default;
         public override Plurable?      Abbreviation    => default;
         public override Countability   Countability    { get; } = Countability.Uncountable;
@@ -123,7 +122,7 @@ namespace Test.Words {
 
     [ProperNoun]
     [Plural("The Mans")]
-    [UnitOfMeasure("🕴️", joiner: Joiner.Space)]
+    [UnitOfMeasure("🕴️")]
     internal class TheMan : TestWord {
         public override string         Lemma           { get; } = "The Man";
         public override string         Singular        => Lemma;
@@ -189,14 +188,13 @@ namespace Test.Words {
     }
 
     [Abbreviation("bro", "bros.")]
-    [UnitOfMeasure(name: "bro", namePlural: "bros.", symbol: "👨‍👦", joiner: Joiner.Space)]
+    [UnitOfMeasure(name: "bro", namePlural: "bros.", symbol: "👨‍👦", joiner: " ")]
     [CollectiveNoun("melee")]
     internal class Brother : TestWord {
         public override string Plural { get; } = "brothers";
         public override UnitOfMeasure? UnitOfMeasure => new UnitOfMeasure(
             Plurable.Of("bro", "bros."),
-            Plurable.Uncountable("👨‍👦"),
-            Joiner.Space
+            Plurable.Uncountable("👨‍👦")
         );
         public override LetterCasing? PreferredCasing { get; } = default;
         public override Plurable?     Abbreviation    { get; } = Plurable.Of("bro", "bros.");

@@ -68,7 +68,7 @@ namespace FowlFever.Conjugal {
         }
 
         /// <summary>
-        /// A <see cref="Affix.Duplifix">fancy-schmancy</see> way to construct a <see cref="Plurable"/> from a tuple
+        /// A <see cref="AffixFlavor.Duplifix">fancy-schmancy</see> way to construct a <see cref="Plurable"/> from a tuple
         /// </summary>
         /// <example>
         /// This allows users to pass values as either <see cref="Conjugal.Countability.Uncountable"/> strings or <see cref="Plurable"/> instances without

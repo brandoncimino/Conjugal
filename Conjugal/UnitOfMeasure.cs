@@ -1,105 +1,82 @@
-using System;
-
 using FowlFever.Conjugal.Affixing;
 
 using JetBrains.Annotations;
 
 namespace FowlFever.Conjugal {
+    /// <summary>
+    /// Represents the <b>formatting information</b> for a <a href="https://en.wikipedia.org/wiki/Unit_of_measurement">unit of measurement</a>.
+    /// </summary>
     [PublicAPI]
-    public readonly struct UnitOfMeasure {
-        public const string DefaultJoinerString = " ";
-        public const Joiner DefaultJoinerEnum   = Affixing.Joiner.Space;
+    public readonly struct UnitOfMeasure : IAffix, IPlurable {
+        public const string DefaultJoiner = " ";
 
-        [NotNull] public readonly Plurable Name;
+        public readonly Plurable Name;
         [CanBeNull]
         public readonly Plurable? Symbol;
-        public readonly Affix  Affix;
-        public readonly string Joiner;
+        private Plurable     Notation      => Symbol ?? Name;
+        public  string       BoundMorpheme => Notation.ToString();
+        public  AffixFlavor  AffixFlavor   { get; }
+        public  string       Joiner        { get; }
+        public  string       Singular      => Notation.Singular;
+        public  string       Plural        => Notation.Plural;
+        public  Countability Countability  => Notation.Countability;
 
         public UnitOfMeasure(
-            [NotNull] Plurable name,
+            Plurable name,
             [CanBeNull]
             Plurable? symbol,
             [CanBeNull]
-            string joiner = DefaultJoinerString,
-            Affix affix = Affix.Suffix
+            string joiner = DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix
         ) {
-            Console.WriteLine("Creating a new UoM with:");
-            Console.WriteLine($"\tjoiner: [{joiner}]");
-
-            Name   = name;
-            Symbol = symbol;
-            Joiner = joiner;
-            Affix  = affix;
+            Name        = name;
+            Symbol      = symbol;
+            Joiner      = joiner;
+            AffixFlavor = affixFlavor;
         }
 
         public UnitOfMeasure(
-            [NotNull] Plurable name,
+            [NotNull] IPlurable name,
             [CanBeNull]
-            Plurable? symbol,
-            Joiner joiner = DefaultJoinerEnum,
-            Affix affix = Affix.Suffix
+            IPlurable symbol,
+            [CanBeNull]
+            string joiner = DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix
         ) : this(
-            name: name,
-            symbol: symbol,
-            joiner: joiner.AsString(),
-            affix: affix
+            name.ToPlurable(),
+            symbol.ToPlurable(),
+            joiner,
+            affixFlavor
         ) { }
 
         public UnitOfMeasure(
-            [NotNull] Plurable name,
-            string joiner = DefaultJoinerString,
-            Affix affix = Affix.Suffix
+            Plurable name,
+            string joiner = DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix
         ) : this(
             name: name,
             symbol: default,
             joiner: joiner,
-            affix: affix
+            affixFlavor: affixFlavor
         ) { }
 
         public UnitOfMeasure(
-            [NotNull] Plurable name,
-            Joiner joiner,
-            Affix affix = Affix.Suffix
+            IPlurable name,
+            string joiner = DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix
         ) : this(
             name,
             default,
             joiner,
-            affix
+            affixFlavor
         ) { }
 
-
-        // public UnitOfMeasure(
-        //     Pluric name,
-        //     [CanBeNull]
-        //     Pluric? symbol = default,
-        //     [CanBeNull]
-        //     string joiner = "",
-        //     Affix affix = Affix.Suffix
-        // ) : this(
-        //     (IPluric) name,
-        //     symbol,
-        //     joiner,
-        //     affix
-        // ) { }
-        //
-        // public UnitOfMeasure(
-        //     Pluric name,
-        //     [CanBeNull]
-        //     Pluric? symbol = default,
-        //     Joiner joiner = Affixing.Joiner.None,
-        //     Affix affix = Affix.Suffix
-        // ) : this(
-        //     (IPluric) name,
-        //     symbol,
-        //     joiner,
-        //     affix
-        // ) { }
-
         public override string ToString() {
-            Console.WriteLine($"joiner: [{Joiner}]");
-            Console.WriteLine($"affix: {Affix}");
             return $"[{Name} ({Symbol?.ToString() ?? $"no {nameof(Symbol)} defined"})]";
+        }
+
+        public QuanticString Quantify(double quantity, int? decimalPlaces = null) {
+            return new QuanticString(quantity, this, decimalPlaces);
         }
     }
 }

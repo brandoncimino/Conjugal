@@ -13,8 +13,9 @@ namespace FowlFever.Conjugal.Annotations {
             [NotNull] string name,
             [CanBeNull]
             string symbol = default,
-            Joiner joiner = Conjugal.UnitOfMeasure.DefaultJoinerEnum,
-            Affix affix = Affix.Suffix,
+            [CanBeNull]
+            string joiner = UnitOfMeasure.DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix,
             [CanBeNull]
             string namePlural = default,
             [CanBeNull]
@@ -32,7 +33,7 @@ namespace FowlFever.Conjugal.Annotations {
                 pluricSymbol = symbolPlural == null ? symbol : Plurable.Of(symbol, symbolPlural);
             }
 
-            UnitOfMeasure = new UnitOfMeasure(pluricName, pluricSymbol, joiner, affix);
+            UnitOfMeasure = new UnitOfMeasure(pluricName, pluricSymbol, joiner, affixFlavor);
         }
     }
 }

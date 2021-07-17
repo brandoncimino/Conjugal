@@ -16,15 +16,12 @@ namespace FowlFever.Conjugal {
         public          UnitOfMeasure Unit { get; }
         public readonly double        Quantity;
         public          double        Value         => Quantity;
-        public          Affix         Affix         => Unit.Affix;
+        public          AffixFlavor   AffixFlavor   => Unit.AffixFlavor;
         public          string        Joiner        => Unit.Joiner;
         public          string        Stem          => (DecimalPlaces.HasValue ? Math.Round(Quantity, DecimalPlaces.Value) : Quantity).ToString(CultureInfo.CurrentCulture);
         public          string        BoundMorpheme => (Unit.Symbol ?? Unit.Name).Pluralize(Quantity);
         public readonly int?          DecimalPlaces;
 
-        #region Unit name + symbol
-
-        #region string joiner
 
         public QuanticString(
             double quantity,
@@ -45,67 +42,54 @@ namespace FowlFever.Conjugal {
             double quantity,
             Plurable unitName,
             Plurable unitSymbol,
-            string joiner = UnitOfMeasure.DefaultJoinerString,
-            Affix affix = Affix.Suffix
+            string joiner = UnitOfMeasure.DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix,
+            [NonNegativeValue]
+            int? decimalPlaces = default
         ) : this(
             quantity,
-            new UnitOfMeasure(unitName, unitSymbol, joiner, affix)
+            new UnitOfMeasure(unitName, unitSymbol, joiner, affixFlavor)
         ) { }
-
-        #endregion
-
-        #region enum joiner
 
         public QuanticString(
             double quantity,
-            Plurable unitName,
-            Plurable unitSymbol,
-            Joiner joiner,
-            Affix affix = Affix.Suffix
+            IPlurable unitName,
+            IPlurable unitSymbol,
+            string joiner = UnitOfMeasure.DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix,
+            [NonNegativeValue]
+            int? decimalPlaces = default
         ) : this(
             quantity,
-            unitName,
-            unitSymbol,
-            joiner.AsString(),
-            affix
-        ) { }
-
-        #endregion
-
-        #endregion
-
-        #region unitNameAndSymbol
-
-        #region string joiner
-
-        public QuanticString(
-            double quantity,
-            [NotNull] Plurable unitName,
-            string joiner = UnitOfMeasure.DefaultJoinerString,
-            Affix affix = Affix.Suffix
-        ) : this(
-            quantity,
-            new UnitOfMeasure(name: unitName, joiner: joiner, affix: affix)
+            new UnitOfMeasure(unitName, unitSymbol, joiner, affixFlavor)
         ) { }
 
         public QuanticString(
             double quantity,
             Plurable unitName,
-            Joiner joiner,
-            Affix affix = Affix.Suffix
+            string joiner = UnitOfMeasure.DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix,
+            [NonNegativeValue]
+            int? decimalPlaces = default
         ) : this(
             quantity,
-            unitName,
-            joiner.AsString(),
-            affix
+            new UnitOfMeasure(unitName, joiner, affixFlavor)
         ) { }
 
-        #endregion
-
-        #endregion
+        public QuanticString(
+            double quantity,
+            [NotNull] IPlurable unitName,
+            string joiner = UnitOfMeasure.DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix,
+            [NonNegativeValue]
+            int? decimalPlaces = default
+        ) : this(
+            quantity,
+            new UnitOfMeasure(unitName, joiner, affixFlavor)
+        ) { }
 
         public override string ToString() {
-            return Affixed.Render(this);
+            return AffixedExtensions.Render(this);
         }
 
         public static implicit operator string(QuanticString quanticString) {
