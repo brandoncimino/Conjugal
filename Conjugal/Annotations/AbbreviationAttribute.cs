@@ -2,18 +2,13 @@ using JetBrains.Annotations;
 
 namespace FowlFever.Conjugal.Annotations {
     /// <summary>
-    /// Defines an abbreviated form of <see cref="Abbreviation"/>
+    /// Defines an abbreviated form of a <see cref="System.Type"/>'s <see cref="LemmaAttribute"/>.
     /// </summary>
     [PublicAPI]
-    public class AbbreviationAttribute : ConjugalAttribute {
-        public readonly Plurable Abbreviation;
-
-        public AbbreviationAttribute(
-            [NotNull] string singular,
-            [CanBeNull]
-            string plural = default
-        ) {
-            Abbreviation = Plurable.Of(singular, plural);
-        }
+    public class AbbreviationAttribute : PlurableWrapperAttribute {
+        public AbbreviationAttribute([NotNull] string singular, Countability countability) : base(singular, countability) { }
+        public AbbreviationAttribute([NotNull] string singularAndPlural) : base(singularAndPlural) { }
+        public AbbreviationAttribute([NotNull] string singular, [NotNull] string plural) : base(singular, plural) { }
+        public AbbreviationAttribute([NotNull] string singular, [NotNull] string plural, Countability countability) : base(singular, plural, countability) { }
     }
 }

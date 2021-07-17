@@ -40,6 +40,7 @@ namespace Test.Words {
     }
 
     [Abbreviation("dX", "dXs")]
+    [CollectiveNoun("roll", "rolls")]
     internal class Die : TestWord {
         public override string         Lemma           { get; } = "die";
         public override bool           IsProperNoun    { get; } = false;
@@ -55,6 +56,7 @@ namespace Test.Words {
     }
 
     [UnitOfMeasure("kg", joiner: Joiner.Space)]
+    [CollectiveNoun("boulder")]
     internal class Rock : TestWord {
         public override string         Lemma           { get; } = "rock";
         public override bool           IsProperNoun    { get; } = false;
@@ -71,6 +73,7 @@ namespace Test.Words {
 
     [Uncountable]
     [UnitOfMeasure("head", "🐑", Joiner.Space)]
+    [CollectiveNoun("flock", "flocks")]
     internal class Sheep : TestWord {
         public override string         Lemma           { get; } = "sheep";
         public override bool           IsProperNoun    { get; } = false;
@@ -103,6 +106,7 @@ namespace Test.Words {
 
     [ProperNoun]
     [Lemma("XBox")]
+    [CollectiveNoun("series")]
     internal class Xbox : TestWord {
         public override string         Lemma           { get; } = "XBox";
         public override string         Singular        => Lemma;
@@ -152,6 +156,7 @@ namespace Test.Words {
     }
 
     [Lemma("save datum")]
+    [CollectiveNoun("memory pack", "memory packs")]
     internal class SaveData : TestWord {
         public override string         Lemma           { get; } = "save datum";
         public override bool           IsProperNoun    { get; } = false;
@@ -168,6 +173,7 @@ namespace Test.Words {
 
     [Lemma("peanut butter & jelly")]
     [Abbreviation("PB&J", "PB&Js")]
+    // ReSharper disable once InconsistentNaming
     internal class PBJ : TestWord {
         public override string         Singular        { get; } = "peanut butter & jelly";
         public override string         Plural          { get; } = "peanut butter & jellies";
@@ -184,6 +190,7 @@ namespace Test.Words {
 
     [Abbreviation("bro", "bros.")]
     [UnitOfMeasure(name: "bro", namePlural: "bros.", symbol: "👨‍👦", joiner: Joiner.Space)]
+    [CollectiveNoun("melee")]
     internal class Brother : TestWord {
         public override string Plural { get; } = "brothers";
         public override UnitOfMeasure? UnitOfMeasure => new UnitOfMeasure(
@@ -207,6 +214,7 @@ namespace Test.Words {
     [Countability(Countability.Countable)]
     [UnitOfMeasure("🍄")]
     [Abbreviation("Mario bro", "Mario bros.")]
+    [CollectiveNoun("super show", Countability.Countable)]
     internal class MarioBrother : TestWord {
         public override string         Plural          { get; } = "Mario brothers";
         public override UnitOfMeasure? UnitOfMeasure   { get; } = new UnitOfMeasure(Plurable.Uncountable("🍄"));
@@ -239,6 +247,7 @@ namespace Test.Words {
     [UnitOfMeasure("pair", namePlural: "pairs")]
     [Singular("pair of pants")]
     [Plural("pairs of pants")]
+    [CollectiveNoun("hosing", "hosings")]
     public class Pants : TestWord {
         public override string         Lemma           { get; } = "pants";
         public override bool           IsProperNoun    { get; } = false;

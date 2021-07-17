@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.Reflection;
 
 using FowlFever.Conjugal.Annotations;
@@ -59,6 +58,8 @@ namespace FowlFever.Conjugal {
             return type.GetCustomAttribute<CountabilityAttribute>()?.Countability ?? CountabilityAttribute.Default;
         }
 
+        /// <param name="type">this <see cref="Type"/></param>
+        /// <returns>the <see cref="SingularAttribute"/>.<see cref="SingularAttribute.Singular"/> if set; otherwise, the <see cref="Lemma"/></returns>
         public static string Singular(this Type type) {
             return type.GetCustomAttribute<SingularAttribute>()?.Singular ?? type.Lemma();
         }
@@ -87,19 +88,7 @@ namespace FowlFever.Conjugal {
         /// <param name="type"></param>
         /// <returns>the value of the <see cref="PluralAttribute"/>, if set; otherwise, <see cref="InflectorExtensions.Pluralize"/>s the <see cref="Singular"/> form via <see cref="Humanizer"/>.</returns>
         public static string Plural(this Type type) {
-            return type.GetCustomAttribute<PluralAttribute>()?.Plural ?? PluralFromCountability(type);
-        }
-
-        /// <summary>
-        /// Gets a <see cref="IPlurable.Plural"/> form based on the <see cref="Countability"/>.
-        /// Used as a fallback when <see cref="PluralAttribute"/> isn't explicitly set.
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        /// <exception cref="InvalidEnumArgumentException"></exception>
-        private static string PluralFromCountability(Type type) {
-            return type.Singular().PluralFromCountability(type.Countability());
+            return type.GetCustomAttribute<PluralAttribute>()?.Plural ?? type.Singular().PluralFromCountability(type.Countability());
         }
 
         /// <param name="type"></param>
@@ -117,7 +106,7 @@ namespace FowlFever.Conjugal {
         }
 
         public static Plurable? Abbreviation(this Type type) {
-            return type.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation;
+            return type.GetCustomAttribute<AbbreviationAttribute>()?.Value;
         }
 
         public static string Abbreviate(this Type type, int? quantity = default) {
@@ -134,6 +123,12 @@ namespace FowlFever.Conjugal {
 
         public static QuanticString Quantify(this Type type, double quantity) {
             return new Conjugation(type).Quantify(quantity);
+        }
+
+        /// <param name="type"></param>
+        /// <returns><see cref="CollectiveNounAttribute"/>.<see cref="PlurableWrapperAttribute.Value"/></returns>
+        public static Plurable? CollectiveNoun(this Type type) {
+            return type.GetCustomAttribute<CollectiveNounAttribute>()?.Value;
         }
     }
 }

@@ -8,6 +8,10 @@ namespace FowlFever.Conjugal {
         /// <remarks>Also known as a <a href="https://en.wikipedia.org/wiki/Mass_noun">mass noun</a>.</remarks>
         Uncountable,
         /// <remarks><a href="https://en.wikipedia.org/wiki/Collective_noun">Wikipedia - Collective noun</a></remarks>
+        /// <summary>
+        ///     TODO: Wikipedia groups this with <see cref="Countable"/> and <see cref="Uncountable"/>, but does it make sense to include it as a value of <see cref="Countability"/>? Wikipedia does note British vs. Freedom english often consider <see cref="Collective"/> nouns to have different <see cref="Countability"/> from one another...
+        /// </summary>
+        /// <seealso cref="Conjugal.Annotations.CollectiveNounAttribute"/>
         Collective,
     }
 }
