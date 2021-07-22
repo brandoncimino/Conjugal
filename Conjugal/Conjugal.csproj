@@ -14,6 +14,9 @@
         <Company>FowlFever</Company>
         <Product>Conjugal</Product>
         <RepositoryType>git</RepositoryType>
+        <Description>Structs and annotations for producing nice word conjugations and other linguistic metadata, such as abbreviations, units of measure, and terms of venery.</Description>
+        <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+        <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
 
     <ItemGroup>
