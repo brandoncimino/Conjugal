@@ -1,0 +1,1 @@
+Structs and annotations for producing nice word conjugations and other linguistic metadata, such as [abbreviations](Conjugal/Annotations/AbbreviationAttribute.cs), [units of measure](Conjugal/Annotations/UnitOfMeasureAttribute.cs), and [terms of venery](Conjugal/Annotations/CollectiveNounAttribute.cs).

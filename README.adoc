@@ -1,6 +1,6 @@
 = Conjugal
 
-Structs and annotations for producing nice word conjugations.
+include::BLURB.md[]
 
 == link:Conjugal/Annotations[Annotations]
 

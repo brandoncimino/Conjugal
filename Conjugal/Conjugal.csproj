@@ -5,11 +5,20 @@
         <LangVersion>8</LangVersion>
         <AssemblyName>FowlFever.Conjugal</AssemblyName>
         <RootNamespace>FowlFever.Conjugal</RootNamespace>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>0.1.0</PackageVersion>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Title>Conjugal</Title>
+        <Authors>Brandon Cimino</Authors>
+        <RepositoryUrl>https://github.com/brandoncimino/Conjugal</RepositoryUrl>
+        <Company>FowlFever</Company>
+        <Product>Conjugal</Product>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Humanizer.Core" Version="2.11.10" />
-      <PackageReference Include="JetBrains.Annotations" Version="2021.2.0-eap3" />
+        <PackageReference Include="JetBrains.Annotations" Version="2021.2.0"/>
     </ItemGroup>
 
 </Project>
