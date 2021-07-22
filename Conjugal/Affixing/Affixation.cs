@@ -73,7 +73,7 @@ namespace FowlFever.Conjugal.Affixing {
         ) { }
 
         /// <summary>
-        /// Constructs a new <see cref="Affixation"/> instance with a <see cref="AffixFlavor.Suffix"/>.
+        /// Constructs a new <see cref="Affixation"/> instance with a <see cref="Affixing.AffixFlavor.Suffix"/>.
         /// </summary>
         /// <param name="stem">the linguistic <see cref="Stem"/></param>
         /// <param name="suffix">the <see cref="BoundMorpheme"/> appended to the <see cref="Stem"/></param>
@@ -84,7 +84,7 @@ namespace FowlFever.Conjugal.Affixing {
         }
 
         /// <summary>
-        /// Constructs a new <see cref="Affixation"/> with a <see cref="AffixFlavor.Prefix"/>.
+        /// Constructs a new <see cref="Affixation"/> with a <see cref="Affixing.AffixFlavor.Prefix"/>.
         /// </summary>
         /// <param name="stem">the linguistic <see cref="Stem"/></param>
         /// <param name="prefix">the <see cref="BoundMorpheme"/> appended to the <see cref="Stem"/></param>
@@ -95,7 +95,7 @@ namespace FowlFever.Conjugal.Affixing {
         }
 
         /// <summary>
-        /// Constructs a new <see cref="Affixation"/> with an <see cref="AffixFlavor.Infix"/>.
+        /// Constructs a new <see cref="Affixation"/> with an <see cref="Affixing.AffixFlavor.Infix"/>.
         /// </summary>
         /// <param name="stem">the linguistic <see cref="Stem"/> that the <see cref="BoundMorpheme"/> will be <see cref="string.Insert">inserted</see> into</param>
         /// <param name="infix">the <see cref="BoundMorpheme"/> that will be <see cref="string.Insert">inserted</see> into the <see cref="Stem"/></param>
@@ -107,7 +107,7 @@ namespace FowlFever.Conjugal.Affixing {
         }
 
         /// <summary>
-        /// Constructs a new <see cref="Affixation"/> with a <see cref="AffixFlavor.Circumfix"/>.
+        /// Constructs a new <see cref="Affixation"/> with a <see cref="Affixing.AffixFlavor.Circumfix"/>.
         /// </summary>
         /// <remarks>
         /// Both <see cref="Circumfixation(string,string,string,string)"/> and <see cref="Ambifixation(string,string,string)"/> split the <see cref="BoundMorpheme"/> into two parts that bookend the <see cref="Stem"/>.
@@ -126,7 +126,7 @@ namespace FowlFever.Conjugal.Affixing {
         }
 
         /// <summary>
-        /// Constructs a new <see cref="Affixation"/> with an <see cref="AffixFlavor.Ambifix"/>.
+        /// Constructs a new <see cref="Affixation"/> with an <see cref="Affixing.AffixFlavor.Ambifix"/>.
         /// </summary>
         /// <remarks><inheritdoc cref="Circumfixation(string,string,string,string)"/></remarks>
         /// <param name="stem">the linguistic <see cref="Stem"/> that the <see cref="BoundMorpheme"/> will surround</param>
