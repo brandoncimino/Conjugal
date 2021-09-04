@@ -11,7 +11,7 @@ namespace FowlFever.Conjugal {
     /// <summary>
     /// Grabs all of the <see cref="IConjugal"/> information from the <see cref="ConjugalType"/>'s <see cref="FowlFever.Conjugal.Annotations.ConjugalAttribute"/>s.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">the <see cref="Type"/> being conjugated</typeparam>
     [PublicAPI]
     public readonly struct Conjugation<T> : IConjugal {
         public Type   ConjugalType => typeof(T);

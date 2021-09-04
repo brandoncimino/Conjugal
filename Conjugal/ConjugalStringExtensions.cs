@@ -28,8 +28,14 @@ namespace FowlFever.Conjugal {
                 Countability.Countable   => singular.Pluralize(),
                 Countability.Uncountable => singular,
                 Countability.Collective  => throw new NotImplementedException($"{countability} is not implemented!"),
-                _                        => throw new InvalidEnumArgumentException(nameof(countability), (int) countability, countability.GetType())
+                _                        => throw new InvalidEnumArgumentException(nameof(countability), (int)countability, countability.GetType())
             };
+        }
+
+        /// <inheritdoc cref="Plurable.Humanized"/>
+        /// <seealso cref="Plurable.Humanized"/>
+        public static Plurable Plurablize([NotNull] this string singular, bool isKnownToBeSingular = true) {
+            return Plurable.Humanized(singular, isKnownToBeSingular);
         }
     }
 }

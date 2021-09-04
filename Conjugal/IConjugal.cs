@@ -73,12 +73,27 @@ namespace FowlFever.Conjugal {
         /// </example>
         public string NounalVerb { get; }
 
+        /// <summary>
+        /// A name and, optionally, a symbol used to denote a measurement of this <see cref="IConjugal"/>, e.g. "dollar" and "$".
+        /// </summary>
         [CanBeNull]
         public UnitOfMeasure? UnitOfMeasure { get; }
 
+        /// <summary>
+        /// The preferred <see cref="LetterCasing"/> to use when rendering this <see cref="IConjugal"/>.
+        /// </summary>
         [CanBeNull]
         public LetterCasing? PreferredCasing { get; }
 
+        /// <summary>
+        /// A shortened version of this <see cref="IConjugal"/>'s <see cref="Lemma"/>.
+        /// </summary>
+        /// <remarks>
+        /// The <see cref="Abbreviation"/> can be used as a fallback for the <see cref="UnitOfMeasure"/> when building a <see cref="QuanticString"/>.
+        /// </remarks>
+        /// <example>
+        /// An <see cref="Abbreviation"/> can be a shortened string (<b>minutes</b> -> <b>min.</b>) or an acronym (<b>kilometers</b> -> <b>km</b>).
+        /// </example>
         [CanBeNull]
         public Plurable? Abbreviation { get; }
     }

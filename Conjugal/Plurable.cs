@@ -1,5 +1,7 @@
 using FowlFever.Conjugal.Affixing;
 
+using Humanizer;
+
 using JetBrains.Annotations;
 
 namespace FowlFever.Conjugal {
@@ -123,6 +125,16 @@ namespace FowlFever.Conjugal {
             Countability countability
         ) {
             return new Plurable(singular, countability);
+        }
+
+        /// <summary>
+        /// Returns a <see cref="Plurable"/> using a given <paramref name="singular"/> and <see cref="Humanizer"/>'s <see cref="InflectorExtensions.Pluralize"/>.
+        /// </summary>
+        /// <param name="singular">the original word being pluralized (which is usually singular)</param>
+        /// <param name="isKnownToBeSingular">passed as the <paramref name="isKnownToBeSingular"/> parameter in <see cref="InflectorExtensions.Pluralize"/></param>
+        /// <returns>a new <see cref="Plurable"/></returns>
+        public static Plurable Humanized([NotNull] string singular, bool isKnownToBeSingular = true) {
+            return new Plurable(singular, singular.Pluralize(isKnownToBeSingular));
         }
     }
 }
