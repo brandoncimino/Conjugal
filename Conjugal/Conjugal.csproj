@@ -6,7 +6,7 @@
         <AssemblyName>FowlFever.Conjugal</AssemblyName>
         <RootNamespace>FowlFever.Conjugal</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.2.0</PackageVersion>
+        <PackageVersion>0.2.1</PackageVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Title>Conjugal</Title>
         <Authors>Brandon Cimino</Authors>
@@ -15,17 +15,17 @@
         <Product>Conjugal</Product>
         <RepositoryType>git</RepositoryType>
         <Description>Structs and annotations for producing nice word conjugations and other linguistic metadata, such as abbreviations, units of measure, and terms of venery.</Description>
-        <PackageReleaseNotes>## [0.1.2] - 2021-09-04
+        <PackageReleaseNotes>## [0.2.0] - 2021-09-26
 
             ### Added
 
-            - This [CHANGELOG.md](./CHANGELOG.md) file
-            - Methods to create `Plurable` instances using `Humanizer`:
-            - `Plurable.Humanized`
-            - `ConjugalStringExtensions.Plurablize`
-            - Assorted missing javadocs and nullability attributes
-            - Included javadocs in the build output
-            - "javadocs" is a nice word, and I like it
+            - `IEnumerable&lt;string&gt;` extensions for `Prefix` and `Suffix`
+            - Lots of nullability annotations
+
+            ### Fixed
+
+            - Proper `null` handling for `Affixation` instances
+            - Proper `null` handling for `StringAffixationExtensions`
         </PackageReleaseNotes>
         <NeutralLanguage>en</NeutralLanguage>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
