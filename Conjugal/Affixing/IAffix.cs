@@ -26,7 +26,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <example>
         /// <i>-ing</i> in <i>genuflecting</i>
         /// </example>
-        [NotNull]
+        [CanBeNull]
         public string BoundMorpheme { get; }
     }
 }

@@ -13,10 +13,14 @@ namespace FowlFever.Conjugal.Affixing {
     /// <see cref="AffixFlavor"/>
     [PublicAPI]
     public readonly struct Affixation : IAffixed {
-        public string      Stem          { get; }
-        public string      BoundMorpheme { get; }
-        public string      Joiner        { get; }
-        public AffixFlavor AffixFlavor   { get; }
+        /// <inheritdoc />
+        public string Stem { get; }
+        /// <inheritdoc />
+        public string BoundMorpheme { get; }
+        /// <inheritdoc />
+        public string Joiner { get; }
+        /// <inheritdoc />
+        public AffixFlavor AffixFlavor { get; }
         /// <summary>
         /// An extra, optional <see cref="int"/> used by some <see cref="AffixFlavor"/> types:
         /// <ul>
@@ -35,7 +39,13 @@ namespace FowlFever.Conjugal.Affixing {
         /// </summary>
         /// <remarks>Please construct <see cref="Affixation"/> instances via the static factory methods: <see cref="Suffixation(string,string,string)"/>, <see cref="Ambifixation(string,string,string)"/>, etc.</remarks>
         /// <exception cref="Index">If an <see cref="ArgumentException"/> is needed but missing <b>or</b> missing but needed.</exception>
-        internal Affixation(AffixFlavor affixFlavor, string stem, string boundMorpheme, int? index, string joiner = "") {
+        internal Affixation(
+            AffixFlavor        affixFlavor,
+            [CanBeNull] string stem,
+            [CanBeNull] string boundMorpheme,
+            [CanBeNull] int?   index,
+            [CanBeNull] string joiner = ""
+        ) {
             if (AffixFlavorExtensions.RequiresIndex(affixFlavor) != index.HasValue) {
                 var problem = index.HasValue ? $"must not have an {nameof(index)} specified" : $"requires you to specify an {nameof(index)}";
                 throw new ArgumentException($"{nameof(global::FowlFever.Conjugal.Affixing.AffixFlavor)} {nameof(affixFlavor)} {affixFlavor} {problem} when constructing an {nameof(Affixation)}!");
@@ -49,10 +59,10 @@ namespace FowlFever.Conjugal.Affixing {
         }
 
         internal Affixation(
-            AffixFlavor affixFlavor,
-            string stem,
-            string boundMorpheme,
-            string joiner = ""
+            AffixFlavor        affixFlavor,
+            [CanBeNull] string stem,
+            [CanBeNull] string boundMorpheme,
+            [CanBeNull] string joiner = ""
         ) : this(
             affixFlavor,
             stem,
@@ -62,8 +72,8 @@ namespace FowlFever.Conjugal.Affixing {
         ) { }
 
         internal Affixation(
-            [NotNull] IAffix affix,
-            [NotNull] string stem
+            [NotNull]   IAffix affix,
+            [CanBeNull] string stem
         ) : this(
             affix.AffixFlavor,
             stem,
@@ -79,7 +89,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="suffix">the <see cref="BoundMorpheme"/> appended to the <see cref="Stem"/></param>
         /// <param name="joiner">the <see cref="Joiner"/> interposed betwixt the <see cref="Stem"/> and <see cref="BoundMorpheme"/>. Defaults to <see cref="string.Empty">""</see>.</param>
         /// <returns>a new <see cref="Affixation"/></returns>
-        public static Affixation Suffixation(string stem, string suffix, string joiner = "") {
+        public static Affixation Suffixation([CanBeNull] string stem, [CanBeNull] string suffix, [CanBeNull] string joiner = "") {
             return new Affixation(AffixFlavor.Suffix, stem, suffix, joiner);
         }
 
@@ -90,7 +100,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="prefix">the <see cref="BoundMorpheme"/> appended to the <see cref="Stem"/></param>
         /// <param name="joiner">the <see cref="Joiner"/> interposed betwixt the <see cref="Stem"/> and <see cref="BoundMorpheme"/></param>
         /// <returns>a new <see cref="Affixation"/></returns>
-        public static Affixation Prefixation(string stem, string prefix, string joiner = "") {
+        public static Affixation Prefixation([CanBeNull] string stem, [CanBeNull] string prefix, [CanBeNull] string joiner = "") {
             return new Affixation(AffixFlavor.Prefix, stem, prefix, joiner);
         }
 
@@ -102,7 +112,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="index">the <see cref="string"/> index where the <see cref="string.Insert"/>ion will take place</param>
         /// <param name="joiner">the <see cref="Joiner"/> interposed betwixt the <see cref="Stem"/> and <see cref="BoundMorpheme"/>. Defaults to <see cref="string.Empty">""</see>.</param>
         /// <returns>a new <see cref="Affixation"/></returns>
-        public static Affixation Infixation(string stem, string infix, int index, string joiner) {
+        public static Affixation Infixation([CanBeNull] string stem, [CanBeNull] string infix, int index, [CanBeNull] string joiner) {
             return new Affixation(AffixFlavor.Infix, stem, infix, index, joiner);
         }
 
@@ -121,8 +131,8 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="suffix">the part of the <see cref="BoundMorpheme"/> that will <b>succede</b> the <see cref="Stem"/>(i.e. "en" in "embooben")</param>
         /// <param name="joiner">the <see cref="Joiner"/> interposed betwixt the <see cref="BoundMorpheme"/> and the <see cref="Stem"/>. Defaults to <see cref="string.Empty">""</see></param>
         /// <returns>a new <see cref="Affixation"/></returns>
-        public static Affixation Circumfixation(string stem, string prefix, string suffix, string joiner) {
-            return new Affixation(AffixFlavor.Circumfix, stem, prefix + suffix, prefix.Length, joiner);
+        public static Affixation Circumfixation([CanBeNull] string stem, [CanBeNull] string prefix, [CanBeNull] string suffix, [CanBeNull] string joiner) {
+            return new Affixation(AffixFlavor.Circumfix, stem, prefix + suffix, prefix?.Length, joiner);
         }
 
         /// <summary>
@@ -141,36 +151,50 @@ namespace FowlFever.Conjugal.Affixing {
         /// The prefixial <see cref="BoundMorpheme"/> for use with <see cref="Circumfixation(string,string,string,string)"/>.
         /// </summary>
         /// <remarks>Fun fact: "circum" is a <a href="https://en.wikipedia.org/wiki/Libfix">libfix</a>!</remarks>
-        private string CircumPrefix => BoundMorpheme.Substring(0, Index);
+        private string CircumPrefix => BoundMorpheme?.Substring(0, Index);
 
         /// <summary>
         /// The suffixial <see cref="BoundMorpheme"/> for use with <see cref="Circumfixation(string,string,string,string)"/>.
         /// </summary>
         /// <remarks>Fun fact: "circum" is a <a href="https://en.wikipedia.org/wiki/Libfix">libfix</a>!</remarks>
-        private string CircumSuffix => BoundMorpheme.Substring(Index, BoundMorpheme.Length);
+        private string CircumSuffix => BoundMorpheme?.Substring(Index, BoundMorpheme.Length);
 
+        /// <returns>the final result of this <see cref="Affixation"/></returns>
+        /// <exception cref="NotImplementedException">if this <see cref="AffixFlavor"/> hasn't been implemented</exception>
+        /// <exception cref="InvalidEnumArgumentException">if this <see cref="AffixFlavor"/> is unknown</exception>
+        [NotNull]
         public string Render() {
             return AffixFlavor switch {
                 AffixFlavor.Prefix    => $"{BoundMorpheme}{Joiner}{Stem}",
                 AffixFlavor.Suffix    => $"{Stem}{Joiner}{BoundMorpheme}",
-                AffixFlavor.Infix     => Stem.Insert(Index, BoundMorpheme.Ambifix(Joiner)),
+                AffixFlavor.Infix     => Stem?.Insert(Index, BoundMorpheme.Ambifix(Joiner)) ?? "",
                 AffixFlavor.Circumfix => $"{CircumPrefix}{Joiner}{Stem}{Joiner}{CircumSuffix}",
-                AffixFlavor.Ambifix   => Stem.Circumfix(BoundMorpheme, BoundMorpheme, ""),
+                AffixFlavor.Ambifix   => Stem.Circumfix(BoundMorpheme, BoundMorpheme, default),
                 AffixFlavor.Duplifix  => throw new NotImplementedException($"{AffixFlavor} is not supported!"),
                 AffixFlavor.Transfix  => throw new NotImplementedException($"{AffixFlavor} is not supported!"),
                 AffixFlavor.Disfix    => throw new NotImplementedException($"{AffixFlavor} is not supported!"),
-                _                     => throw new InvalidEnumArgumentException(nameof(AffixFlavor), (int) AffixFlavor, typeof(AffixFlavor))
+                _                     => throw new InvalidEnumArgumentException(nameof(AffixFlavor), (int)AffixFlavor, typeof(AffixFlavor))
             };
         }
 
+        /// <returns>individual properties of this <see cref="Affixation"/> for debugging</returns>
+        [NotNull]
         public string Describe() {
             return $"{nameof(Stem)}: '{Stem}', {AffixFlavor}: '{BoundMorpheme}', {nameof(Joiner)}: '{Joiner}', {nameof(Index)}: '{Index}'";
         }
 
+        /// <returns><see cref="Render"/></returns>
+        [NotNull]
         public override string ToString() {
             return Render();
         }
 
+        /// <summary>
+        /// Implicitly <see cref="Render"/>s this <see cref="Affixation"/>.
+        /// </summary>
+        /// <param name="affixation">this <see cref="Affixation"/></param>
+        /// <returns><see cref="Render"/></returns>
+        [NotNull]
         public static implicit operator string(Affixation affixation) {
             return affixation.Render();
         }

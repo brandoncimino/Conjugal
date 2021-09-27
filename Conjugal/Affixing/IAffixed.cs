@@ -16,7 +16,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <example>
         /// <i>boob</i> in <i>boobies</i>
         /// </example>
-        [NotNull]
+        [CanBeNull]
         public string Stem { get; }
     }
 }

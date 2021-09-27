@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 > ### REMINDER:
 > The next minor version should be `0.2.0`, **not** `0.2.1`!
 
+## [0.2.0] - 2021-09-26
+
+### Added
+
+- `IEnumerable<string>` extensions for `Prefix` and `Suffix`
+- Lots of nullability annotations
+
+### Fixed
+
+- Proper `null` handling for `Affixation` instances
+- Proper `null` handling for `StringAffixationExtensions`
+
 ## [0.1.2] - 2021-09-04
 
 ### Added
