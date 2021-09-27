@@ -6,7 +6,7 @@
         <AssemblyName>FowlFever.Conjugal</AssemblyName>
         <RootNamespace>FowlFever.Conjugal</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.1.2</PackageVersion>
+        <PackageVersion>0.2.0</PackageVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Title>Conjugal</Title>
         <Authors>Brandon Cimino</Authors>
