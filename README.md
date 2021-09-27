@@ -1,19 +1,18 @@
-= Conjugal
+# Conjugal
 
-include::BLURB.md[]
+> Structs and annotations for producing nice word conjugations and other linguistic metadata, such as [abbreviations](Conjugal/Annotations/AbbreviationAttribute.cs), [units of measure](Conjugal/Annotations/UnitOfMeasureAttribute.cs), and [terms of venery](Conjugal/Annotations/CollectiveNounAttribute.cs).
 
-== link:Conjugal/Annotations[Annotations]
+## [Annotations](Conjugal/Annotations)
 
-These annotations{wj}footnote:[I know they're technically called "attributes" in C#, but that's dumb, and I am going to use the fact that JetBrains's attribute package is called `JetBrains.Annotations` as a precedent!] can be placed on a class to define explicit conjugation rules such as link:Conjugal/Annotations/PluralAttribute.cs[[Plural\]].
+These annotations can be placed on a class to define explicit conjugation rules such as [\[Plural\]](Conjugal/Annotations/PluralAttribute.cs).
 
-== Structs
+## Structs
 
 Structs that group together logical components of strings for formatting.
 
-.link:Conjugal/Plurable.cs[Plurable]
-====
-[source,c#]
-----
+#### Example: [Plurable](Conjugal/Plurable.cs)
+
+```c#
 class Animal {
     Plurable Name;
 }
@@ -27,23 +26,18 @@ Console.WriteLine(ox.Name.Plural);      // "oxen"
 Console.WriteLine(ox.Pluralize(0);      // "oxen"
 Console.WriteLine(ox.Pluralize(1);      // "ox"
 Console.WriteLine(ox.Pluralize(2);      // "oxen"
-----
-====
+```
 
 When possible, these are designed to be snuck in with regular-old ``string``s as unobtrusively as possible:
 
-.Declarations
-====
-.link:Conjugal/Plurable.cs[]
-[source,c#]
-----
+[Conjugal/Plurable.cs](Conjugal/Plurable.cs)
+```c#
 Plurable word = "egg";              // new Plural("egg","egg")
 Plurable word = ("egg", "eggz");    // new Plural("egg", "eggz")
-----
+```
 
-.link:Conjugal/UnitOfMeasure.cs[]
-[source,c#]
-----
+[Conjugal/UnitOfMeasure.cs](Conjugal/UnitOfMeasure.cs)
+```c#
 UnitOfMeasure kilograms = "kg";
 UnitOfMeasure pounds = ("lb", "lbs");
 
@@ -51,5 +45,4 @@ Console.WriteLine(kilograms.Quantify(1));       // 1 kg
 Console.WriteLine(kilograms.Quantify(5.6));     // 5.6 kg
 Console.WriteLine(pounds.Quantify(1));          // 1 lb
 Console.WriteLine(pounds.Quantify(Math.pi, 5)   // 3.14159 lbs
-----
-====
+```
