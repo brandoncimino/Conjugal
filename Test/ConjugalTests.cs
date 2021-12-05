@@ -31,7 +31,7 @@ namespace Test {
             [ValueSource(nameof(Words))]
             TestWord word
         ) {
-            Assert.That(word.GetType().Singular, Is.EqualTo(word.Lemma));
+            Assert.That(word.GetType().Singular, Is.EqualTo(word.Singular));
         }
 
         [Test]
