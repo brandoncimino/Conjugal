@@ -100,14 +100,12 @@ namespace FowlFever.Conjugal {
 
         /// <param name="type">this <see cref="Type"/></param>
         /// <returns><see cref="UnitOfMeasureAttribute"/>.<see cref="UnitOfMeasureAttribute.UnitOfMeasure"/>, if present</returns>
-        [CanBeNull]
         public static UnitOfMeasure? UnitOfMeasure(this Type type) {
             return type.GetCustomAttribute<UnitOfMeasureAttribute>()?.UnitOfMeasure;
         }
 
         /// <param name="type">this <see cref="Type"/></param>
         /// <returns><see cref="AbbreviationAttribute"/>.<see cref="PlurableWrapperAttribute.Value"/></returns>
-        [CanBeNull]
         public static Plurable? Abbreviation(this Type type) {
             return type.GetCustomAttribute<AbbreviationAttribute>()?.Value;
         }
@@ -122,7 +120,6 @@ namespace FowlFever.Conjugal {
 
         /// <param name="type">this <see cref="Type"/></param>
         /// <returns><see cref="PreferredCasingAttribute"/>.<see cref="PreferredCasingAttribute.Casing"/></returns>
-        [CanBeNull]
         public static LetterCasing? PreferredCasing(this Type type) {
             return type.GetCustomAttribute<PreferredCasingAttribute>()?.Casing ?? (type.IsProperNoun() ? LetterCasing.Title : default);
         }

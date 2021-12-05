@@ -34,7 +34,7 @@ namespace FowlFever.Conjugal {
 
         /// <inheritdoc cref="Plurable.Humanized"/>
         /// <seealso cref="Plurable.Humanized"/>
-        public static Plurable Plurablize([NotNull] this string singular, bool isKnownToBeSingular = true) {
+        public static Plurable Plurablize(this string singular, bool isKnownToBeSingular = true) {
             return Plurable.Humanized(singular, isKnownToBeSingular);
         }
     }

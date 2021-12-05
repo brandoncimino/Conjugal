@@ -10,24 +10,21 @@ namespace FowlFever.Conjugal {
     public readonly struct UnitOfMeasure : IAffix, IPlurable {
         public const string DefaultJoiner = " ";
 
-        public readonly Plurable Name;
-        [CanBeNull]
-        public readonly Plurable? Symbol;
-        private Plurable     Notation      => Symbol ?? Name;
-        public  string       BoundMorpheme => Notation.ToString();
-        public  AffixFlavor  AffixFlavor   { get; }
-        public  string       Joiner        { get; }
-        public  string       Singular      => Notation.Singular;
-        public  string       Plural        => Notation.Plural;
-        public  Countability Countability  => Notation.Countability;
+        public readonly Plurable     Name;
+        public readonly Plurable?    Symbol;
+        private         Plurable     Notation      => Symbol ?? Name;
+        public          string       BoundMorpheme => Notation.ToString();
+        public          AffixFlavor  AffixFlavor   { get; }
+        public          string       Joiner        { get; }
+        public          string       Singular      => Notation.Singular;
+        public          string       Plural        => Notation.Plural;
+        public          Countability Countability  => Notation.Countability;
 
         public UnitOfMeasure(
-            Plurable name,
-            [CanBeNull]
-            Plurable? symbol,
-            [CanBeNull]
-            string joiner = DefaultJoiner,
-            AffixFlavor affixFlavor = AffixFlavor.Suffix
+            Plurable           name,
+            Plurable?          symbol,
+            [CanBeNull] string joiner      = DefaultJoiner,
+            AffixFlavor        affixFlavor = AffixFlavor.Suffix
         ) {
             Name        = name;
             Symbol      = symbol;
@@ -36,12 +33,10 @@ namespace FowlFever.Conjugal {
         }
 
         public UnitOfMeasure(
-            [NotNull] IPlurable name,
-            [CanBeNull]
-            IPlurable symbol,
-            [CanBeNull]
-            string joiner = DefaultJoiner,
-            AffixFlavor affixFlavor = AffixFlavor.Suffix
+            IPlurable             name,
+            [CanBeNull] IPlurable symbol,
+            [CanBeNull] string    joiner      = DefaultJoiner,
+            AffixFlavor           affixFlavor = AffixFlavor.Suffix
         ) : this(
             name.ToPlurable(),
             symbol.ToPlurable(),
@@ -50,8 +45,8 @@ namespace FowlFever.Conjugal {
         ) { }
 
         public UnitOfMeasure(
-            Plurable name,
-            string joiner = DefaultJoiner,
+            Plurable    name,
+            string      joiner      = DefaultJoiner,
             AffixFlavor affixFlavor = AffixFlavor.Suffix
         ) : this(
             name: name,
@@ -61,8 +56,8 @@ namespace FowlFever.Conjugal {
         ) { }
 
         public UnitOfMeasure(
-            IPlurable name,
-            string joiner = DefaultJoiner,
+            IPlurable   name,
+            string      joiner      = DefaultJoiner,
             AffixFlavor affixFlavor = AffixFlavor.Suffix
         ) : this(
             name,

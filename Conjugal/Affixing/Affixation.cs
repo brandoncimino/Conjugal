@@ -43,7 +43,7 @@ namespace FowlFever.Conjugal.Affixing {
             AffixFlavor        affixFlavor,
             [CanBeNull] string stem,
             [CanBeNull] string boundMorpheme,
-            [CanBeNull] int?   index,
+            int?               index,
             [CanBeNull] string joiner = ""
         ) {
             if (AffixFlavorExtensions.RequiresIndex(affixFlavor) != index.HasValue) {
@@ -72,7 +72,7 @@ namespace FowlFever.Conjugal.Affixing {
         ) { }
 
         internal Affixation(
-            [NotNull]   IAffix affix,
+            IAffix             affix,
             [CanBeNull] string stem
         ) : this(
             affix.AffixFlavor,
@@ -162,7 +162,6 @@ namespace FowlFever.Conjugal.Affixing {
         /// <returns>the final result of this <see cref="Affixation"/></returns>
         /// <exception cref="NotImplementedException">if this <see cref="AffixFlavor"/> hasn't been implemented</exception>
         /// <exception cref="InvalidEnumArgumentException">if this <see cref="AffixFlavor"/> is unknown</exception>
-        [NotNull]
         public string Render() {
             return AffixFlavor switch {
                 AffixFlavor.Prefix    => $"{BoundMorpheme}{Joiner}{Stem}",
@@ -178,13 +177,11 @@ namespace FowlFever.Conjugal.Affixing {
         }
 
         /// <returns>individual properties of this <see cref="Affixation"/> for debugging</returns>
-        [NotNull]
         public string Describe() {
             return $"{nameof(Stem)}: '{Stem}', {AffixFlavor}: '{BoundMorpheme}', {nameof(Joiner)}: '{Joiner}', {nameof(Index)}: '{Index}'";
         }
 
         /// <returns><see cref="Render"/></returns>
-        [NotNull]
         public override string ToString() {
             return Render();
         }
@@ -194,7 +191,6 @@ namespace FowlFever.Conjugal.Affixing {
         /// </summary>
         /// <param name="affixation">this <see cref="Affixation"/></param>
         /// <returns><see cref="Render"/></returns>
-        [NotNull]
         public static implicit operator string(Affixation affixation) {
             return affixation.Render();
         }

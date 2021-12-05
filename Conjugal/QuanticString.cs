@@ -24,7 +24,7 @@ namespace FowlFever.Conjugal {
 
 
         public QuanticString(
-            double quantity,
+            double        quantity,
             UnitOfMeasure unit,
             [NonNegativeValue]
             int? decimalPlaces = default
@@ -39,10 +39,10 @@ namespace FowlFever.Conjugal {
         }
 
         public QuanticString(
-            double quantity,
-            Plurable unitName,
-            Plurable unitSymbol,
-            string joiner = UnitOfMeasure.DefaultJoiner,
+            double      quantity,
+            Plurable    unitName,
+            Plurable    unitSymbol,
+            string      joiner      = UnitOfMeasure.DefaultJoiner,
             AffixFlavor affixFlavor = AffixFlavor.Suffix,
             [NonNegativeValue]
             int? decimalPlaces = default
@@ -52,10 +52,10 @@ namespace FowlFever.Conjugal {
         ) { }
 
         public QuanticString(
-            double quantity,
-            IPlurable unitName,
-            IPlurable unitSymbol,
-            string joiner = UnitOfMeasure.DefaultJoiner,
+            double      quantity,
+            IPlurable   unitName,
+            IPlurable   unitSymbol,
+            string      joiner      = UnitOfMeasure.DefaultJoiner,
             AffixFlavor affixFlavor = AffixFlavor.Suffix,
             [NonNegativeValue]
             int? decimalPlaces = default
@@ -65,9 +65,9 @@ namespace FowlFever.Conjugal {
         ) { }
 
         public QuanticString(
-            double quantity,
-            Plurable unitName,
-            string joiner = UnitOfMeasure.DefaultJoiner,
+            double      quantity,
+            Plurable    unitName,
+            string      joiner      = UnitOfMeasure.DefaultJoiner,
             AffixFlavor affixFlavor = AffixFlavor.Suffix,
             [NonNegativeValue]
             int? decimalPlaces = default
@@ -77,9 +77,9 @@ namespace FowlFever.Conjugal {
         ) { }
 
         public QuanticString(
-            double quantity,
-            [NotNull] IPlurable unitName,
-            string joiner = UnitOfMeasure.DefaultJoiner,
+            double      quantity,
+            IPlurable   unitName,
+            string      joiner      = UnitOfMeasure.DefaultJoiner,
             AffixFlavor affixFlavor = AffixFlavor.Suffix,
             [NonNegativeValue]
             int? decimalPlaces = default

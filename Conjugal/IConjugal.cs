@@ -30,7 +30,6 @@ namespace FowlFever.Conjugal {
         /// <remarks>
         /// Usually singular, but not always.
         /// </remarks>
-        [NotNull]
         public string Lemma { get; }
         /// <summary>
         /// Whether this entity is important enough to be capitalized; usually because it is a specific instance of a <a href="https://en.wikipedia.org/wiki/Class_(philosophy)">class</a>.
@@ -76,13 +75,11 @@ namespace FowlFever.Conjugal {
         /// <summary>
         /// A name and, optionally, a symbol used to denote a measurement of this <see cref="IConjugal"/>, e.g. "dollar" and "$".
         /// </summary>
-        [CanBeNull]
         public UnitOfMeasure? UnitOfMeasure { get; }
 
         /// <summary>
         /// The preferred <see cref="LetterCasing"/> to use when rendering this <see cref="IConjugal"/>.
         /// </summary>
-        [CanBeNull]
         public LetterCasing? PreferredCasing { get; }
 
         /// <summary>
@@ -94,7 +91,6 @@ namespace FowlFever.Conjugal {
         /// <example>
         /// An <see cref="Abbreviation"/> can be a shortened string (<b>minutes</b> -> <b>min.</b>) or an acronym (<b>kilometers</b> -> <b>km</b>).
         /// </example>
-        [CanBeNull]
         public Plurable? Abbreviation { get; }
     }
 }

@@ -28,7 +28,7 @@ namespace FowlFever.Conjugal.Annotations {
         /// <param name="singular">the <see cref="IPlurable.Singular"/> form</param>
         /// <param name="countability">a <see cref="Countability"/>, from which the <see cref="IPlurable.Plural"/> will be derived</param>
         /// <seealso cref="Plurable.Of(string,FowlFever.Conjugal.Countability)"/>
-        protected PlurableWrapperAttribute([NotNull] string singular, Countability countability) : this(
+        protected PlurableWrapperAttribute(string singular, Countability countability) : this(
             Plurable.Of(singular, countability)
         ) { }
 
@@ -36,7 +36,7 @@ namespace FowlFever.Conjugal.Annotations {
         /// Constructs a new <see cref="PlurableWrapperAttribute"/> wrapping an <see cref="Plurable.Uncountable"/> <see cref="IPlurable"/>.
         /// </summary>
         /// <param name="singularAndPlural">the <see cref="string"/> used as <b>both</b> the <see cref="IPlurable.Singular"/> and <see cref="IPlurable.Plural"/> forms</param>
-        protected PlurableWrapperAttribute([NotNull] string singularAndPlural) :
+        protected PlurableWrapperAttribute(string singularAndPlural) :
             this(Plurable.Uncountable(singularAndPlural)) { }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace FowlFever.Conjugal.Annotations {
         /// </summary>
         /// <param name="singular">the <see cref="IPlurable.Singular"/></param>
         /// <param name="plural">the <see cref="IPlurable.Plural"/></param>
-        protected PlurableWrapperAttribute([NotNull] string singular, [NotNull] string plural) :
+        protected PlurableWrapperAttribute(string singular, string plural) :
             this(Plurable.Of(singular, plural)) { }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace FowlFever.Conjugal.Annotations {
         /// <param name="plural">the <see cref="IPlurable.Plural"/> form</param>
         /// <param name="countability">an explicit <see cref="Conjugal.Countability"/>.
         /// <br/>If omitted, we <see cref="Plurable.InferCountability"/> instead.</param>
-        protected PlurableWrapperAttribute([NotNull] string singular, [NotNull] string plural, Countability countability) {
+        protected PlurableWrapperAttribute(string singular, string plural, Countability countability) {
             Value = Plurable.Of(singular, plural, countability);
         }
     }

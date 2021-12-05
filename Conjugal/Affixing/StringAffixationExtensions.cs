@@ -18,7 +18,6 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="suffix">the string to be appended to <paramref name="stem"/></param>
         /// <param name="joiner">a <see cref="string"/> interposed betwixt <paramref name="stem"/> and <paramref name="suffix"/></param>
         /// <returns>the <see cref="AffixFlavor.Suffix"/>ed <see cref="string"/></returns>
-        [NotNull]
         public static string Suffix([CanBeNull] this string stem, [CanBeNull] string suffix, [CanBeNull] string joiner = default) {
             return $"{stem}{joiner}{suffix}";
         }
@@ -30,7 +29,6 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="prefix">the string to be prepended to <paramref name="stem"/></param>
         /// <param name="joiner">a <see cref="string"/> interposed betwixt <paramref name="stem"/> and <paramref name="prefix"/></param>
         /// <returns>the <see cref="AffixFlavor.Prefix"/>ed <see cref="string"/></returns>
-        [NotNull]
         public static string Prefix([CanBeNull] this string stem, [CanBeNull] string prefix, [CanBeNull] string joiner = default) {
             return $"{prefix}{joiner}{stem}";
         }
@@ -38,7 +36,6 @@ namespace FowlFever.Conjugal.Affixing {
         /**
          * <inheritdoc cref="AffixFlavor.Infix"/>
          */
-        [NotNull]
         public static string Infix([CanBeNull] this string stem, [CanBeNull] string infix, int insertionPoint, [CanBeNull] string joiner = default) {
             return stem?.Insert(insertionPoint, infix.Ambifix(joiner)) ?? "";
         }
@@ -46,7 +43,6 @@ namespace FowlFever.Conjugal.Affixing {
         /**
          * <inheritdoc cref="AffixFlavor.Circumfix"/>
          */
-        [NotNull]
         public static string Circumfix([CanBeNull] this string stem, [CanBeNull] string prefix, [CanBeNull] string suffix, [CanBeNull] string joiner = default) {
             return $"{prefix}{joiner}{stem}{joiner}{suffix}";
         }
@@ -54,7 +50,6 @@ namespace FowlFever.Conjugal.Affixing {
         /**
          * <inheritdoc cref="AffixFlavor.Ambifix"/>
          */
-        [NotNull]
         public static string Ambifix([CanBeNull] this string stem, [CanBeNull] string ambifix, [CanBeNull] string joiner = default) {
             return stem.Circumfix(ambifix, ambifix, joiner);
         }
@@ -66,8 +61,6 @@ namespace FowlFever.Conjugal.Affixing {
         /**
          * <inheritdoc cref="AffixFlavor.Suffix"/>
          */
-        [NotNull]
-        [ItemNotNull]
         public static IEnumerable<string> Suffix(
             [CanBeNull] [ItemCanBeNull]
             this IEnumerable<string> stems,
@@ -80,8 +73,6 @@ namespace FowlFever.Conjugal.Affixing {
         /**
          * <inheritdoc cref="AffixFlavor.Prefix"/>
          */
-        [NotNull]
-        [ItemNotNull]
         public static IEnumerable<string> Prefix(
             [CanBeNull] [ItemCanBeNull]
             this IEnumerable<string> stems,

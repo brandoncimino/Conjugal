@@ -34,9 +34,9 @@ namespace FowlFever.Conjugal.Annotations {
     /// <seealso cref="Countability.Collective"/>
     [PublicAPI]
     public class CollectiveNounAttribute : PlurableWrapperAttribute {
-        public CollectiveNounAttribute([NotNull] string singular, Countability countability) : base(singular, countability) { }
-        public CollectiveNounAttribute([NotNull] string singularAndPlural) : base(singularAndPlural) { }
-        public CollectiveNounAttribute([NotNull] string singular, [NotNull] string plural) : base(singular, plural) { }
-        public CollectiveNounAttribute([NotNull] string singular, [NotNull] string plural, Countability countability) : base(singular, plural, countability) { }
+        public CollectiveNounAttribute(string singular, Countability countability) : base(singular, countability) { }
+        public CollectiveNounAttribute(string singularAndPlural) : base(singularAndPlural) { }
+        public CollectiveNounAttribute(string singular, string plural) : base(singular, plural) { }
+        public CollectiveNounAttribute(string singular, string plural, Countability countability) : base(singular, plural, countability) { }
     }
 }

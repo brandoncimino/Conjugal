@@ -9,9 +9,9 @@ namespace FowlFever.Conjugal.Annotations {
     /// <remarks><a href="https://en.wikipedia.org/wiki/Lemma_(morphology)">Wikipedia - Lemma (morphology)</a></remarks>
     [PublicAPI]
     public class LemmaAttribute : ConjugalAttribute {
-        [NotNull] public readonly string Lemma;
+        public readonly string Lemma;
 
-        public LemmaAttribute([NotNull] string lemma) {
+        public LemmaAttribute(string lemma) {
             Lemma = lemma;
         }
     }

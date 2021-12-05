@@ -22,9 +22,9 @@ namespace FowlFever.Conjugal {
         /// <param name="plural">the <see cref="Plural"/> form</param>
         /// <param name="countability">the <see cref="Countability"/>. If omitted, then we <see cref="InferCountability"/> instead</param>
         public Plurable(
-            [NotNull] string singular,
-            [NotNull] string plural,
-            Countability?    countability = default
+            string        singular,
+            string        plural,
+            Countability? countability = default
         ) {
             Singular     = singular;
             Plural       = plural;
@@ -37,8 +37,8 @@ namespace FowlFever.Conjugal {
         /// <param name="singular">the <see cref="Singular"/> form</param>
         /// <param name="countability">the <see cref="Countability"/> to use with <see cref="ConjugalStringExtensions.PluralFromCountability"/></param>
         public Plurable(
-            [NotNull] string singular,
-            Countability     countability
+            string       singular,
+            Countability countability
         ) {
             Singular     = singular;
             Countability = countability;
@@ -52,7 +52,7 @@ namespace FowlFever.Conjugal {
         /// <param name="singular">the <see cref="Singular"/> form</param>
         /// <param name="plural">the <see cref="Plural"/> form</param>
         /// <returns>an inferred <see cref="Conjugal.Countability"/></returns>
-        private static Countability InferCountability([NotNull] string singular, [NotNull] string plural) {
+        private static Countability InferCountability(string singular, string plural) {
             return singular == plural ? Countability.Uncountable : Countability.Countable;
         }
 
@@ -107,9 +107,9 @@ namespace FowlFever.Conjugal {
         /// <br/>If omitted, we <see cref="InferCountability"/> instead.</param>
         /// <returns>a new <see cref="Plurable"/> instance</returns>
         public static Plurable Of(
-            [NotNull] string singular,
-            [NotNull] string plural,
-            Countability?    countability = default
+            string        singular,
+            string        plural,
+            Countability? countability = default
         ) {
             return new Plurable(singular, plural, countability);
         }
@@ -121,8 +121,8 @@ namespace FowlFever.Conjugal {
         /// <param name="countability">a <see cref="Countability"/></param>
         /// <returns>a new <see cref="Plurable"/> instance</returns>
         public static Plurable Of(
-            [NotNull] string singular,
-            Countability     countability
+            string       singular,
+            Countability countability
         ) {
             return new Plurable(singular, countability);
         }
@@ -133,7 +133,7 @@ namespace FowlFever.Conjugal {
         /// <param name="singular">the original word being pluralized (which is usually singular)</param>
         /// <param name="isKnownToBeSingular">passed as the <paramref name="isKnownToBeSingular"/> parameter in <see cref="InflectorExtensions.Pluralize"/></param>
         /// <returns>a new <see cref="Plurable"/></returns>
-        public static Plurable Humanized([NotNull] string singular, bool isKnownToBeSingular = true) {
+        public static Plurable Humanized(string singular, bool isKnownToBeSingular = true) {
             return new Plurable(singular, singular.Pluralize(isKnownToBeSingular));
         }
     }

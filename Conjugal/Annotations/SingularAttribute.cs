@@ -22,11 +22,10 @@ namespace FowlFever.Conjugal.Annotations {
         /// <summary>
         /// The <see cref="IPlurable.Singular"/> form of this class.
         /// </summary>
-        [NotNull]
         public readonly string Singular;
 
         /// <inheritdoc cref="SingularAttribute"/>
-        public SingularAttribute([NotNull] string singular) {
+        public SingularAttribute(string singular) {
             Singular = singular;
         }
     }
