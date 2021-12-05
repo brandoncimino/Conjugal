@@ -12,8 +12,13 @@ namespace FowlFever.Conjugal.Annotations {
     /// <seealso cref="IConjugal.Lemma"/>
     [PublicAPI]
     public class SingularAttribute : ConjugalAttribute {
-        [NotNull] public readonly string Singular;
+        /// <summary>
+        /// The <see cref="IPlurable.Singular"/> form of this class.
+        /// </summary>
+        [NotNull]
+        public readonly string Singular;
 
+        /// <inheritdoc />
         public SingularAttribute([NotNull] string singular) {
             Singular = singular;
         }
