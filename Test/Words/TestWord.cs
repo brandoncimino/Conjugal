@@ -259,4 +259,24 @@ namespace Test.Words {
         public override LetterCasing?  PreferredCasing { get; } = default;
         public override Plurable?      Abbreviation    { get; } = default;
     }
+
+    [UnitOfMeasure("rack", namePlural: "racks", symbol: "⚽")]
+    public class Bristols : TestWord {
+        public override string Lemma { get; } = "bristols";
+        /// <summary>
+        /// 📝 I couldn't find a good primary source for the term <a href="https://en.wiktionary.org/wiki/bristols">"bristols"</a>,
+        /// and there were conflicting usages of it as being proper or not.
+        /// I've decided to go with non-proper, which is how it is presented on Wikitionary.
+        /// </summary>
+        public override bool IsProperNoun { get; } = false;
+        public override string         Quantity0       { get; } = "0 racks";
+        public override string         Quantity1       { get; } = "1 rack";
+        public override string         Quantity2       { get; } = "2 racks";
+        public override string         Singular        { get; } = "rack of bristols";
+        public override string         Plural          { get; } = "racks of bristols";
+        public override Countability   Countability    { get; } = Countability.Countable;
+        public override UnitOfMeasure? UnitOfMeasure   { get; } = default;
+        public override LetterCasing?  PreferredCasing { get; } = default;
+        public override Plurable?      Abbreviation    { get; } = default;
+    }
 }
