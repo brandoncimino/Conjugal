@@ -8,6 +8,7 @@ namespace FowlFever.Conjugal.Annotations {
     /// <seealso cref="CountableAttribute"/>
     [PublicAPI]
     public class UncountableAttribute : CountabilityAttribute {
+        /// <inheritdoc cref="UncountableAttribute"/>
         public UncountableAttribute() : base(Countability.Uncountable) { }
     }
 }
