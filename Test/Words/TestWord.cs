@@ -54,7 +54,7 @@ namespace Test.Words {
         public override Countability   Countability    { get; } = Countability.Countable;
     }
 
-    [UnitOfMeasure("kg", joiner: "")]
+    [UnitOfMeasure("kg", joiner: " ")]
     [CollectiveNoun("boulder")]
     internal class Rock : TestWord {
         public override string         Lemma           { get; } = "rock";
@@ -64,9 +64,9 @@ namespace Test.Words {
         public override string         Quantity2       { get; } = "2 kg";
         public override string         Singular        => Lemma;
         public override string         Plural          { get; } = "rocks";
-        public override UnitOfMeasure? UnitOfMeasure   => new UnitOfMeasure("kg");
+        public override UnitOfMeasure? UnitOfMeasure   { get; } = new UnitOfMeasure("kg");
         public override LetterCasing?  PreferredCasing { get; } = default;
-        public override Plurable?      Abbreviation    => default;
+        public override Plurable?      Abbreviation    { get; } = default;
         public override Countability   Countability    { get; } = Countability.Countable;
     }
 
@@ -83,7 +83,7 @@ namespace Test.Words {
         public override string         Plural          { get; } = "sheep";
         public override UnitOfMeasure? UnitOfMeasure   { get; } = new UnitOfMeasure("head", "🐑");
         public override LetterCasing?  PreferredCasing { get; } = default;
-        public override Plurable?      Abbreviation    => default;
+        public override Plurable?      Abbreviation    { get; } = default;
         public override Countability   Countability    { get; } = Countability.Uncountable;
     }
 
@@ -111,8 +111,8 @@ namespace Test.Words {
         public override string         Singular        => Lemma;
         public override string         Plural          { get; } = "XBoxes";
         public override UnitOfMeasure? UnitOfMeasure   { get; } = default;
-        public override LetterCasing?  PreferredCasing { get; } = default;
-        public override Plurable?      Abbreviation    => default;
+        public override LetterCasing?  PreferredCasing { get; } = LetterCasing.Title;
+        public override Plurable?      Abbreviation    { get; } = default;
         public override bool           IsProperNoun    { get; } = true;
         public override string         Quantity0       { get; } = "0 XBoxes";
         public override string         Quantity1       { get; } = "1 XBox";
@@ -150,7 +150,7 @@ namespace Test.Words {
         public override string         Plural          { get; } = "Important Stuff";
         public override UnitOfMeasure? UnitOfMeasure   { get; } = default;
         public override LetterCasing?  PreferredCasing { get; } = LetterCasing.Title;
-        public override Plurable?      Abbreviation    => default;
+        public override Plurable?      Abbreviation    { get; } = default;
         public override Countability   Countability    { get; } = Countability.Countable;
     }
 
@@ -166,7 +166,7 @@ namespace Test.Words {
         public override string         Plural          { get; } = "save data";
         public override UnitOfMeasure? UnitOfMeasure   { get; } = default;
         public override LetterCasing?  PreferredCasing { get; } = default;
-        public override Plurable?      Abbreviation    => default;
+        public override Plurable?      Abbreviation    { get; } = default;
         public override Countability   Countability    { get; } = Countability.Countable;
     }
 
@@ -204,7 +204,7 @@ namespace Test.Words {
         public override string        Quantity2       { get; } = "2 👨‍👦";
         public override string        Lemma           { get; } = "brother";
         public override string        Singular        { get; } = "brother";
-        public override Countability  Countability    { get; } = Countability.Countable;
+        public override Countability  Countability    { get; } = default;
     }
 
     [PreferredCasing(LetterCasing.Sentence)]

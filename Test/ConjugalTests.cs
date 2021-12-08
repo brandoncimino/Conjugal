@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using FowlFever.Conjugal;
@@ -98,6 +99,24 @@ namespace Test {
                     Assert.That(word.GetType().Quantify(2).ToString, Is.EqualTo(word.Quantity2), word.GetType().ToString);
                 }
             );
+        }
+
+        [Test]
+        public void IsProperNoun(
+            [ValueSource(nameof(Words))]
+            TestWord word
+        ) {
+            Console.WriteLine($"Word: {word.GetType().Name}; {nameof(word.IsProperNoun)}: {word.IsProperNoun}");
+            Assert.That(word.GetType().IsProperNoun, Is.EqualTo(word.IsProperNoun));
+        }
+
+        [Test]
+        public void PreferredCasing(
+            [ValueSource(nameof(Words))]
+            TestWord word
+        ) {
+            Console.WriteLine($"Word: {word.GetType().Name}; {nameof(word.PreferredCasing)}: {word.PreferredCasing?.ToString() ?? "⛔"}");
+            Assert.That(word.GetType().PreferredCasing, Is.EqualTo(word.PreferredCasing), word.GetType().FullName);
         }
     }
 }
