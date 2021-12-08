@@ -12,7 +12,7 @@ namespace FowlFever.Conjugal {
     [PublicAPI]
     public static class ConjugalStringExtensions {
         /// <summary>
-        /// Returns an inferred plural form using the provided <see cref="Countability"/>:
+        /// Derives a <see cref="IPlurable.Plural"/> form using the provided <see cref="Countability"/>:
         /// <ul>
         /// <li><see cref="Countability.Countable"/> -> <see cref="InflectorExtensions.Pluralize"/></li>
         /// <li><see cref="Countability.Uncountable"/> -> <paramref name="singular"/></li>
