@@ -20,6 +20,8 @@ namespace FowlFever.Conjugal {
             return type.GetCustomAttribute(typeof(ProperNounAttribute)) != null;
         }
 
+        #region Lemma
+
         /// <summary>
         /// Gets the <a href="https://en.wikipedia.org/wiki/Lemma_(morphology)">lemma</a> of this class:
         /// <ul>
@@ -28,40 +30,43 @@ namespace FowlFever.Conjugal {
         /// </ul>
         /// </summary>
         /// <param name="type">this <see cref="Type"/></param>
-        /// <returns><see cref="GetAnnotatedLemma"/> or <see cref="GetFallbackLemma"/></returns>
+        /// <returns><see cref="GetAnnotatedLemma"/> or <see cref="GetFallbackLemma"/>, with <see cref="PreferredCasing"/> applied</returns>
         public static string Lemma(this Type type) {
-            return type.GetAnnotatedLemma() ?? GetFallbackLemma(type);
-        }
-
-        /// <summary>
-        /// Gets the explicitly annotated lemma
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        private static string GetAnnotatedLemma(this MemberInfo type) {
-            return type.GetCustomAttribute<LemmaAttribute>()?.Lemma;
-        }
-
-        /// <summary>
-        /// The fallback value for <see cref="Lemma"/> when <see cref="GetAnnotatedLemma"/> is not defined
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        private static string GetFallbackLemma(Type type) {
-            // Tip: ?? is equivalent to saying ".GetValueOrDefault()", which is equivalent to Java's ".orElse()"
-            return type.Name.Humanize(type.PreferredCasing() ?? LetterCasing.LowerCase);
+            return (
+                       type.GetAnnotatedLemma() ??
+                       GetFallbackLemma(type)
+                   )
+                .ApplyCase(type.PreferredCasing());
         }
 
         /// <param name="type">this <see cref="Type"/></param>
-        /// <returns>the <see cref="CountabilityAttribute"/>.<see cref="CountabilityAttribute.Countability"/>, if set; otherwise, <see cref="Plurable.InferCountability">InferCountability</see>(<see cref="Singular">Singular</see>, <see cref="Plural">Plural</see>)</returns>
-        public static Countability Countability(this Type type) {
-            return type.GetCustomAttribute<CountabilityAttribute>()?.Countability ?? Plurable.InferCountability(type.Singular(), type.Plural());
+        /// <returns>the explicitly annotated <see cref="LemmaAttribute.Lemma"/>, if it exists</returns>
+        private static string? GetAnnotatedLemma(this MemberInfo type) {
+            return type.GetCustomAttribute<LemmaAttribute>()?.Lemma;
+        }
+
+        /// <param name="type">this <see cref="Type"/></param>
+        /// <returns>fallback value for <see cref="Lemma"/> when <see cref="GetAnnotatedLemma"/> is not defined</returns>
+        private static string GetFallbackLemma(Type type) {
+            return type.Name.Humanize();
+        }
+
+        #endregion
+
+        /// <param name="type">this <see cref="Type"/></param>
+        /// <returns>the <see cref="CountabilityAttribute"/>.<see cref="CountabilityAttribute.Countability"/>, if set</returns>
+        public static Countability? Countability(this Type type) {
+            return type.GetCustomAttribute<CountabilityAttribute>()?.Countability;
         }
 
         /// <param name="type">this <see cref="Type"/></param>
         /// <returns>the <see cref="SingularAttribute"/>.<see cref="SingularAttribute.Singular"/>, if set; otherwise, the <see cref="Lemma"/></returns>
         public static string Singular(this Type type) {
-            return type.GetCustomAttribute<SingularAttribute>()?.Singular ?? type.Lemma();
+            return (
+                       type.GetCustomAttribute<SingularAttribute>()?.Singular ??
+                       type.Lemma()
+                   )
+                .ApplyCase(type.PreferredCasing());
         }
 
         /// <summary>
@@ -88,7 +93,11 @@ namespace FowlFever.Conjugal {
         /// <param name="type"></param>
         /// <returns>the value of the <see cref="PluralAttribute"/>, if set; otherwise, <see cref="InflectorExtensions.Pluralize"/>s the <see cref="Singular"/> form via <see cref="Humanizer"/>.</returns>
         public static string Plural(this Type type) {
-            return type.GetCustomAttribute<PluralAttribute>()?.Plural ?? type.Singular().PluralFromCountability(type.Countability());
+            return (
+                       type.GetCustomAttribute<PluralAttribute>()?.Plural ??
+                       type.Countability()?.ApplyToSingular(type.Singular()) ??
+                       type.Singular().Pluralize()
+                   ).ApplyCase(type.PreferredCasing());
         }
 
         /// <param name="type"></param>
@@ -117,10 +126,16 @@ namespace FowlFever.Conjugal {
             return type.Abbreviation()?.Pluralize(quantity);
         }
 
+        /// <summary>
+        /// Gets the default <see cref="LetterCasing"/> for this <see cref="Type"/>,
+        /// either from an explicitly set <see cref="PreferredCasingAttribute"/>,
+        /// or derived from <see cref="IsProperNoun"/>, or <c>null</c>.
+        /// </summary>
         /// <param name="type">this <see cref="Type"/></param>
-        /// <returns><see cref="PreferredCasingAttribute"/>.<see cref="PreferredCasingAttribute.Casing"/></returns>
+        /// <returns><see cref="PreferredCasingAttribute"/>.<see cref="PreferredCasingAttribute.Casing"/> > <see cref="IsProperNoun"/> > <c>null</c></returns>
         public static LetterCasing? PreferredCasing(this Type type) {
-            return type.GetCustomAttribute<PreferredCasingAttribute>()?.Casing ?? (type.IsProperNoun() ? LetterCasing.Title : default);
+            return type.GetCustomAttribute<PreferredCasingAttribute>()?.Casing ??
+                   (type.IsProperNoun() ? LetterCasing.Title : default);
         }
 
         public static QuanticString Quantify(this Type type, int quantity) {
