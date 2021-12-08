@@ -53,13 +53,13 @@ namespace FowlFever.Conjugal {
         }
 
         /// <param name="type">this <see cref="Type"/></param>
-        /// <returns>the <see cref="CountabilityAttribute"/>.<see cref="CountabilityAttribute.Countability"/> if set; otherwise, <see cref="CountabilityAttribute.Default"/></returns>
+        /// <returns>the <see cref="CountabilityAttribute"/>.<see cref="CountabilityAttribute.Countability"/>, if set; otherwise, <see cref="Plurable.InferCountability">InferCountability</see>(<see cref="Singular">Singular</see>, <see cref="Plural">Plural</see>)</returns>
         public static Countability Countability(this Type type) {
-            return type.GetCustomAttribute<CountabilityAttribute>()?.Countability ?? CountabilityAttribute.Default;
+            return type.GetCustomAttribute<CountabilityAttribute>()?.Countability ?? Plurable.InferCountability(type.Singular(), type.Plural());
         }
 
         /// <param name="type">this <see cref="Type"/></param>
-        /// <returns>the <see cref="SingularAttribute"/>.<see cref="SingularAttribute.Singular"/> if set; otherwise, the <see cref="Lemma"/></returns>
+        /// <returns>the <see cref="SingularAttribute"/>.<see cref="SingularAttribute.Singular"/>, if set; otherwise, the <see cref="Lemma"/></returns>
         public static string Singular(this Type type) {
             return type.GetCustomAttribute<SingularAttribute>()?.Singular ?? type.Lemma();
         }

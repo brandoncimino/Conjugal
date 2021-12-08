@@ -8,7 +8,7 @@ namespace FowlFever.Conjugal {
     /// <summary>
     /// A simple struct implementing <see cref="IPlurable"/>.
     /// </summary>
-    /// <remarks>An alternative name could be "IPluric"</remarks>
+    /// <remarks>📎 An alternative name could be "IPluric"</remarks>
     [PublicAPI]
     public readonly struct Plurable : IPlurable {
         public string       Singular     { get; }
@@ -52,10 +52,11 @@ namespace FowlFever.Conjugal {
         /// <param name="singular">the <see cref="Singular"/> form</param>
         /// <param name="plural">the <see cref="Plural"/> form</param>
         /// <returns>an inferred <see cref="Conjugal.Countability"/></returns>
-        private static Countability InferCountability(string singular, string plural) {
+        public static Countability InferCountability(string singular, string plural) {
             return singular == plural ? Countability.Uncountable : Countability.Countable;
         }
 
+        /// <inheritdoc />
         public override string ToString() {
             return $"({Singular}, {Plural})";
         }
