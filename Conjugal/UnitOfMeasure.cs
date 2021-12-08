@@ -21,10 +21,10 @@ namespace FowlFever.Conjugal {
         public          Countability Countability  => Notation.Countability;
 
         public UnitOfMeasure(
-            Plurable           name,
-            Plurable?          symbol,
-            [CanBeNull] string joiner      = DefaultJoiner,
-            AffixFlavor        affixFlavor = AffixFlavor.Suffix
+            Plurable    name,
+            Plurable?   symbol,
+            string?     joiner      = DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix
         ) {
             Name        = name;
             Symbol      = symbol;
@@ -33,10 +33,10 @@ namespace FowlFever.Conjugal {
         }
 
         public UnitOfMeasure(
-            IPlurable             name,
-            [CanBeNull] IPlurable symbol,
-            [CanBeNull] string    joiner      = DefaultJoiner,
-            AffixFlavor           affixFlavor = AffixFlavor.Suffix
+            IPlurable   name,
+            IPlurable?  symbol,
+            string?     joiner      = DefaultJoiner,
+            AffixFlavor affixFlavor = AffixFlavor.Suffix
         ) : this(
             name.ToPlurable(),
             symbol.ToPlurable(),

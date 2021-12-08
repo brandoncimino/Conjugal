@@ -18,15 +18,13 @@ namespace FowlFever.Conjugal.Affixing {
         /// <summary>
         /// A <see cref="string"/> interposed betwixt the stem and <see cref="BoundMorpheme"/>.
         /// </summary>
-        [CanBeNull]
-        public string Joiner { get; }
+        public string? Joiner { get; }
         /// <summary>
         /// The <a href="https://en.wiktionary.org/wiki/bound_morpheme">bound morpheme</a> used to <see cref="AffixedExtensions.Render"/> the final result.
         /// </summary>
         /// <example>
         /// <i>-ing</i> in <i>genuflecting</i>
         /// </example>
-        [CanBeNull]
-        public string BoundMorpheme { get; }
+        public string? BoundMorpheme { get; }
     }
 }

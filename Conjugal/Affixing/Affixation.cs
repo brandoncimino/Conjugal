@@ -40,11 +40,11 @@ namespace FowlFever.Conjugal.Affixing {
         /// <remarks>Please construct <see cref="Affixation"/> instances via the static factory methods: <see cref="Suffixation(string,string,string)"/>, <see cref="Ambifixation(string,string,string)"/>, etc.</remarks>
         /// <exception cref="Index">If an <see cref="ArgumentException"/> is needed but missing <b>or</b> missing but needed.</exception>
         internal Affixation(
-            AffixFlavor        affixFlavor,
-            [CanBeNull] string stem,
-            [CanBeNull] string boundMorpheme,
-            int?               index,
-            [CanBeNull] string joiner = ""
+            AffixFlavor affixFlavor,
+            string?     stem,
+            string?     boundMorpheme,
+            int?        index,
+            string?     joiner = ""
         ) {
             if (AffixFlavorExtensions.RequiresIndex(affixFlavor) != index.HasValue) {
                 var problem = index.HasValue ? $"must not have an {nameof(index)} specified" : $"requires you to specify an {nameof(index)}";
@@ -59,10 +59,10 @@ namespace FowlFever.Conjugal.Affixing {
         }
 
         internal Affixation(
-            AffixFlavor        affixFlavor,
-            [CanBeNull] string stem,
-            [CanBeNull] string boundMorpheme,
-            [CanBeNull] string joiner = ""
+            AffixFlavor affixFlavor,
+            string?     stem,
+            string?     boundMorpheme,
+            string?     joiner = ""
         ) : this(
             affixFlavor,
             stem,
@@ -72,8 +72,8 @@ namespace FowlFever.Conjugal.Affixing {
         ) { }
 
         internal Affixation(
-            IAffix             affix,
-            [CanBeNull] string stem
+            IAffix  affix,
+            string? stem
         ) : this(
             affix.AffixFlavor,
             stem,
@@ -89,7 +89,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="suffix">the <see cref="BoundMorpheme"/> appended to the <see cref="Stem"/></param>
         /// <param name="joiner">the <see cref="Joiner"/> interposed betwixt the <see cref="Stem"/> and <see cref="BoundMorpheme"/>. Defaults to <see cref="string.Empty">""</see>.</param>
         /// <returns>a new <see cref="Affixation"/></returns>
-        public static Affixation Suffixation([CanBeNull] string stem, [CanBeNull] string suffix, [CanBeNull] string joiner = "") {
+        public static Affixation Suffixation(string? stem, string? suffix, string? joiner = "") {
             return new Affixation(AffixFlavor.Suffix, stem, suffix, joiner);
         }
 
@@ -100,7 +100,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="prefix">the <see cref="BoundMorpheme"/> appended to the <see cref="Stem"/></param>
         /// <param name="joiner">the <see cref="Joiner"/> interposed betwixt the <see cref="Stem"/> and <see cref="BoundMorpheme"/></param>
         /// <returns>a new <see cref="Affixation"/></returns>
-        public static Affixation Prefixation([CanBeNull] string stem, [CanBeNull] string prefix, [CanBeNull] string joiner = "") {
+        public static Affixation Prefixation(string? stem, string? prefix, string? joiner = "") {
             return new Affixation(AffixFlavor.Prefix, stem, prefix, joiner);
         }
 
@@ -112,7 +112,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="index">the <see cref="string"/> index where the <see cref="string.Insert"/>ion will take place</param>
         /// <param name="joiner">the <see cref="Joiner"/> interposed betwixt the <see cref="Stem"/> and <see cref="BoundMorpheme"/>. Defaults to <see cref="string.Empty">""</see>.</param>
         /// <returns>a new <see cref="Affixation"/></returns>
-        public static Affixation Infixation([CanBeNull] string stem, [CanBeNull] string infix, int index, [CanBeNull] string joiner) {
+        public static Affixation Infixation(string? stem, string? infix, int index, string? joiner) {
             return new Affixation(AffixFlavor.Infix, stem, infix, index, joiner);
         }
 
@@ -131,7 +131,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="suffix">the part of the <see cref="BoundMorpheme"/> that will <b>succede</b> the <see cref="Stem"/>(i.e. "en" in "embooben")</param>
         /// <param name="joiner">the <see cref="Joiner"/> interposed betwixt the <see cref="BoundMorpheme"/> and the <see cref="Stem"/>. Defaults to <see cref="string.Empty">""</see></param>
         /// <returns>a new <see cref="Affixation"/></returns>
-        public static Affixation Circumfixation([CanBeNull] string stem, [CanBeNull] string prefix, [CanBeNull] string suffix, [CanBeNull] string joiner) {
+        public static Affixation Circumfixation(string? stem, string? prefix, string? suffix, string? joiner) {
             return new Affixation(AffixFlavor.Circumfix, stem, prefix + suffix, prefix?.Length, joiner);
         }
 

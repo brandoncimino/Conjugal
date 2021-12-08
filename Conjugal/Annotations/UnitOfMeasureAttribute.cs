@@ -10,12 +10,12 @@ namespace FowlFever.Conjugal.Annotations {
         public readonly UnitOfMeasure UnitOfMeasure;
 
         public UnitOfMeasureAttribute(
-            string             name,
-            [CanBeNull] string symbol       = default,
-            [CanBeNull] string joiner       = UnitOfMeasure.DefaultJoiner,
-            AffixFlavor        affixFlavor  = AffixFlavor.Suffix,
-            [CanBeNull] string namePlural   = default,
-            [CanBeNull] string symbolPlural = default
+            string      name,
+            string?     symbol       = default,
+            string?     joiner       = UnitOfMeasure.DefaultJoiner,
+            AffixFlavor affixFlavor  = AffixFlavor.Suffix,
+            string?     namePlural   = default,
+            string?     symbolPlural = default
         ) {
             if (!string.IsNullOrEmpty(symbolPlural) && string.IsNullOrEmpty(symbol)) {
                 throw new ArgumentException($"A non-empty {nameof(symbolPlural)} was provided ('{symbolPlural}') alongside an empty {nameof(symbol)}!");

@@ -12,7 +12,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="stem">the word that will be affixed</param>
         /// <returns>an <see cref="Affixation"/> combining this <see cref="IAffix"/> and a <paramref name="stem"/></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static Affixation AffixTo(this IAffix affix, [CanBeNull] string stem) {
+        public static Affixation AffixTo(this IAffix affix, string? stem) {
             if (affix == null) {
                 throw new ArgumentNullException(nameof(affix));
             }

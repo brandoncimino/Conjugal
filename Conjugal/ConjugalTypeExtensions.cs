@@ -113,8 +113,7 @@ namespace FowlFever.Conjugal {
         /// <param name="type">this <paramref name="type"/></param>
         /// <param name="quantity">a quantity, used to decide between the <see cref="Abbreviation"/>'s <see cref="IPlurable.Singular"/> and <see cref="IPlurable.Plural"/> forms</param>
         /// <returns>this type's pluralized <see cref="Abbreviation"/>, if present; otherwise, <c>null</c></returns>
-        [CanBeNull]
-        public static string Abbreviate(this Type type, int? quantity = default) {
+        public static string? Abbreviate(this Type type, int? quantity = default) {
             return type.Abbreviation()?.Pluralize(quantity);
         }
 
