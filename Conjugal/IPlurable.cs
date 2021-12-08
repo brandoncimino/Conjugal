@@ -1,6 +1,9 @@
 using JetBrains.Annotations;
 
 namespace FowlFever.Conjugal {
+    /// <summary>
+    /// Joins together a <see cref="Singular"/> and a <see cref="Plural"/> form explicitly.
+    /// </summary>
     [PublicAPI]
     public interface IPlurable {
         /// <summary>

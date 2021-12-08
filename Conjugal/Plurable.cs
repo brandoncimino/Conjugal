@@ -11,8 +11,11 @@ namespace FowlFever.Conjugal {
     /// <remarks>📎 An alternative name could be "IPluric"</remarks>
     [PublicAPI]
     public readonly struct Plurable : IPlurable {
-        public string       Singular     { get; }
-        public string       Plural       { get; }
+        /// <inheritdoc />
+        public string Singular { get; }
+        /// <inheritdoc />
+        public string Plural { get; }
+        /// <inheritdoc />
         public Countability Countability { get; }
 
         /// <summary>
