@@ -37,5 +37,10 @@ namespace FowlFever.Conjugal {
         public static Plurable Plurablize(this string singular, bool isKnownToBeSingular = true) {
             return Plurable.Humanized(singular, isKnownToBeSingular);
         }
+
+        /// <inheritdoc cref="CasingExtensions.ApplyCase"/>
+        public static string ApplyCase(this string input, LetterCasing? casing) {
+            return casing?.ApplyTo(input) ?? input;
+        }
     }
 }
