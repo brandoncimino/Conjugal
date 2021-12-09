@@ -141,10 +141,19 @@ namespace FowlFever.Conjugal {
                    (type.IsProperNoun() ? LetterCasing.Title : null);
         }
 
+        /// <summary>
+        /// Retrieves a new <see cref="Conjugation"/> for this <see cref="Type"/> and uses it to <see cref="ConjugalExtensions.Quantify"/>.
+        /// </summary>
+        /// <param name="type">this <see cref="Type"/></param>
+        /// <param name="quantity">the desired <see cref="QuanticString.Quantity"/></param>
+        /// <returns>a new <see cref="QuanticString"/></returns>
         public static QuanticString Quantify(this Type type, int quantity) {
             return new Conjugation(type).Quantify(quantity);
         }
 
+        /**
+         * <inheritdoc cref="Quantify(System.Type,int)"/>
+         */
         public static QuanticString Quantify(this Type type, double quantity) {
             return new Conjugation(type).Quantify(quantity);
         }
