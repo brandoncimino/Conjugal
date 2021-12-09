@@ -40,12 +40,13 @@ namespace Test.Words {
 
     [Abbreviation("dX", "dXs")]
     [CollectiveNoun("roll", "rolls")]
+    [UnitOfMeasure("dX", joiner: "")]
     internal class Die : TestWord {
         public override string         Lemma           { get; } = "die";
         public override bool           IsProperNoun    { get; } = false;
-        public override string         Quantity0       { get; } = "0 dXs";
-        public override string         Quantity1       { get; } = "1 dX";
-        public override string         Quantity2       { get; } = "2 dXs";
+        public override string         Quantity0       { get; } = "0dX";
+        public override string         Quantity1       { get; } = "1dX";
+        public override string         Quantity2       { get; } = "2dX";
         public override string         Singular        => Lemma;
         public override string         Plural          { get; } = "dice";
         public override UnitOfMeasure? UnitOfMeasure   { get; } = default;
