@@ -6,7 +6,7 @@
         <AssemblyName>FowlFever.Conjugal</AssemblyName>
         <RootNamespace>FowlFever.Conjugal</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.2.1</PackageVersion>
+        <PackageVersion>1.0.0</PackageVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Title>Conjugal</Title>
         <Authors>Brandon Cimino</Authors>
@@ -15,17 +15,23 @@
         <Product>Conjugal</Product>
         <RepositoryType>git</RepositoryType>
         <Description>Structs and annotations for producing nice word conjugations and other linguistic metadata, such as abbreviations, units of measure, and terms of venery.</Description>
-        <PackageReleaseNotes>## [0.2.0] - 2021-09-26
+        <PackageReleaseNotes>## [1.0.0] - 2021-12-08
 
             ### Added
 
-            - `IEnumerable&lt;string&gt;` extensions for `Prefix` and `Suffix`
-            - Lots of nullability annotations
+            - Convenience extensions for `Countability` and `LetterCasing`
+            - `StringTokenFormatter` as a nuget dependency (note: it is not used for anything yet)
+
+            ### Changed
+
+            - `ConjugalTypeExtensions.Countability` now returns `null Countability?` when the `[Countability]` attribute isn't found (instead of defaulting to `Countability.Countable`)
+            - Updated C# `LangVersion` to `latest`
+            - Replaced `[CanBeNull]` and `[NotNull]` annotations with `?` suffixes
 
             ### Fixed
 
-            - Proper `null` handling for `Affixation` instances
-            - Proper `null` handling for `StringAffixationExtensions`
+            - Letter casing!
+            - Casing properly defaults to `LetterCasing.Lowercase` *only* when a noun's `Lemma` is derived by `Humanizer`
         </PackageReleaseNotes>
         <NeutralLanguage>en</NeutralLanguage>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
