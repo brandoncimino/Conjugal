@@ -3,6 +3,10 @@ using System;
 using JetBrains.Annotations;
 
 namespace FowlFever.Conjugal.Affixing {
+    /// <summary>
+    /// Extension methods for <see cref="AffixFlavor"/>.
+    /// </summary>
+    /// <seealso cref="AffixFlavor"/>
     [PublicAPI]
     public static class AffixFlavorExtensions {
         /// <summary>
@@ -34,16 +38,12 @@ namespace FowlFever.Conjugal.Affixing {
             return new ArgumentException($"The {nameof(AffixFlavor)} {flavor} should NOT have an {nameof(index)}, but [{index}] was provided!");
         }
 
-        internal static int GetIndex(this AffixFlavor flavor, int? index) {
-            if (!flavor.RequiresIndex()) {
-                throw NoIndexRequiredException(flavor, index);
-            }
-
-            if (!index.HasValue || index.Value < 0) {
-                throw RequiresIndexException(flavor, index);
-            }
-
-            return index.Value;
+        internal static int ValidateIndex(this AffixFlavor flavor, int? index) {
+            return (flavor.RequiresIndex(), index) switch {
+                (true, >= 0)        => index.Value,
+                (true, null or < 0) => throw RequiresIndexException(flavor, index),
+                (false, _)          => throw NoIndexRequiredException(flavor, index),
+            };
         }
     }
 }
