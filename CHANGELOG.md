@@ -1,12 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+- The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+- This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+- Dates are in `YYYY-MM-DD` format.
 
-## Unreleased
+## [2.0.0] - 2022-02-07
 
 ### Changed
+- `string.{affix}()` extension methods now return `Affixation` instances _(which can be implicitly cast into `string`s)_
+- Removed `string.{affix}ation()` extension methods (since they're now redundant with the `string.{affix}()` methods)
 - `Affixation.Index` from `int` -> `System.Index`
 
 ### Fixed
