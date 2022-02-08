@@ -83,15 +83,15 @@ namespace FowlFever.Conjugal.Affixing {
         /// </summary>
         /// <param name="stem">the linguistic <see cref="Stem"/> that the <see cref="BoundMorpheme"/> will be <see cref="string.Insert">inserted</see> into</param>
         /// <param name="infix">the <see cref="BoundMorpheme"/> that will be <see cref="string.Insert">inserted</see> into the <see cref="Stem"/></param>
-        /// <param name="index">the <see cref="string"/> index where the <see cref="string.Insert"/>ion will take place</param>
+        /// <param name="insertionPoint">the <see cref="string"/> index where the <see cref="string.Insert"/>ion will take place</param>
         /// <param name="joiner">the <see cref="Joiner"/> interposed betwixt the <see cref="Stem"/> and <see cref="BoundMorpheme"/>. Defaults to <see cref="string.Empty">""</see>.</param>
         /// <returns>a new <see cref="Affixation"/></returns>
-        public static Affixation Infixation(string? stem, string? infix, int index, string? joiner = DefaultJoiner) {
+        public static Affixation Infixation(string? stem, string? infix, Index insertionPoint, string? joiner = DefaultJoiner) {
             return new Affixation {
                 AffixFlavor   = AffixFlavor.Infix,
                 Stem          = stem,
                 BoundMorpheme = infix,
-                Index         = index,
+                Index         = insertionPoint,
                 Joiner        = joiner,
             };
         }
@@ -129,7 +129,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="ambifix">the <see cref="BoundMorpheme"/> that will appear on <b>BOTH SIDES</b> of the <see cref="Stem"/></param>
         /// <param name="joiner">the <see cref="Joiner"/> interposed betwixt the <see cref="BoundMorpheme"/> and the <see cref="Stem"/>. Defaults to <see cref="string.Empty">""</see></param>
         /// <returns></returns>
-        public static Affixation Ambifixation(string stem, string ambifix, string? joiner = DefaultJoiner) {
+        public static Affixation Ambifixation(string? stem, string? ambifix, string? joiner = DefaultJoiner) {
             return new Affixation {
                 AffixFlavor   = AffixFlavor.Ambifix,
                 Stem          = stem,
@@ -160,7 +160,7 @@ namespace FowlFever.Conjugal.Affixing {
                 AffixFlavor.Transfix  => throw new NotImplementedException($"{AffixFlavor} is not supported!"),
                 AffixFlavor.Disfix    => throw new NotImplementedException($"{AffixFlavor} is not supported!"),
                 _                     => throw new InvalidEnumArgumentException(nameof(AffixFlavor), (int)AffixFlavor, typeof(AffixFlavor))
-            } ?? "";
+            };
         }
 
         private string _BuildCircumfix() {
