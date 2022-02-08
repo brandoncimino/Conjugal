@@ -22,7 +22,7 @@ namespace FowlFever.Conjugal.Affixing {
                 AffixFlavor.Suffix    => false,
                 AffixFlavor.Infix     => true,
                 AffixFlavor.Circumfix => true,
-                AffixFlavor.Ambifix   => true,
+                AffixFlavor.Ambifix   => false,
                 AffixFlavor.Duplifix  => false,
                 AffixFlavor.Transfix  => throw new NotImplementedException($"{affixFlavor} is not implemented by {nameof(RequiresIndex)}!"),
                 AffixFlavor.Disfix    => throw new NotImplementedException($"{affixFlavor} is not implemented by {nameof(RequiresIndex)}!"),
@@ -30,19 +30,19 @@ namespace FowlFever.Conjugal.Affixing {
             };
         }
 
-        private static ArgumentOutOfRangeException RequiresIndexException(AffixFlavor flavor, int? index) {
-            return new ArgumentOutOfRangeException($"The {nameof(AffixFlavor)} {flavor} requires an {nameof(index)} >= 0, but [{index}] was provided!");
+        private static ArgumentOutOfRangeException RequiresIndexException(AffixFlavor flavor, object? index) {
+            return new ArgumentOutOfRangeException($"The {nameof(AffixFlavor)} {flavor} requires an {nameof(index)} >= 0, but [{index ?? "⛔"}] was provided!");
         }
 
-        private static ArgumentException NoIndexRequiredException(AffixFlavor flavor, int? index) {
-            return new ArgumentException($"The {nameof(AffixFlavor)} {flavor} should NOT have an {nameof(index)}, but [{index}] was provided!");
+        private static ArgumentException NoIndexRequiredException(AffixFlavor flavor, object? index) {
+            return new ArgumentException($"The {nameof(AffixFlavor)} {flavor} should NOT have an {nameof(index)}, but [{index ?? "⛔"}] was provided!");
         }
 
-        internal static int ValidateIndex(this AffixFlavor flavor, int? index) {
+        internal static T ValidateIndex<T>(this AffixFlavor flavor, T? index) {
             return (flavor.RequiresIndex(), index) switch {
-                (true, >= 0)        => index.Value,
-                (true, null or < 0) => throw RequiresIndexException(flavor, index),
-                (false, _)          => throw NoIndexRequiredException(flavor, index),
+                (true, not null) => index,
+                (true, null)     => throw RequiresIndexException(flavor, index),
+                (false, _)       => throw NoIndexRequiredException(flavor, index)
             };
         }
     }

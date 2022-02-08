@@ -17,7 +17,12 @@ namespace FowlFever.Conjugal.Affixing {
                 throw new ArgumentNullException(nameof(affix));
             }
 
-            return new Affixation(affix, stem);
+            return new Affixation() {
+                AffixFlavor   = affix.AffixFlavor,
+                Stem          = stem,
+                BoundMorpheme = affix.BoundMorpheme,
+                Joiner        = affix.Joiner,
+            };
         }
     }
 }

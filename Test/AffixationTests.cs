@@ -5,7 +5,7 @@ using FowlFever.Conjugal.Affixing;
 using NUnit.Framework;
 
 namespace Test {
-    public class ExtensionTests {
+    public class AffixationTests {
         [Test]
         [TestCase(null, null, null, "")]
         public void Prefix(string root, string prefix, string joiner, string expected) {
@@ -42,13 +42,28 @@ namespace Test {
         }
 
         [Test]
-        public void NullableAffix([Values] AffixFlavor flavor) {
-            const string expected = "";
+        public void EmptyMorphemeMeansNoJoiner([Values] AffixFlavor flavor, [Values("", null)] string? boundMorpheme) {
+            const string stem = "STEM";
+            Assert.That(new Affixation(flavor) { Stem = stem, BoundMorpheme = boundMorpheme, Joiner = "JOINER" }.Render, Is.EqualTo(stem));
+        }
 
+        [Test]
+        public void EmptyStemMeansEmptyResult([Values] AffixFlavor flavor, [Values("", null)] string? stem) {
+            const string boundMorpheme = "BOUND_MORPHEME";
+            Assert.That(new Affixation(flavor) { Stem = stem, BoundMorpheme = boundMorpheme, Joiner = "JOINER" }.Render, Is.Empty);
+        }
+
+        [Test]
+        public void DefaultAffix() {
+            Affixation affixation = default;
+            Assert.That(affixation.Render, Is.EqualTo(""));
+        }
+
+        [Test]
+        public void FlavoredNullMemberAffix([Values] AffixFlavor flavor) {
             try {
-                int? index      = flavor.RequiresIndex() ? 0 : null;
-                var  affixation = new Affixation(flavor, null, null, index, null);
-                Assert.That(affixation.Render(), Is.EqualTo(expected));
+                var affixation = new Affixation { AffixFlavor = flavor };
+                Assert.That(affixation.Render, Is.EqualTo(""));
             }
             catch (NotImplementedException e) {
                 throw new IgnoreException($"{flavor} is not fully implemented: {e.Message}", e);
