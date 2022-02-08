@@ -19,7 +19,12 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="affixedThing">an <see cref="IAffixed"/> instance, whence forth <see cref="Affixing.Affixation"/> couldst been doed</param>
         /// <returns>a new <see cref="Affixing.Affixation"/> built from the <paramref name="affixedThing"/></returns>
         public static Affixation ToAffixation(this IAffixed affixedThing) {
-            return new Affixation(affixedThing.AffixFlavor, affixedThing.Stem, affixedThing.BoundMorpheme, null, affixedThing.Joiner);
+            return new Affixation() {
+                AffixFlavor   = affixedThing.AffixFlavor,
+                Stem          = affixedThing.Stem,
+                BoundMorpheme = affixedThing.BoundMorpheme,
+                Joiner        = affixedThing.Joiner,
+            };
         }
     }
 }
