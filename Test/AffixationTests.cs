@@ -10,21 +10,21 @@ namespace Test {
         [TestCase(null, null, null, "")]
         public void Prefix(string root, string prefix, string joiner, string expected) {
             var prefixed = root.Prefix(prefix, joiner);
-            Assert.That(prefixed, Is.EqualTo(expected));
+            Assert.That(prefixed.Render, Is.EqualTo(expected));
         }
 
         [Test]
         [TestCase(null, null, null, "")]
         public void Suffix(string root, string suffix, string joiner, string expected) {
             var suffixed = root.Suffix(suffix, joiner);
-            Assert.That(suffixed, Is.EqualTo(expected));
+            Assert.That(suffixed.Render, Is.EqualTo(expected));
         }
 
         [Test]
         [TestCase(null, null, 0, null, "")]
         public void Infix(string root, string infix, int insertionPoint, string joiner, string expected) {
             var infixed = root.Infix(infix, insertionPoint, joiner);
-            Assert.That(infixed, Is.EqualTo(expected));
+            Assert.That(infixed.Render, Is.EqualTo(expected));
         }
 
         [Test]
