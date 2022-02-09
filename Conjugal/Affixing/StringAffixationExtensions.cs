@@ -1,5 +1,3 @@
-using System;
-
 using JetBrains.Annotations;
 
 namespace FowlFever.Conjugal.Affixing {
@@ -7,7 +5,7 @@ namespace FowlFever.Conjugal.Affixing {
     /// <see cref="string"/> extension methods that apply <a href="https://en.wikipedia.org/wiki/Affix">affixes</a> to stems.
     /// </summary>
     [PublicAPI]
-    public static class Affixer {
+    public static class StringAffixationExtensions {
         #region Simple Strings
 
         /// <summary>
@@ -35,7 +33,6 @@ namespace FowlFever.Conjugal.Affixing {
         /**
          * <inheritdoc cref="AffixFlavor.Infix"/>
          */
-        [Obsolete("Please use Infixation")]
         public static Affixation Infix(this string? stem, string? infix, int insertionPoint, string? joiner = Affixation.DefaultJoiner) {
             return Affixation.Infixation(stem, infix, insertionPoint, joiner);
         }

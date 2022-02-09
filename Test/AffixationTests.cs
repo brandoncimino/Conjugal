@@ -31,14 +31,14 @@ namespace Test {
         [TestCase(null, null, null, "")]
         public void Ambifix(string root, string ambifix, string joiner, string expected) {
             var ambifixed = root.Ambifix(ambifix, joiner);
-            Assert.That(ambifixed, Is.EqualTo(expected));
+            Assert.That(ambifixed.Render, Is.EqualTo(expected));
         }
 
         [Test]
         [TestCase(null, null, null, "")]
         public void Circumfix(string root, string circumfix, string joiner, string expected) {
             var circumfixed = root.Circumfix(circumfix, joiner);
-            Assert.That(circumfixed, Is.EqualTo(expected));
+            Assert.That(circumfixed.Render, Is.EqualTo(expected));
         }
 
         [Test]
