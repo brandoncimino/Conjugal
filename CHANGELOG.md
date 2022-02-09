@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 - This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Dates are in `YYYY-MM-DD` format.
 
-## [2.0.0] - 2022-02-07
+## Unreleased
 
 ### Changed
 - `string.{affix}()` extension methods now return `Affixation` instances _(which can be implicitly cast into `string`s)_
