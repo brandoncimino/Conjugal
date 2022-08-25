@@ -1,3 +1,5 @@
+using System;
+
 using JetBrains.Annotations;
 
 namespace FowlFever.Conjugal.Affixing {
@@ -15,7 +17,12 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="suffix">the <see cref="string"/> to be appended to <paramref name="stem"/> <i>(🏫 <see cref="Affixation.BoundMorpheme"/>)</i></param>
         /// <param name="joiner">a <see cref="string"/> interposed betwixt <paramref name="stem"/> and <paramref name="suffix"/> <i>(🏫 <see cref="Affixation.Joiner"/>)</i></param>
         /// <returns>the <see cref="AffixFlavor.Suffix"/>ed <see cref="Affixation.Suffixation"/></returns>
-        public static Affixation Suffix(this string? stem, string? suffix, string? joiner = Affixation.DefaultJoiner) {
+        public static Affixation Suffix(this string? stem, ReadOnlySpan<char> suffix, ReadOnlySpan<char> joiner = default) {
+            return Affixation.Suffixation(stem, suffix, joiner);
+        }
+
+        /// <inheritdoc cref="Suffix(string?,System.ReadOnlySpan{char},System.ReadOnlySpan{char})"/>
+        public static Affixation Suffix(this ReadOnlySpan<char> stem, ReadOnlySpan<char> suffix, ReadOnlySpan<char> joiner = default) {
             return Affixation.Suffixation(stem, suffix, joiner);
         }
 
@@ -26,28 +33,42 @@ namespace FowlFever.Conjugal.Affixing {
         /// <param name="prefix">the <see cref="string"/> to be appended to <paramref name="stem"/> <i>(🏫 <see cref="Affixation.BoundMorpheme"/>)</i></param>
         /// <param name="joiner">a <see cref="string"/> interposed betwixt <paramref name="stem"/> and <paramref name="prefix"/> <i>(🏫 <see cref="Affixation.Joiner"/>)</i></param>
         /// <returns>the <see cref="AffixFlavor.Prefix"/>ed <see cref="Affixation.Prefixation"/></returns>
-        public static Affixation Prefix(this string? stem, string? prefix, string? joiner = Affixation.DefaultJoiner) {
+        public static Affixation Prefix(this string? stem, ReadOnlySpan<char> prefix, ReadOnlySpan<char> joiner = default) {
             return Affixation.Prefixation(stem, prefix, joiner);
         }
 
-        /**
-         * <inheritdoc cref="AffixFlavor.Infix"/>
-         */
-        public static Affixation Infix(this string? stem, string? infix, int insertionPoint, string? joiner = Affixation.DefaultJoiner) {
+        /// <inheritdoc cref="Prefix(string?,System.ReadOnlySpan{char},System.ReadOnlySpan{char})"/>
+        public static Affixation Prefix(this ReadOnlySpan<char> stem, ReadOnlySpan<char> prefix, ReadOnlySpan<char> joiner = default) {
+            return Affixation.Prefixation(stem, prefix, joiner);
+        }
+
+        /// <inheritdoc cref="AffixFlavor.Infix"/>
+        public static Affixation Infix(this string? stem, ReadOnlySpan<char> infix, Index insertionPoint, ReadOnlySpan<char> joiner = default) {
             return Affixation.Infixation(stem, infix, insertionPoint, joiner);
         }
 
-        /**
-         * <inheritdoc cref="AffixFlavor.Circumfix"/>
-         */
-        public static Affixation Circumfix(this string? stem, string? prefix, string? suffix, string? joiner = Affixation.DefaultJoiner) {
+        /// <inheritdoc cref="AffixFlavor.Infix"/>
+        public static Affixation Infix(this ReadOnlySpan<char> stem, ReadOnlySpan<char> infix, Index insertionPoint, ReadOnlySpan<char> joiner = default) {
+            return Affixation.Infixation(stem, infix, insertionPoint, joiner);
+        }
+
+        /// <inheritdoc cref="AffixFlavor.Circumfix"/>
+        public static Affixation Circumfix(this string? stem, ReadOnlySpan<char> prefix, ReadOnlySpan<char> suffix, ReadOnlySpan<char> joiner = default) {
             return Affixation.Circumfixation(stem, prefix, suffix, joiner);
         }
 
-        /**
-         * <inheritdoc cref="AffixFlavor.Ambifix"/>
-         */
-        public static Affixation Ambifix(this string? stem, string? ambifix, string? joiner = Affixation.DefaultJoiner) {
+        /// <inheritdoc cref="Circumfix(string?,System.ReadOnlySpan{char},System.ReadOnlySpan{char},System.ReadOnlySpan{char})"/>
+        public static Affixation Circumfix(this ReadOnlySpan<char> stem, ReadOnlySpan<char> prefix, ReadOnlySpan<char> suffix, ReadOnlySpan<char> joiner = default) {
+            return Affixation.Circumfixation(stem, prefix, suffix, joiner);
+        }
+
+        /// <inheritdoc cref="AffixFlavor.Ambifix"/>
+        public static Affixation Ambifix(this string? stem, ReadOnlySpan<char> ambifix, ReadOnlySpan<char> joiner = default) {
+            return Affixation.Ambifixation(stem, ambifix, joiner);
+        }
+
+        /// <inheritdoc cref="AffixFlavor.Ambifix"/>
+        public static Affixation Ambifix(this ReadOnlySpan<char> stem, ReadOnlySpan<char> ambifix, ReadOnlySpan<char> joiner = default) {
             return Affixation.Ambifixation(stem, ambifix, joiner);
         }
 
