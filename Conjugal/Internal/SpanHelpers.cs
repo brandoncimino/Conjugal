@@ -1,6 +1,6 @@
 using System;
 
-namespace FowlFever.Conjugal;
+namespace FowlFever.Conjugal.Internal;
 
 internal static class SpanHelpers {
     private static Span<T> RequireIndex<T>(this Span<T> span, int index) {
