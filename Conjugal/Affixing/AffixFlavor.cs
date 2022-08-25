@@ -24,6 +24,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <a href="https://en.wiktionary.org/wiki/re-#English">re-</a> + <a href="https://en.wiktionary.org/wiki/fettle#Verb">fettle</a> = <a href="https://en.wiktionary.org/wiki/refettle#English">refettle</a> <i>(to fettle again)</i>
         /// </example>
         Prefix,
+
         /// <summary>
         /// Appears <b>after</b> the stem.
         /// </summary>
@@ -32,6 +33,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <a href="https://en.wiktionary.org/wiki/funny#English">funny</a> + <a href="https://en.wiktionary.org/wiki/-ly#Etymology_2">-ly</a> = <a href="https://en.wiktionary.org/wiki/funnily">funnily</a> <i>(occuring in a jocular manner)</i>
         /// </example>
         Suffix,
+
         /// <summary>
         /// Appears <b>inside</b> the stem. Often interchangeable with <a href="https://en.wikipedia.org/wiki/Tmesis">tmesis</a>.
         /// </summary>
@@ -40,26 +42,34 @@ namespace FowlFever.Conjugal.Affixing {
         /// <a href="https://en.wiktionary.org/wiki/metric_ton">metric ton</a> + <a href="https://en.wiktionary.org/wiki/fuck#English">fuck</a> = <a href="https://en.wiktionary.org/wiki/fuckton">metric fuck-ton</a> <i>(as differentiated from a <a href="https://en.wiktionary.org/wiki/long_ton">long fuck-ton</a>)</i>
         /// </example>
         Infix,
+
         /// <summary>
-        /// <b>Surrounds</b> the stem.
+        /// <b>Surrounds</b> the stem, where the preceding and succeding strings <b>may</b> be different.
         /// </summary>
         /// <remarks>
         /// <a href="https://en.wikipedia.org/wiki/Circumfix">Wikipedia - Circumfix</a>
+        /// <p/>
+        /// 📎 <see cref="Circumfix"/> is a <a href="https://en.wikipedia.org/wiki/hypernym">hypernym</a> of <see cref="Ambifix"/>.
         /// </remarks>
         /// <example>
         /// <a href="https://en.wiktionary.org/wiki/boob#Noun_2">boob</a> + <a href="https://en.wiktionary.org/wiki/em-_-en#English">em- -en</a> = <a href="https://en.wiktionary.org/wiki/endow">embooben</a> <i>(to provide with assets)</i>
         /// </example>
+        /// <seealso cref="Ambifix"/>
         Circumfix,
+
         /// <summary>
         /// <b>Surrounds</b> the stem, where both the preceding and succeding strings are <b>identical</b>.
         /// </summary>
         /// <remarks>
         /// <a href="https://en.wiktionary.org/wiki/ambifix">Wiktionary - Ambifix</a></remarks>
+        /// <p/>
+        /// 📎 <see cref="Ambifix"/> is a <a href="https://en.wikipedia.org/wiki/hyponym">hyponym</a> of <see cref="Circumfix"/>.
         /// <example>
         /// <a href="https://en.wiktionary.org/wiki/cold#English">cold</a> + <a href="https://en.wiktionary.org/wiki/en-_-en#English">en- -en</a> = <a href="https://en.wiktionary.org/wiki/encolden#English">encolden</a> <i>(to approach <a href="https://en.wiktionary.org/wiki/aloof">maximum aloofness</a>)</i>
         /// </example>
         /// <seealso cref="Circumfix"/>
         Ambifix,
+
         /// <summary>
         /// <b>Duplicates</b> the stem, possibly with <a href="https://en.wiktionary.org/wiki/ablaut">ablaution</a>.
         /// </summary>
@@ -76,6 +86,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// </ul>
         /// </example>
         Duplifix,
+
         /// <summary>
         /// Alternates between chunks of the stem and root. Supposedly doesn't exist in English; but I bet it does.
         /// </summary>
@@ -84,6 +95,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// stem + root = st<i>ro</i>em<i>ot</i>
         /// </example>
         Transfix,
+
         /// <summary>
         /// <b>Removed</b> from the stem.
         /// </summary>
