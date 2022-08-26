@@ -18,7 +18,7 @@ namespace FowlFever.Conjugal.Affixing {
             }
 
             return new Affixation {
-                AffixFlavor   = affix.AffixFlavor,
+                Flavor        = affix.AffixFlavor,
                 Stem          = stem,
                 BoundMorpheme = affix.BoundMorpheme,
                 Joiner        = affix.Joiner,

@@ -14,7 +14,7 @@ public readonly ref partial struct Affixation {
     /// <returns>a new <see cref="Affixation"/></returns>
     public static Affixation Suffixation(ReadOnlySpan<char> stem, ReadOnlySpan<char> suffix, ReadOnlySpan<char> joiner = default) {
         return new Affixation {
-            AffixFlavor    = AffixFlavor.Suffix,
+            Flavor         = AffixFlavor.Suffix,
             Stem           = stem,
             BoundMorpheme  = suffix,
             Joiner         = joiner,
@@ -31,7 +31,7 @@ public readonly ref partial struct Affixation {
     /// <returns>a new <see cref="Affixation"/></returns>
     public static Affixation Prefixation(ReadOnlySpan<char> stem, ReadOnlySpan<char> prefix, ReadOnlySpan<char> joiner = default) {
         return new Affixation {
-            AffixFlavor    = AffixFlavor.Prefix,
+            Flavor         = AffixFlavor.Prefix,
             Stem           = stem,
             BoundMorpheme  = prefix,
             Joiner         = joiner,
@@ -49,7 +49,7 @@ public readonly ref partial struct Affixation {
     /// <returns>a new <see cref="Affixation"/></returns>
     public static Affixation Infixation(ReadOnlySpan<char> stem, ReadOnlySpan<char> infix, Index insertionPoint, ReadOnlySpan<char> joiner = default) {
         return new Affixation {
-            AffixFlavor    = AffixFlavor.Infix,
+            Flavor         = AffixFlavor.Infix,
             Stem           = stem,
             BoundMorpheme  = infix,
             Joiner         = joiner,
@@ -74,7 +74,7 @@ public readonly ref partial struct Affixation {
     /// <returns>a new <see cref="Affixation"/></returns>
     public static Affixation Circumfixation(ReadOnlySpan<char> stem, ReadOnlySpan<char> prefix, ReadOnlySpan<char> suffix, ReadOnlySpan<char> joiner = default) {
         return new Affixation {
-            AffixFlavor    = AffixFlavor.Circumfix,
+            Flavor         = AffixFlavor.Circumfix,
             Stem           = stem,
             BoundMorpheme  = prefix,
             BoundMorpheme2 = suffix,
@@ -92,7 +92,7 @@ public readonly ref partial struct Affixation {
     /// <returns>a new <see cref="Affixation"/></returns>
     public static Affixation Ambifixation(ReadOnlySpan<char> stem, ReadOnlySpan<char> ambifix, ReadOnlySpan<char> joiner = default) {
         return new Affixation {
-            AffixFlavor    = AffixFlavor.Ambifix,
+            Flavor         = AffixFlavor.Ambifix,
             Stem           = stem,
             BoundMorpheme  = ambifix,
             BoundMorpheme2 = ambifix,
@@ -108,7 +108,7 @@ public readonly ref partial struct Affixation {
     /// <returns>a new <see cref="Affixation"/></returns>
     public static Affixation Duplifixation(ReadOnlySpan<char> stem, ReadOnlySpan<char> joiner = default) {
         return new Affixation {
-            AffixFlavor    = AffixFlavor.Duplifix,
+            Flavor         = AffixFlavor.Duplifix,
             Stem           = stem,
             BoundMorpheme  = stem,
             Joiner         = joiner,

@@ -20,7 +20,7 @@ namespace FowlFever.Conjugal.Affixing {
         /// <returns>a new <see cref="Affixing.Affixation"/> built from the <paramref name="affixedThing"/></returns>
         public static Affixation ToAffixation(this IAffixed affixedThing) {
             return new Affixation() {
-                AffixFlavor   = affixedThing.AffixFlavor,
+                Flavor        = affixedThing.AffixFlavor,
                 Stem          = affixedThing.Stem,
                 BoundMorpheme = affixedThing.BoundMorpheme,
                 Joiner        = affixedThing.Joiner,

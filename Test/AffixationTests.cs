@@ -62,7 +62,7 @@ namespace Test {
         [Test]
         public void FlavoredNullMemberAffix([Values] AffixFlavor flavor) {
             try {
-                var affixation = new Affixation { AffixFlavor = flavor };
+                var affixation = new Affixation { Flavor = flavor };
                 Assert.That(affixation.Render(), Is.EqualTo(""));
             }
             catch (NotImplementedException e) {
