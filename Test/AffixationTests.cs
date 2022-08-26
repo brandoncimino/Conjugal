@@ -6,39 +6,47 @@ using NUnit.Framework;
 
 namespace Test {
     public class AffixationTests {
-        [Test]
-        [TestCase(null, null, null, "")]
-        public void Prefix(string root, string prefix, string joiner, string expected) {
-            var prefixed = root.Prefix(prefix, joiner);
-            Assert.That(prefixed.Render(), Is.EqualTo(expected));
+        [TestCase("abc",  "",     "yolo", "abc")]
+        [TestCase("yolo", "swag", "#",    "swag#yolo")]
+        public void Prefix(string stem, string prefix, string joiner, string expected) {
+            var prefixed = stem.Prefix(prefix, joiner);
+            Assert.That(prefixed.Render(),                  Is.EqualTo(expected));
+            Assert.That(prefixed.Stem.ToString(),           Is.EqualTo(stem));
+            Assert.That(prefixed.BoundMorpheme.ToString(),  Is.EqualTo(prefix));
+            Assert.That(prefixed.BoundMorpheme2.IsEmpty,    Is.True, "BoundMorpheme2 should be empty");
+            Assert.That(prefixed.BoundMorpheme2.ToString(), Is.EqualTo(""));
+            Assert.That(prefixed.Length,                    Is.EqualTo(expected.Length));
+            Assert.That(prefixed.InsertionPoint,            Is.EqualTo(Index.Start));
         }
 
-        [Test]
-        [TestCase(null, null, null, "")]
-        public void Suffix(string root, string suffix, string joiner, string expected) {
-            var suffixed = root.Suffix(suffix, joiner);
+        [TestCase("yolo", "swag", "#", "yolo#swag")]
+        public void Suffix(string stem, string suffix, string joiner, string expected) {
+            var suffixed = stem.Suffix(suffix, joiner);
             Assert.That(suffixed.Render(), Is.EqualTo(expected));
         }
 
-        [Test]
-        [TestCase(null, null, 0, null, "")]
-        public void Infix(string root, string infix, int insertionPoint, string joiner, string expected) {
-            var infixed = root.Infix(infix, insertionPoint, joiner);
+        [TestCase("yolo", "swag", 2, "-", "yo-swag-lo")]
+        public void Infix(string stem, string infix, int insertionPoint, string joiner, string expected) {
+            var infixed = stem.Infix(infix, insertionPoint, joiner);
             Assert.That(infixed.Render(), Is.EqualTo(expected));
         }
 
-        [Test]
-        [TestCase(null, null, null, "")]
-        public void Ambifix(string root, string ambifix, string joiner, string expected) {
-            var ambifixed = root.Ambifix(ambifix, joiner);
+        [TestCase("yolo", "swag", "-", "swag-yolo-swag")]
+        public void Ambifix(string stem, string ambifix, string joiner, string expected) {
+            var ambifixed = stem.Ambifix(ambifix, joiner);
             Assert.That(ambifixed.Render(), Is.EqualTo(expected));
         }
 
-        [Test]
-        [TestCase(null, null, null, "")]
-        public void Circumfix(string root, string circumfix, string joiner, string expected) {
-            var circumfixed = root.Circumfix(circumfix, joiner);
+        [TestCase("yolo", "swag", "#", "-", "swag-yolo-#")]
+        public void Circumfix(string stem, string prefix, string suffix, string joiner, string expected) {
+            var circumfixed = stem.Circumfix(prefix, suffix, joiner);
             Assert.That(circumfixed.Render(), Is.EqualTo(expected));
+        }
+
+        [TestCase("yolo", "-", "yolo-yolo")]
+        public void Duplifix(string stem, string joiner, string expected) {
+            var duplifixed = stem.Duplifix(joiner);
+            Assert.That(duplifixed.Render(), Is.EqualTo(expected));
         }
 
         [Test]
