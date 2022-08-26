@@ -71,19 +71,59 @@ namespace FowlFever.Conjugal.Affixing {
         Ambifix,
 
         /// <summary>
-        /// <b>Duplicates</b> the stem, possibly with <a href="https://en.wiktionary.org/wiki/ablaut">ablaution</a>.
+        /// <b>Duplicates</b> the stem, possibly with <a href="https://en.wiktionary.org/wiki/ablaut">ablaution</a> <i>(<a href="https://en.wikipedia.org/wiki/Ablaut_reduplication">ablaut reduplication</a>)</i>.
         /// </summary>
         /// <remarks>
-        /// <a href="https://en.wikipedia.org/wiki/duplifix">Wikipedia - Duplifix</a>
-        /// <p/>
-        /// Not to be confused with "<a href="https://en.wiktionary.org/wiki/like_like">like, <i><b>like</b></i> like</a>" <i>(<a href="https://en.wikipedia.org/wiki/Contrastive_focus_reduplication">contrastive focus reduplication</a>)</i>.
-        /// </remarks>
+        ///             <list type="table">
+        ///                 <item>
+        ///                     <term>
+        ///                         <b>Exact:</b>
+        ///                     </term>
+        ///                     <description>
+        ///                         <a href="https://en.wiktionary.org/wiki/boo-boo">boo-boo</a>
+        ///                         <i>(a minor injury)</i>
+        ///                     </description>
+        ///                 </item>
+        ///                 <item>
+        ///                     <term>
+        ///                         <b>
+        ///                             <a href="https://en.wiktionary.org/wiki/ablaut">Ablaut</a>:
+        ///                         </b>
+        ///                     </term>
+        ///                     <description>
+        ///                         <a href="https://en.wiktionary.org/wiki/flim-flam#English">flimflam</a>
+        ///                         <i>(<a href="https://en.wiktionary.org/wiki/gobbledygook">gobbledygook</a>, <a
+        ///                                 href="https://en.wiktionary.org/wiki/falderal">falderal</a>, <a
+        ///                                 href="https://en.wiktionary.org/wiki/galimatias">galimatias</a>, <a
+        ///                                 href="https://en.wiktionary.org/wiki/bupkis">bupkis</a>, <a
+        ///                                 href="https://en.wiktionary.org/wiki/clamjamfrey">clamjamfrey</a>)
+        ///                         </i>
+        ///                     </description>
+        ///                 </item>
+        ///                 <item>
+        ///                     <term>
+        ///                         <b>Rhyming:</b>
+        ///                     </term>
+        ///                     <description>
+        ///                         <a href="https://en.wiktionary.org/wiki/honeybunny#English">honeybunny</a>
+        ///                         <i>(a
+        ///                             <a href="https://en.wiktionary.org/wiki/lepus#Latin">lepus</a>
+        ///                             <a href="https://en.wikipedia.org/wiki/Supersaturation">supersaturated</a>
+        ///                             with <a
+        ///                                     href="https://en.wikipedia.org/wiki/Monosaccharide">monosaccharides</a>)
+        ///                         </i>
+        ///                     </description>
+        ///                 </item>
+        ///                 <item><term><b><a href="https://en.wikipedia.org/wiki/Shm-reduplication">Shm-reduplication</a>:</b></term>
+        ///                 <description><a href="https://en.wiktionary.org/wiki/lecker">lecker</a>, <a href="https://en.wiktionary.org/wiki/schmecken">schmecker</a>! <i>(tasty, taste!)</i></description>
+        ///                 </item>
+        ///                 <item>
+        ///                     <term><b><a href="https://en.wikipedia.org/wiki/Contrastive_focus_reduplication">Contrastive focus</a>:</b></term>
+        ///                     <description>like, <a href="https://en.wiktionary.org/wiki/like_like"><i>like</i> like</a> <i>(to <a href="https://en.wiktionary.org/wiki/crush">crush</a>)</i></description>
+        ///                 </item>
+        ///             </list>
+        ///         </remarks>
         /// <example>
-        /// <ul>
-        /// <li><b>Exact:</b> <a href="https://en.wiktionary.org/wiki/boo-boo">boo-boo</a> <i>(a minor injury)</i></li>
-        /// <li><b><a href="https://en.wiktionary.org/wiki/ablaut">Ablaut:</a></b> <a href="https://en.wiktionary.org/wiki/flim-flam#English">flimflam</a> <i>(<a href="https://en.wiktionary.org/wiki/gobbledygook">gobbledygook</a>, <a href="https://en.wiktionary.org/wiki/falderal">falderal</a>, <a href="https://en.wiktionary.org/wiki/galimatias">galimatias</a>, <a href="https://en.wiktionary.org/wiki/bupkis">bupkis</a>, <a href="https://en.wiktionary.org/wiki/clamjamfrey">clamjamfrey</a>)</i></li>
-        /// <li><b>Rhyming:</b> <a href="https://en.wiktionary.org/wiki/honeybunny#English">honeybunny</a> <i>(a <a href="https://en.wiktionary.org/wiki/lepus#Latin">lepus</a> <a href="https://en.wikipedia.org/wiki/Supersaturation">supersaturated</a> with <a href="https://en.wikipedia.org/wiki/Monosaccharide">monosaccharides</a>)</i></li>
-        /// </ul>
         /// </example>
         Duplifix,
 
