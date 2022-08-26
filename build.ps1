@@ -3,6 +3,10 @@
     Contains methods to build and publish `.nupkg` files to `nuget.org`.
 
 .EXAMPLE
+    ```
+    Import-Script .\build.ps1
+    Publish-Nuget
+    ```
 #>
 
 <#
@@ -52,10 +56,10 @@ function Publish-Nuget(
     Invokes `dotnet.exe pack` in order to create the `.nupkg`, 
     then returns the **latest** `.nupkg` via `Get-LatestNupkg`.
 #>
-function Build-Nupkg($BeforeBuildTimestamp) {
+function Build-Nupkg([Parameter(Mandatory=$false)]$BeforeBuildTimestamp) {
     dotnet.exe pack
 
-    return Get-LatestNupkg $BeforeBuildTimestamp
+    return Get-LatestNupkg -OldestTimestamp $BeforeBuildTimestamp
 }
 
 #region .csproj and CHANGELOG.md shenanigans
@@ -373,6 +377,7 @@ function Get-LatestNupkg(
     [scriptblock]$Where
 ) {
     Write-Verbose "Checking for .nupkg files at [$Path]"
+    Write-Verbose "Oldest timestamp: $OldestTimestamp"
 
     $pkgs = Get-ChildItem -Path $Path -Filter "*.nupkg" -Recurse:$Recurse
     $pkgs = $pkgs | Sort-Object LastWriteTime -Descending
