@@ -22,6 +22,17 @@ public readonly ref struct AffixRef<TFlavor> where TFlavor : IAffix<TFlavor> {
     /// <inheritdoc cref="Affix{TFlavor}.Flavor"/>
     public AffixFlavor Flavor => AffixFlavorExtensions.FromInterface<TFlavor>();
 
+    /// <summary>
+    /// Creates a new non-<c>ref</c> <see cref="Affix{TFlavor}"/> from this <see cref="AffixRef{TFlavor}"/>.
+    /// </summary>
+    /// <returns>a new <see cref="Affix{TFlavor}"/></returns>
+    public Affix<TFlavor> ToAffix() => new() {
+        BoundMorpheme  = BoundMorpheme.ToString(),
+        BoundMorpheme2 = BoundMorpheme2.ToString(),
+        Joiner         = Joiner.ToString(),
+        InsertionPoint = InsertionPoint,
+    };
+
     /// <inheritdoc cref="Affix{TFlavor}.WithStem"/>
     public Affixation WithStem(ReadOnlySpan<char> stem) => Affixation.Of(stem, this);
 }
