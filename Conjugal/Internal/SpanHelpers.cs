@@ -27,6 +27,10 @@ internal static class SpanHelpers {
             return span;
         }
 
+        // if (span.IsEmpty) {
+        //     throw new ArgumentException($"Destination Span<{typeof(T).Name}> is empty, so we can't write to it!");
+        // }
+
         if (shouldValidatePosition) {
             span.RequireIndex(position)
                 .RequireIndex(position + toAppend.Length);
@@ -91,7 +95,12 @@ internal static class SpanHelpers {
         ReadOnlySpan<T> h = default
     ) {
         static void AddLength(ref int soFar, int next, int joiner) {
-            if (soFar == 0 || next == 0) {
+            if (next == 0) {
+                return;
+            }
+
+            if (soFar == 0) {
+                soFar = next;
                 return;
             }
 

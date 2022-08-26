@@ -77,7 +77,7 @@ public readonly ref partial struct Affixation {
     /// <returns>the final result of this <see cref="Affixation"/></returns>
     /// <exception cref="NotImplementedException">if this <see cref="Flavor"/> hasn't been implemented</exception>
     /// <exception cref="InvalidEnumArgumentException">if this <see cref="Flavor"/> is unknown</exception>
-    public string Render() => GetParts().JoinString(Joiner);
+    public string Render() => Stem.IsEmpty ? "" : GetParts().JoinString(Joiner);
 
     /// <returns>individual properties of this <see cref="Affixation"/> for debugging</returns>
     public string Describe() {

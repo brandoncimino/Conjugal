@@ -44,6 +44,7 @@ namespace Test {
         [Test]
         public void EmptyMorphemeMeansNoJoiner([Values] AffixFlavor flavor, [Values("", null)] string? boundMorpheme) {
             const string stem = "STEM";
+            Assume.That(flavor, Is.Not.AnyOf(AffixFlavor.Disfix, AffixFlavor.Transfix), $"{flavor} is not implemented!");
             Assert.That(new Affixation(flavor) { Stem = stem, BoundMorpheme = boundMorpheme, Joiner = "JOINER" }.Render(), Is.EqualTo(stem));
         }
 
