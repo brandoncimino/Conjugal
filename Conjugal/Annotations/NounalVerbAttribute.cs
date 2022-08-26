@@ -1,12 +1,12 @@
 using JetBrains.Annotations;
 
-namespace FowlFever.Conjugal.Annotations {
-    [PublicAPI("Experimental")]
-    public class NounalVerbAttribute : ConjugalAttribute {
-        public readonly string Verb;
+namespace FowlFever.Conjugal.Annotations;
 
-        public NounalVerbAttribute(string verb) {
-            Verb = verb;
-        }
+[PublicAPI("Experimental")]
+public class NounalVerbAttribute : ConjugalAttribute {
+    public readonly string Verb;
+
+    public NounalVerbAttribute(string verb) {
+        Verb = verb;
     }
 }

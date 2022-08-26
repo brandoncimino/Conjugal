@@ -1,5 +1,5 @@
-namespace FowlFever.Conjugal {
-    public enum QuanticStringOption {
-        UseAbbreviationAsUnit
-    }
+namespace FowlFever.Conjugal;
+
+public enum QuanticStringOption {
+    UseAbbreviationAsUnit
 }
