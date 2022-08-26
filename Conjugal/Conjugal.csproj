@@ -6,7 +6,7 @@
         <AssemblyName>FowlFever.Conjugal</AssemblyName>
         <RootNamespace>FowlFever.Conjugal</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2.0.0-dev</PackageVersion>
+        <PackageVersion>2.0.0</PackageVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Title>Conjugal</Title>
         <Authors>Brandon Cimino</Authors>
@@ -15,23 +15,15 @@
         <Product>Conjugal</Product>
         <RepositoryType>git</RepositoryType>
         <Description>Structs and annotations for producing nice word conjugations and other linguistic metadata, such as abbreviations, units of measure, and terms of venery.</Description>
-        <PackageReleaseNotes>## [1.0.0] - 2021-12-08
-
-            ### Added
-
-            - Convenience extensions for `Countability` and `LetterCasing`
-            - `StringTokenFormatter` as a nuget dependency (note: it is not used for anything yet)
+        <PackageReleaseNotes>## [2.0.0] - 2022-02-07
 
             ### Changed
-
-            - `ConjugalTypeExtensions.Countability` now returns `null Countability?` when the `[Countability]` attribute isn't found (instead of defaulting to `Countability.Countable`)
-            - Updated C# `LangVersion` to `latest`
-            - Replaced `[CanBeNull]` and `[NotNull]` annotations with `?` suffixes
+            - `string.{affix}()` extension methods now return `Affixation` instances _(which can be implicitly cast into `string`s)_
+            - Removed `string.{affix}ation()` extension methods (since they're now redundant with the `string.{affix}()` methods)
+            - `Affixation.Index` from `int` -> `System.Index`
 
             ### Fixed
-
-            - Letter casing!
-            - Casing properly defaults to `LetterCasing.Lowercase` *only* when a noun's `Lemma` is derived by `Humanizer`
+            - `Joiner`s should never be left dangling
         </PackageReleaseNotes>
         <NeutralLanguage>en</NeutralLanguage>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
