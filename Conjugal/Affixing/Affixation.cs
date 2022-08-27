@@ -19,19 +19,19 @@ public readonly ref partial struct Affixation {
     /// <inheritdoc cref="IAffixed.Stem"/>
     public ReadOnlySpan<char> Stem { get; internal init; }
 
-    /// <inheritdoc cref="IAffix.BoundMorpheme"/>
+    /// <inheritdoc cref="AffixRef{TFlavor}.BoundMorpheme"/>
     public ReadOnlySpan<char> BoundMorpheme { get; internal init; }
 
-    /// <inheritdoc cref="IAffix.BoundMorpheme2"/>
+    /// <inheritdoc cref="AffixRef{TFlavor}.SuffixMorpheme"/>
     public ReadOnlySpan<char> BoundMorpheme2 { get; internal init; }
 
-    /// <inheritdoc cref="IAffix.Joiner"/>
+    /// <inheritdoc cref="AffixRef{TFlavor}.Joiner"/>
     public ReadOnlySpan<char> Joiner { get; internal init; }
 
-    /// <inheritdoc cref="IAffix.AffixFlavor"/>
+    /// <inheritdoc cref="AffixRef{TFlavor}.Flavor"/>
     public AffixFlavor Flavor { get; internal init; }
 
-    /// <inheritdoc cref="IAffix.InsertionPoint"/>
+    /// <inheritdoc cref="AffixRef{TFlavor}.InsertionPoint"/>
     public Index InsertionPoint { get; internal init; }
 
     /// <inheritdoc />
@@ -61,7 +61,7 @@ public readonly ref partial struct Affixation {
     private Span3 GetParts() {
         return Flavor switch {
             AffixFlavor.Prefix    => new Span3(BoundMorpheme,          Stem),
-            AffixFlavor.Suffix    => new Span3(Stem,                   BoundMorpheme),
+            AffixFlavor.Suffix    => new Span3(Stem,                   BoundMorpheme2),
             AffixFlavor.Infix     => new Span3(Stem[..InsertionPoint], BoundMorpheme, Stem[InsertionPoint..]),
             AffixFlavor.Circumfix => new Span3(BoundMorpheme,          Stem,          BoundMorpheme2),
             AffixFlavor.Ambifix   => new Span3(BoundMorpheme,          Stem,          BoundMorpheme2),
