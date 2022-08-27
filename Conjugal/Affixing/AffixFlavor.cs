@@ -62,9 +62,10 @@ public enum AffixFlavor {
     /// <b>Surrounds</b> the stem, where both the preceding and succeding strings are <b>identical</b>.
     /// </summary>
     /// <remarks>
-    /// <a href="https://en.wiktionary.org/wiki/ambifix">Wiktionary - Ambifix</a></remarks>
+    /// <a href="https://en.wiktionary.org/wiki/ambifix">Wiktionary - Ambifix</a>
     /// <p/>
     /// 📎 <see cref="Ambifix"/> is a <a href="https://en.wikipedia.org/wiki/hyponym">hyponym</a> of <see cref="Circumfix"/>.
+    /// </remarks>
     /// <example>
     /// <a href="https://en.wiktionary.org/wiki/cold#English">cold</a> + <a href="https://en.wiktionary.org/wiki/en-_-en#English">en- -en</a> = <a href="https://en.wiktionary.org/wiki/encolden#English">encolden</a> <i>(to approach <a href="https://en.wiktionary.org/wiki/aloof">maximum aloofness</a>)</i>
     /// </example>
