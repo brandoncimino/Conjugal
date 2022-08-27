@@ -45,7 +45,7 @@ public readonly ref partial struct Affixation {
             Flavor         = affixRef.Flavor,
             Stem           = stem,
             BoundMorpheme  = affixRef.BoundMorpheme,
-            BoundMorpheme2 = affixRef.BoundMorpheme2,
+            BoundMorpheme2 = affixRef.SuffixMorpheme,
             Joiner         = affixRef.Joiner,
             InsertionPoint = affixRef.InsertionPoint,
         };
