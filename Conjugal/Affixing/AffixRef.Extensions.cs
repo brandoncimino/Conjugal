@@ -108,7 +108,7 @@ public static class AffixRefExtensions {
 
     /// <inheritdoc cref="ToAffix{TFlavor}"/>
     [MustUseReturnValue]
-    public static IAmbifix ToAmbifix<T>(this AffixRef<T> affixRef) where T : IAffix<T>, IAffix<IAmbifix> => new Ambifix(affixRef.BoundMorpheme.ToString());
+    public static IAmbifix ToAmbifix<T>(this AffixRef<T> affixRef) where T : IAffix<T>, IAffix<IAmbifix> => new Ambifix(affixRef.BoundMorpheme.ToString(), affixRef.Joiner.ToString());
 
     /// <inheritdoc cref="ToAffix{TFlavor}"/>
     [MustUseReturnValue]
