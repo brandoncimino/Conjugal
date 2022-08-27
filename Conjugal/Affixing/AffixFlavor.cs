@@ -40,7 +40,20 @@ public enum AffixFlavor {
     /// </summary>
     /// <remarks><a href="https://en.wikipedia.org/wiki/Infix">Wikipedia - Infix</a></remarks>
     /// <example>
-    /// <a href="https://en.wiktionary.org/wiki/metric_ton">metric ton</a> + <a href="https://en.wiktionary.org/wiki/fuck#English">fuck</a> = <a href="https://en.wiktionary.org/wiki/fuckton">metric fuck-ton</a> <i>(as differentiated from a <a href="https://en.wiktionary.org/wiki/long_ton">long fuck-ton</a>)</i>
+    /// <ul>
+    /// 
+    /// <li>
+    /// <b><a href="https://en.wikipedia.org/wiki/Expletive_infixation">Expletive infixation</a>:</b> <a href="https://en.wiktionary.org/wiki/metric_ton">metric ton</a> + <a href="https://en.wiktionary.org/wiki/fuck#English">fuck</a> = <a href="https://en.wiktionary.org/wiki/metric_fuckton">metric fuckton</a> <i>(as differentiated from a <a href="https://en.wiktionary.org/wiki/long_ton">long fuck-ton</a>)</i>
+    /// </li>
+    /// 
+    /// <li>
+    /// <b><a href="https://en.wiktionary.org/wiki/-ma-">Homeric infixation</a>:</b> <a href="https://en.wiktionary.org/wiki/education#English">education</a> + <a href="https://en.wiktionary.org/wiki/-ma-#English">-ma-</a> = <a href="https://en.wiktionary.org/wiki/edumacation#English">edumacation</a>
+    /// </li>
+    ///
+    /// <li>
+    /// <a href="https://en.wiktionary.org/wiki/house#English">house</a> + <a href="https://en.wiktionary.org/wiki/-iz-">-iz-</a> = <a href="https://en.wiktionary.org/wiki/hizouse#English">hizouse</a> <i>(<a href="https://en.wikipedia.org/wiki/Real_property">real property</a> owned or developed by <a href="https://en.wikipedia.org/wiki/Snoop_Dogg">Calvin Cordozar Broadus Jr.</a>)</i>
+    /// </li>
+    /// </ul>
     /// </example>
     Infix,
 
