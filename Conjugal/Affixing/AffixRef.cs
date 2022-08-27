@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Text;
+
+using FowlFever.Conjugal.Internal;
 
 namespace FowlFever.Conjugal.Affixing;
 
@@ -46,4 +49,52 @@ public readonly ref struct AffixRef<TFlavor> where TFlavor : IAffix<TFlavor> {
     /// <param name="stem">the <see cref="Affixation.Stem"/></param>
     /// <returns>a new <see cref="Affixation"/></returns>
     public Affixation WithStem(ReadOnlySpan<char> stem) => Affixation.Of(stem, this);
+
+    private const string StemIcon        = "🌱";
+    private const string ToStringJoiner  = "-";
+    private const string PartialStemIcon = "🪵";
+
+    /// <returns>a long-form list of all the properties of this <see cref="AffixRef{TFlavor}"/></returns>
+    public string Describe() {
+        const int nameWidth  = 14;
+        var       headerLine = ToString();
+        var       hrule      = new string('—', headerLine.Length);
+        var lines = new StringBuilder()
+                    .AppendLine(ToString())
+                    .AppendLine(hrule)
+                    .AppendLine($"{nameof(Flavor),-nameWidth} {"",4} {Flavor}")
+                    .AppendLine($"{nameof(BoundMorpheme),-nameWidth} [{BoundMorpheme.Length,2}] {BoundMorpheme.ToString()}")
+                    .AppendLine($"{nameof(SuffixMorpheme),-nameWidth} [{SuffixMorpheme.Length,2}] {SuffixMorpheme.ToString()}")
+                    .AppendLine($"{nameof(Joiner),-nameWidth} [{Joiner.Length,2}] {Joiner.ToString()}")
+                    .AppendLine($"{nameof(InsertionPoint),-nameWidth} {"",4} {InsertionPoint}");
+        return lines.ToString();
+    }
+
+    /// <inheritdoc />
+    public override string ToString() {
+        const string baseName   = nameof(AffixRef<TFlavor>);
+        const int    diamondLen = 2;
+        var          flavorName = typeof(TFlavor).Name;
+        var          totalLen   = baseName.Length + diamondLen + flavorName.Length;
+        Span<char>   nameSpan   = stackalloc char[totalLen];
+        var          namePos    = 0;
+        nameSpan.Write(baseName, ref namePos);
+        nameSpan[namePos++] = '<';
+        nameSpan.Write(flavorName, ref namePos);
+        nameSpan[namePos] = '>';
+
+        var msg = Flavor switch {
+            AffixFlavor.Prefix    => SpanHelpers.Join(ToStringJoiner, BoundMorpheme,   Joiner, StemIcon),
+            AffixFlavor.Suffix    => SpanHelpers.Join(ToStringJoiner, StemIcon,        Joiner, SuffixMorpheme),
+            AffixFlavor.Infix     => SpanHelpers.Join(ToStringJoiner, PartialStemIcon, Joiner, BoundMorpheme, Joiner, PartialStemIcon),
+            AffixFlavor.Circumfix => SpanHelpers.Join(ToStringJoiner, BoundMorpheme,   Joiner, StemIcon,      Joiner, SuffixMorpheme),
+            AffixFlavor.Ambifix   => SpanHelpers.Join(ToStringJoiner, BoundMorpheme,   Joiner, StemIcon,      Joiner, SuffixMorpheme),
+            AffixFlavor.Duplifix  => SpanHelpers.Join(ToStringJoiner, StemIcon,        Joiner, StemIcon),
+            AffixFlavor.Disfix    => "is not currently supported!",
+            AffixFlavor.Transfix  => "is not currently supported!",
+            _                     => "was unhandled by any switch branch!",
+        };
+
+        return SpanHelpers.Concat(nameSpan, " ", msg);
+    }
 }
