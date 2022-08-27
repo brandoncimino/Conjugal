@@ -2,4 +2,4 @@
 
 global using System.Diagnostics.Contracts;
 
-global using Pure = System.Diagnostics.Contracts.PureAttribute;
+global using PureAttribute = System.Diagnostics.Contracts.PureAttribute;
