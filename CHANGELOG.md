@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 - This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Dates are in `YYYY-MM-DD` format.
 
+## [3.1.0] - 2022-08-28
+
+### Added
+
+- `record` implementations if the `I{affix}` interfaces
+- Property-accessing / `with`-ing extension methods for `AffixRef&lt;T&gt;`
+- Extensions to convert from `AffixRef&lt;T&gt;` to `I{affix}` interfaces
+- A nice `ToString` representation of `AffixRef&lt;T&gt;`
+
+### Removed
+
+- `Affix&lt;T&gt;` struct - the use cases should now be more clear:
+  - If you're "building" a `string` to pass around to different method calls, use `AffixRef&lt;T&gt;`
+  - If you need to store the affix into a variable, use one of the `record` implementations of the `I{affix}` interface types
+
 ## [3.0.0] - 2022-08-26
 
 ### Added

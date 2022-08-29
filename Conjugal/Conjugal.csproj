@@ -6,7 +6,7 @@
         <AssemblyName>FowlFever.Conjugal</AssemblyName>
         <RootNamespace>FowlFever.Conjugal</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>3.0.0</PackageVersion>
+        <PackageVersion>3.1.0</PackageVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Title>Conjugal</Title>
         <Authors>Brandon Cimino</Authors>
@@ -16,35 +16,20 @@
         <RepositoryType>git</RepositoryType>
         <Description>Structs and annotations for producing nice word conjugations and other linguistic metadata, such as abbreviations, units of measure, and terms of venery.</Description>
         <PackageReleaseNotes>
+            ## [3.1.0] - 2022-08-28
+
             ### Added
 
-            #### Fancy Interfaces!
+            - `record` implementations if the `I{affix}` interfaces
+            - Property-accessing / `with`-ing extension methods for `AffixRef&lt;T&gt;`
+            - Extensions to convert from `AffixRef&lt;T&gt;` to `I{affix}` interfaces
+            - A nice `ToString` representation of `AffixRef&lt;T&gt;`
 
-            - A set of `I{affix}` interfaces that map to `AffixFlavors` _(`ISuffix`, `IPrefix`, etc.)_
-            - `IAffix&lt;TFlavor&gt;` interface, where `TFlavor` is one of the `I{affix}` interfaces
+            ### Removed
 
-            #### `Affix&lt;TFlavor&gt;` structs!
-
-            - `Affix&lt;TFlavor&gt;`, a `struct` implementation of the new `IAffix&lt;TFlavor&gt;` interface
-            - `AffixRef&lt;TFlavor&gt;`, a `ref struct` equivalent of `Affix&lt;TFlavor&gt;`
-
-            #### Baby-Baby Duplifixation!
-
-            - Added the most basic implementation of `Duplifix`ing _(it just doubles the word - no support yet for transformative reduplication)_
-
-            ### Changed
-
-            #### `Affixation` is now a `ref struct`!
-            - `string` properties are now `ReadOnlySpan&lt;char&gt;`s
-            - `string.{affix}()` extension methods now return `Affixation` instances _(which can be implicitly cast into `string`s)_
-            - Removed `string.{affix}ation()` extension methods _(since they're now redundant with the `string.{affix}()` methods)_
-            - `string` parameters in `string.{affix}()` extension methods are now `ReadOnlySpan&lt;char&gt;`s
-            - Added `ReadOnlySpan&lt;char&gt;.{affix}()` extension methods to match the `string`-extending versions
-            - `Affixation.InsertionPoint` from `private` -> `public`
-            - `Affixation` `init`ters from `public` -> `internal`
-
-            ### Fixed
-            - `Joiner`s should never be left dangling; i.e. if the `Stem` or `BoundMorpheme` are blank, there should be no `Joiner`
+            - `Affix&lt;T&gt;` struct - the use cases should now be more clear:
+            - If you're "building" a `string` to pass around to different method calls, use `AffixRef&lt;T&gt;`
+            - If you need to store the affix into a variable, use one of the `record` implementations of the `I{affix}` interface types
         </PackageReleaseNotes>
         <NeutralLanguage>en</NeutralLanguage>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
