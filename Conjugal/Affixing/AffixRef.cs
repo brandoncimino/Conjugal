@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Text;
 
 using FowlFever.Conjugal.Internal;
@@ -16,7 +17,7 @@ public readonly ref struct AffixRef<TFlavor> where TFlavor : IAffix<TFlavor> {
     internal ReadOnlySpan<char> BoundMorpheme { get; init; }
 
     /// <summary>
-    /// The <see cref="BoundMorpheme"/> appearing <b>after</b> the <see cref="Affixation{T}.Stem"/>, if any.
+    /// The <see cref="BoundMorpheme"/> appearing <b>after</b> the <see cref="Affixation.Stem"/>, if any.
     /// </summary>
     /// <remarks>
     /// Needs to be separate from <see cref="BoundMorpheme"/> because <see cref="AffixFlavor.Circumfix"/> contains both a <see cref="AffixFlavor.Prefix"/> <b>and</b> a <see cref="AffixFlavor.Suffix"/>.
@@ -30,7 +31,7 @@ public readonly ref struct AffixRef<TFlavor> where TFlavor : IAffix<TFlavor> {
     internal ReadOnlySpan<char> Joiner { get; init; }
 
     /// <summary>
-    /// Where in the <see cref="Affixation{T}.Stem"/> the <see cref="BoundMorpheme"/> should be placed.
+    /// Where in the <see cref="Affixation.Stem"/> the <see cref="BoundMorpheme"/> should be placed.
     /// </summary>
     /// <remarks>
     /// Really only of significance to <see cref="AffixFlavor.Infix"/>es.
@@ -51,7 +52,7 @@ public readonly ref struct AffixRef<TFlavor> where TFlavor : IAffix<TFlavor> {
     public Affixation WithStem(ReadOnlySpan<char> stem) => Affixation.Of(stem, this);
 
     private const string StemIcon        = "🌱";
-    private const string ToStringJoiner  = "-";
+    private const string ToStringJoiner  = $"{Ansi.Gray.Fg}-{Ansi.Reset.Fg}";
     private const string PartialStemIcon = "🪵";
 
     /// <returns>a long-form list of all the properties of this <see cref="AffixRef{TFlavor}"/></returns>
@@ -60,14 +61,39 @@ public readonly ref struct AffixRef<TFlavor> where TFlavor : IAffix<TFlavor> {
         var       headerLine = ToString();
         var       hrule      = new string('—', headerLine.Length);
         var lines = new StringBuilder()
-                    .AppendLine(ToString())
-                    .AppendLine(hrule)
+                    .Append(Ansi.Blue.Fg)
+                    .Append(ToString())
+                    .Append(Ansi.Reset.Fg)
+                    .AppendLine()
+                    .Append(Ansi.Gray.Fg)
+                    .Append(hrule)
+                    .Append(Ansi.Reset.Fg)
+                    .AppendLine()
                     .AppendLine($"{nameof(Flavor),-nameWidth} {"",4} {Flavor}")
                     .AppendLine($"{nameof(BoundMorpheme),-nameWidth} [{BoundMorpheme.Length,2}] {BoundMorpheme.ToString()}")
                     .AppendLine($"{nameof(SuffixMorpheme),-nameWidth} [{SuffixMorpheme.Length,2}] {SuffixMorpheme.ToString()}")
                     .AppendLine($"{nameof(Joiner),-nameWidth} [{Joiner.Length,2}] {Joiner.ToString()}")
-                    .AppendLine($"{nameof(InsertionPoint),-nameWidth} {"",4} {InsertionPoint}");
+                    .AppendLine($"{nameof(InsertionPoint),-nameWidth} {"",4} {InsertionPoint}")
+                    .AppendLine();
         return lines.ToString();
+    }
+
+    /// <returns>a silly <see cref="Ansi"/>-highlighted version of <see cref="ToString"/></returns>
+    /// <exception cref="InvalidEnumArgumentException"></exception>
+    internal string Highlighted() {
+        var sb = new StringBuilder();
+
+        sb = Flavor switch {
+            AffixFlavor.Prefix                           => sb.AppendBoundMorpheme(this).AppendJoiner(this).AppendStem(),
+            AffixFlavor.Suffix                           => sb.AppendStem().AppendJoiner(this).AppendSuffixMorpheme(this),
+            AffixFlavor.Infix                            => sb.AppendStem().AppendJoiner(this).AppendBoundMorpheme(this).AppendJoiner(this).AppendStem(),
+            AffixFlavor.Circumfix or AffixFlavor.Ambifix => sb.AppendBoundMorpheme(this).AppendJoiner(this).AppendStem().AppendJoiner(this).AppendSuffixMorpheme(this),
+            AffixFlavor.Duplifix                         => sb.AppendStem().AppendJoiner(this).AppendStem(),
+            AffixFlavor.Disfix                           => sb.Append($"{Flavor} is not currently supported!"),
+            AffixFlavor.Transfix                         => sb.Append($"{Flavor} is not currently supported!"),
+            _                                            => throw new InvalidEnumArgumentException(nameof(Flavor), (int)Flavor, Flavor.GetType()),
+        };
+        return sb.ToString();
     }
 
     /// <inheritdoc />
@@ -97,4 +123,16 @@ public readonly ref struct AffixRef<TFlavor> where TFlavor : IAffix<TFlavor> {
 
         return SpanHelpers.Concat(nameSpan, " ", msg);
     }
+}
+
+internal static class AffixRefStringBuilderExtensions {
+    private const string MorphemeStyle = $"{Ansi.Yellow.Bright.Bg}";
+    private const string JoinerStyle   = $"{Ansi.Blue.Bright.Bg}";
+    private const string StemIcon      = "🌱";
+    private const string StemColored   = $"{Ansi.Green.Bright.Bg}{Ansi.Black.Fg}{Ansi.Bold.On}{StemIcon}{Ansi.Reset.All}";
+
+    public static StringBuilder AppendBoundMorpheme<T>(this StringBuilder builder, AffixRef<T> affixRef) where T : IAffix<T> => builder.AppendStyled(affixRef.BoundMorpheme,   MorphemeStyle);
+    public static StringBuilder AppendSuffixMorpheme<T>(this StringBuilder builder, AffixRef<T> affixRef) where T : IAffix<T> => builder.AppendStyled(affixRef.SuffixMorpheme, MorphemeStyle);
+    public static StringBuilder AppendJoiner<T>(this StringBuilder builder, AffixRef<T> affixRef) where T : IAffix<T> => builder.AppendStyled(affixRef.Joiner,                 JoinerStyle);
+    public static StringBuilder AppendStem(this StringBuilder builder) => builder.Append(StemColored);
 }
