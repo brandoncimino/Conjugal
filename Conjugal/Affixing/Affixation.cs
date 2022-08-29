@@ -52,20 +52,55 @@ public readonly ref partial struct Affixation {
     }
 
     /// <summary>
+    /// Describes what parts of the <see cref="Affixation"/> are available.
+    /// </summary>
+    private enum PartState : byte {
+        /// <summary>
+        /// <see cref="Affixation.Stem"/> <see cref="ReadOnlySpan{T}.IsEmpty"/>.
+        /// </summary>
+        NoStem,
+        /// <summary>
+        /// <see cref="Affixation.Stem"/> isn't empty, but <b>BOTH</b> <see cref="Affixation.BoundMorpheme"/> <b>AND</b> <see cref="Affixation.BoundMorpheme2"/> are.
+        /// </summary>
+        NoMorpheme,
+        /// <summary>
+        /// <see cref="Affixation.Stem"/> and <i><b>at least 1</b></i> of <see cref="Affixation.BoundMorpheme"/> &amp; <see cref="Affixation.BoundMorpheme2"/> are non-<see cref="ReadOnlySpan{T}.IsEmpty"/>.
+        /// </summary>
+        FullyFormed
+    }
+
+    private PartState GetPartState() => this switch {
+        { Stem.IsEmpty: true }                                                                          => PartState.NoStem,
+        { BoundMorpheme.IsEmpty: true, BoundMorpheme2.IsEmpty: true, Flavor: not AffixFlavor.Duplifix } => PartState.NoMorpheme,
+        _                                                                                               => PartState.FullyFormed
+    };
+
+    /// <summary>
     /// The total <see cref="ReadOnlySpan{T}.Length"/> of the individual pieces that make up this <see cref="Affixation"/>.
     /// </summary>
     /// <exception cref="NotImplementedException">if this <see cref="Flavor"/> hasn't been implemented</exception>
     /// <exception cref="InvalidEnumArgumentException">if this <see cref="Flavor"/> is unknown</exception>
-    public int Length => GetParts().LengthWithJoiner(Joiner);
+    public int Length {
+        get {
+            return GetPartState() switch {
+                PartState.NoStem     => 0,
+                PartState.NoMorpheme => Stem.Length,
+                _                    => GetFullParts().LengthWithJoiner(Joiner)
+            };
+        }
+    }
 
-    private Span3 GetParts() {
+    /// <returns>the <see cref="ReadOnlySpan{T}"/>s used to <see cref="Render"/> the result when <see cref="GetPartState"/> is <see cref="PartState.Normal"/>.</returns>
+    /// <exception cref="NotImplementedException"><see cref="Flavor"/> is <see cref="AffixFlavor.Transfix"/> or <see cref="AffixFlavor.Duplifix"/></exception>
+    /// <exception cref="InvalidEnumArgumentException"><see cref="Flavor"/> is unknown</exception>
+    private Span3 GetFullParts() {
         return Flavor switch {
             AffixFlavor.Prefix    => new Span3(BoundMorpheme,          Stem),
             AffixFlavor.Suffix    => new Span3(Stem,                   BoundMorpheme2),
             AffixFlavor.Infix     => new Span3(Stem[..InsertionPoint], BoundMorpheme, Stem[InsertionPoint..]),
             AffixFlavor.Circumfix => new Span3(BoundMorpheme,          Stem,          BoundMorpheme2),
             AffixFlavor.Ambifix   => new Span3(BoundMorpheme,          Stem,          BoundMorpheme2),
-            AffixFlavor.Duplifix  => new Span3(Stem,                   BoundMorpheme),
+            AffixFlavor.Duplifix  => new Span3(Stem,                   Stem),
             AffixFlavor.Transfix  => throw Flavor.NotImplementedException(),
             AffixFlavor.Disfix    => throw Flavor.NotImplementedException(),
             _                     => throw new InvalidEnumArgumentException(nameof(Flavor), (int)Flavor, typeof(AffixFlavor))
@@ -77,7 +112,13 @@ public readonly ref partial struct Affixation {
     /// <returns>the final result of this <see cref="Affixation"/></returns>
     /// <exception cref="NotImplementedException">if this <see cref="Flavor"/> hasn't been implemented</exception>
     /// <exception cref="InvalidEnumArgumentException">if this <see cref="Flavor"/> is unknown</exception>
-    public string Render() => Stem.IsEmpty ? "" : GetParts().JoinString(Joiner);
+    public string Render() {
+        return GetPartState() switch {
+            PartState.NoStem     => "",
+            PartState.NoMorpheme => Stem.ToString(),
+            _                    => GetFullParts().JoinString(Joiner)
+        };
+    }
 
     /// <returns>individual properties of this <see cref="Affixation"/> for debugging</returns>
     public string Describe() {
