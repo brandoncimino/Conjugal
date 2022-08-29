@@ -17,6 +17,8 @@ internal static class Ansi {
         public const string Bg  = $"{csi}49m";
     }
 
+    #region Colors
+
     public static class Black {
         private const string Base = "0m";
         public const  string Fg   = $"{csi}{_fg}{Base}";
@@ -114,4 +116,15 @@ internal static class Ansi {
             public const string Bg = $"{csi}{_bright_bg}{Base}";
         }
     }
+
+    #endregion
+
+    #region Effects
+
+    public static class Bold {
+        public const string On  = $"{csi}1m";
+        public const string Off = $"{csi}22m";
+    }
+
+    #endregion
 }
