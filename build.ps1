@@ -9,6 +9,8 @@
     ```
 #>
 
+Publish-Nuget -Verbose
+
 <#
 .SYNOPSIS
     Publishes (aka "pushes") a `.nupkg` file to `nuget.org`.
@@ -356,7 +358,7 @@ function Get-LatestNupkg(
     # - The path to the **folder** containing the `.nupkg` files.
     # - Corresponds to the `Get-ChildItem -Path` parameter.
     [Parameter()]
-    [string[]]$Path = ".\Conjugal\bin\Debug",
+    [string[]]$Path = ".\Conjugal\bin\Release",
 
     # If specified, then only files with a `LastWriteTime >= OldestTimestamp` will be considered.
     [nullable[datetime]]$OldestTimestamp,
