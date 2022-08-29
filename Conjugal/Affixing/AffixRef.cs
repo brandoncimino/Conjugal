@@ -52,7 +52,7 @@ public readonly ref struct AffixRef<TFlavor> where TFlavor : IAffix<TFlavor> {
     public Affixation WithStem(ReadOnlySpan<char> stem) => Affixation.Of(stem, this);
 
     private const string StemIcon        = "🌱";
-    private const string ToStringJoiner  = $"{Ansi.Gray.Fg}-{Ansi.Reset.Fg}";
+    private const string ToStringJoiner  = $"";
     private const string PartialStemIcon = "🪵";
 
     /// <returns>a long-form list of all the properties of this <see cref="AffixRef{TFlavor}"/></returns>
