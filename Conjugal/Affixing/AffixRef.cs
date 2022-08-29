@@ -131,6 +131,11 @@ internal static class AffixRefStringBuilderExtensions {
     private const string StemIcon      = "🌱";
     private const string StemColored   = $"{Ansi.Green.Bright.Bg}{Ansi.Black.Fg}{Ansi.Bold.On}{StemIcon}{Ansi.Reset.All}";
 
+
+    public static StringBuilder AppendStyled(this StringBuilder stringBuilder, ReadOnlySpan<char> stuff, ReadOnlySpan<char> style) {
+        return stuff.IsEmpty ? stringBuilder : stringBuilder.Append(style).Append(stuff).Append(Ansi.Reset.All);
+    }
+
     public static StringBuilder AppendBoundMorpheme<T>(this StringBuilder builder, AffixRef<T> affixRef) where T : IAffix<T> => builder.AppendStyled(affixRef.BoundMorpheme,   MorphemeStyle);
     public static StringBuilder AppendSuffixMorpheme<T>(this StringBuilder builder, AffixRef<T> affixRef) where T : IAffix<T> => builder.AppendStyled(affixRef.SuffixMorpheme, MorphemeStyle);
     public static StringBuilder AppendJoiner<T>(this StringBuilder builder, AffixRef<T> affixRef) where T : IAffix<T> => builder.AppendStyled(affixRef.Joiner,                 JoinerStyle);
