@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 - This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Dates are in `YYYY-MM-DD` format.
 
+## [3.1.3] - 2022-08-31
+
+> Re-publish 'cus I think I pushed the wrong artifact
+
 ## [3.1.2] - 2022-08-31
 
 ### Fixed

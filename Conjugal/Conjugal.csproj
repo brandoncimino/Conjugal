@@ -6,7 +6,7 @@
         <AssemblyName>FowlFever.Conjugal</AssemblyName>
         <RootNamespace>FowlFever.Conjugal</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>3.1.2</PackageVersion>
+        <PackageVersion>3.1.3</PackageVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <Title>Conjugal</Title>
         <Authors>Brandon Cimino</Authors>
@@ -16,7 +16,9 @@
         <RepositoryType>git</RepositoryType>
         <Description>Structs and annotations for producing nice word conjugations and other linguistic metadata, such as abbreviations, units of measure, and terms of venery.</Description>
         <PackageReleaseNotes>
-            ## [3.1.2] - 2022-08-31
+            ## [3.1.3] - 2022-08-31
+
+            > Re-publish cus I think I pushed the wrong artifact
 
             ### Fixed
 
