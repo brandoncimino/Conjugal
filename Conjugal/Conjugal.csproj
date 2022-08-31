@@ -16,20 +16,11 @@
         <RepositoryType>git</RepositoryType>
         <Description>Structs and annotations for producing nice word conjugations and other linguistic metadata, such as abbreviations, units of measure, and terms of venery.</Description>
         <PackageReleaseNotes>
-            ## [3.1.1] - 2022-08-28
+            ## [3.1.2] - 2022-08-31
 
-            ### Added
+            ### Fixed
 
-            - `record` implementations if the `I{affix}` interfaces
-            - Property-accessing / `with`-ing extension methods for `AffixRef&lt;T&gt;`
-            - Extensions to convert from `AffixRef&lt;T&gt;` to `I{affix}` interfaces
-            - A nice `ToString` representation of `AffixRef&lt;T&gt;`
-
-            ### Removed
-
-            - `Affix&lt;T&gt;` struct - the use cases should now be more clear:
-            - If you're "building" a `string` to pass around to different method calls, use `AffixRef&lt;T&gt;`
-            - If you need to store the affix into a variable, use one of the `record` implementations of the `I{affix}` interface types
+            Fixed a silly stack overflow in `ICircumfix.GetPrefix()`
         </PackageReleaseNotes>
         <NeutralLanguage>en</NeutralLanguage>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
