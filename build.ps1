@@ -9,7 +9,7 @@
     ```
 #>
 
-Publish-Nuget -Verbose
+
 
 <#
 .SYNOPSIS
@@ -35,7 +35,8 @@ function Publish-Nuget(
     }
 
     # example:
-    # dotnet nuget push AppLogger.1.0.0.nupkg --api-key qz2jga8pl3dvn2akksyquwcs9ygggg4exypy3bhxy6w6x6 --source https://api.nuget.org/v3/index.json
+    #   dotnet nuget push AppLogger.1.0.0.nupkg --api-key qz2jga8pl3dvn2akksyquwcs9ygggg4exypy3bhxy6w6x6 --source https://api.nuget.org/v3/index.json
+    # 📎 `--source` is determined by `nuget.config`
     
     if (!$nupkg) {
         $built_package = Build-Nupkg
@@ -47,7 +48,7 @@ function Publish-Nuget(
         ApiKey = $ApiKey
     } | Out-String | Write-Host -ForegroundColor DarkGray
 
-    dotnet.exe nuget push $nupkg --api-key $ApiKey --source "nuget.org"
+    dotnet.exe nuget push $nupkg --api-key $ApiKey
 }
 
 <#
@@ -428,3 +429,5 @@ function Get-LatestNupkg(
         }
     }
 }
+
+Publish-Nuget -Verbose
