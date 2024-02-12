@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 
 namespace FowlFever.Conjugal.Internal;
 
@@ -22,7 +23,7 @@ internal static class SpanHelpers {
     /// <param name="shouldValidatePosition"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static Span<T> Write<T>(this Span<T> span, ReadOnlySpan<T> toAppend, ref int position, bool shouldValidatePosition = false) {
+    public static Span<T> Write<T>(this Span<T> span, ReadOnlySpan<T> toAppend, scoped ref int position, bool shouldValidatePosition = false) {
         if (toAppend.IsEmpty) {
             return span;
         }
@@ -54,7 +55,7 @@ internal static class SpanHelpers {
     /// <param name="shouldValidatePosition"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static Span<T> WriteJoin<T>(this Span<T> destination, ReadOnlySpan<T> source, ReadOnlySpan<T> joiner, ref int position, bool shouldValidatePosition = false) {
+    public static Span<T> WriteJoin<T>(this Span<T> destination, ReadOnlySpan<T> source, ReadOnlySpan<T> joiner, scoped ref int position, bool shouldValidatePosition = false) {
         if (source.IsEmpty) {
             return destination;
         }
@@ -204,7 +205,7 @@ internal static class SpanHelpers {
             }
         }
 
-        var pos = 0;
+        int pos = 0;
         return destination.Write(a, ref pos)
                           .Write(b, ref pos)
                           .Write(c, ref pos)
